@@ -12,9 +12,66 @@ const StatusIndicator = ({ color = 'gray' }: { color: 'green' | 'yellow' | 'red'
 
 export default function StatusPage() {
     const locations = [
-        { id: 1, name: "WTP and stations", status: 'Normal Operation', statusColor: 'secondary' },
-        { id: 2, name: "STP network", status: 'Normal Operation', statusColor: 'secondary' },
-        { id: 3, name: "Storm Water Pumping Station Network", status: 'Maintenance Required', statusColor: 'destructive' },
+        { 
+            id: 1, 
+            name: "WTP and stations", 
+            status: 'Normal Operation', 
+            statusColor: 'secondary',
+            reservoirs: {
+                label: "Reservoir Levels",
+                items: [
+                    { name: "Reservoir A", value: "8.2m", status: "green", statusLabel: ""},
+                    { name: "Reservoir B", value: "5.1m", status: "yellow", statusLabel: "(Low)"},
+                ]
+            },
+            pumps: {
+                label: "Water Discharge",
+                items: [
+                    { name: "Pump 1", value: "1250 m³/h", status: "green" },
+                    { name: "Pump 2", value: "1245 m³/h", status: "green" },
+                ]
+            }
+        },
+        { 
+            id: 2, 
+            name: "STP network", 
+            status: 'Normal Operation', 
+            statusColor: 'secondary',
+            reservoirs: {
+                label: "Reservoir Levels",
+                items: [
+                    { name: "Reservoir A", value: "8.2m", status: "green", statusLabel: ""},
+                    { name: "Reservoir B", value: "5.1m", status: "yellow", statusLabel: "(Low)"},
+                ]
+            },
+            pumps: {
+                label: "Water Discharge",
+                items: [
+                    { name: "Pump 1", value: "1250 m³/h", status: "green" },
+                    { name: "Pump 2", value: "1245 m³/h", status: "green" },
+                ]
+            }
+        },
+        { 
+            id: 3, 
+            name: "Storm Water Pumping Station Network", 
+            status: 'Maintenance Required', 
+            statusColor: 'destructive',
+            reservoirs: {
+                label: "Sump Levels",
+                items: [
+                    { name: "Sump A", value: "8.2m", status: "green", statusLabel: "" },
+                    { name: "Sump B", value: "5.1m", status: "yellow", statusLabel: "(Low)" },
+                ]
+            },
+            pumps: {
+                label: "Water Discharge",
+                items: [
+                    { name: "Pump 1", value: "1250 m³/h", status: "green" },
+                    { name: "Pump 2", value: "1245 m³/h", status: "green" },
+                ]
+            }
+        },
     ];
 
     return (
@@ -35,17 +92,25 @@ export default function StatusPage() {
                         </CardHeader>
                         <CardContent className="space-y-4">
                             <div>
-                                <h3 className="font-semibold mb-2 text-primary">Reservoir Levels</h3>
+                                <h3 className="font-semibold mb-2 text-primary">{location.reservoirs.label}</h3>
                                 <ul className="space-y-1 text-sm text-muted-foreground">
-                                    <li className="flex items-center"><StatusIndicator color="green" />Reservoir A: 8.2m</li>
-                                    <li className="flex items-center"><StatusIndicator color="yellow" />Reservoir B: 5.1m (Low)</li>
+                                    {location.reservoirs.items.map(item => (
+                                         <li key={item.name} className="flex items-center">
+                                            <StatusIndicator color={item.status as 'green' | 'yellow' | 'red' | 'gray'} />
+                                            {item.name}: {item.value} {item.statusLabel}
+                                        </li>
+                                    ))}
                                 </ul>
                             </div>
                             <div>
-                                <h3 className="font-semibold mb-2 text-primary">Water Discharge</h3>
+                                <h3 className="font-semibold mb-2 text-primary">{location.pumps.label}</h3>
                                 <ul className="space-y-1 text-sm text-muted-foreground">
-                                    <li className="flex items-center"><StatusIndicator color="green" />Pump 1: 1250 m³/h</li>
-                                    <li className="flex items-center"><StatusIndicator color="green" />Pump 2: 1245 m³/h</li>
+                                    {location.pumps.items.map(item => (
+                                         <li key={item.name} className="flex items-center">
+                                            <StatusIndicator color={item.status as 'green' | 'yellow' | 'red' | 'gray'} />
+                                            {item.name}: {item.value}
+                                        </li>
+                                    ))}
                                 </ul>
                             </div>
                             {location.id === 1 ? (
