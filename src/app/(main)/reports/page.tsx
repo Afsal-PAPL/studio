@@ -77,8 +77,8 @@ export default function ReportsPage() {
     return (
         <div className="space-y-6">
             <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-                <h1 className="text-3xl font-bold font-headline">BI Reports & Analysis</h1>
-                <Button><Printer className="mr-2 h-4 w-4" /> Print BI</Button>
+                <h1 className="text-3xl font-bold font-headline">Reports & Analysis</h1>
+                <Button><Printer className="mr-2 h-4 w-4" /> Print Reports</Button>
             </div>
             
             <Card>

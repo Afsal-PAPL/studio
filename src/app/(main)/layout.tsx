@@ -51,9 +51,9 @@ export default function MainLayout({ children }: { children: React.ReactNode }) 
             </SidebarMenuItem>
             <SidebarMenuItem>
               <Link href="/reports">
-                <SidebarMenuButton tooltip="BI Reports">
+                <SidebarMenuButton tooltip="Reports">
                   <BarChart3 />
-                  BI Reports
+                  Reports
                 </SidebarMenuButton>
               </Link>
             </SidebarMenuItem>
