@@ -30,7 +30,7 @@ export default function StatusPage() {
                         <CardHeader>
                             <div className="flex justify-between items-start">
                                 <CardTitle>{location.name}</CardTitle>
-                                <Badge variant={location.statusColor}>{location.status}</Badge>
+                                <Badge variant={location.statusColor as 'secondary' | 'destructive'}>{location.status}</Badge>
                             </div>
                         </CardHeader>
                         <CardContent className="space-y-4">
@@ -48,9 +48,20 @@ export default function StatusPage() {
                                     <li className="flex items-center"><StatusIndicator color="green" />Pump 2: 1245 m³/h</li>
                                 </ul>
                             </div>
-                            <Button className="w-full" asChild>
-                                <Link href={`/location/${location.id}`}>View Station</Link>
-                            </Button>
+                            {location.id === 1 ? (
+                                <div className="flex gap-2">
+                                    <Button className="w-full" asChild>
+                                        <Link href={`/location/1`}>View Station 1</Link>
+                                    </Button>
+                                    <Button className="w-full" asChild>
+                                        <Link href={`/location/2`}>View Station 2</Link>
+                                    </Button>
+                                </div>
+                            ) : (
+                                <Button className="w-full" asChild>
+                                    <Link href={`/location/${location.id}`}>View Station</Link>
+                                </Button>
+                            )}
                         </CardContent>
                     </Card>
                 ))}
