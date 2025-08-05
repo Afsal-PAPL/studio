@@ -1,7 +1,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { RefreshCw, Thermometer, Gauge, Clock } from 'lucide-react';
+import { RefreshCw } from 'lucide-react';
 import Link from 'next/link';
 
 const StatusIndicator = ({ color = 'gray' }: { color: 'green' | 'yellow' | 'red' | 'gray' }) => (
@@ -54,50 +54,6 @@ export default function StatusPage() {
                         </CardContent>
                     </Card>
                 ))}
-            </div>
-
-            <h2 className="text-2xl font-bold font-headline mt-4">Sensor Metrics Overview</h2>
-            <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-                 <Card>
-                    <CardHeader className="flex flex-row items-center justify-between pb-2">
-                        <CardTitle className="text-sm font-medium">Reservoir Level Sensor</CardTitle>
-                        <Gauge className="h-4 w-4 text-muted-foreground" />
-                    </CardHeader>
-                    <CardContent>
-                        <div className="text-2xl font-bold">7.8m</div>
-                        <p className="text-xs text-muted-foreground">WTP and stations - Main Reservoir</p>
-                    </CardContent>
-                </Card>
-                 <Card>
-                    <CardHeader className="flex flex-row items-center justify-between pb-2">
-                        <CardTitle className="text-sm font-medium">Discharge Pressure</CardTitle>
-                        <Thermometer className="h-4 w-4 text-muted-foreground" />
-                    </CardHeader>
-                    <CardContent>
-                        <div className="text-2xl font-bold">5.2 bar</div>
-                        <p className="text-xs text-muted-foreground">STP network - Pump 1</p>
-                    </CardContent>
-                </Card>
-                 <Card>
-                    <CardHeader className="flex flex-row items-center justify-between pb-2">
-                        <CardTitle className="text-sm font-medium">Flow Rate</CardTitle>
-                        <Clock className="h-4 w-4 text-muted-foreground" />
-                    </CardHeader>
-                    <CardContent>
-                        <div className="text-2xl font-bold">450 m³/h</div>
-                        <p className="text-xs text-muted-foreground">Water Supply Stations - Outlet 1</p>
-                    </CardContent>
-                </Card>
-                 <Card>
-                    <CardHeader className="flex flex-row items-center justify-between pb-2">
-                        <CardTitle className="text-sm font-medium">System Uptime</CardTitle>
-                        <Clock className="h-4 w-4 text-muted-foreground" />
-                    </CardHeader>
-                    <CardContent>
-                        <div className="text-2xl font-bold">212 days</div>
-                        <p className="text-xs text-muted-foreground">Since last maintenance</p>
-                    </CardContent>
-                </Card>
             </div>
         </div>
     );
