@@ -65,7 +65,7 @@ export default function StatusPage() {
                     </CardHeader>
                     <CardContent>
                         <div className="text-2xl font-bold">7.8m</div>
-                        <p className="text-xs text-muted-foreground">Location 1 - Main Reservoir</p>
+                        <p className="text-xs text-muted-foreground">WTP and stations - Main Reservoir</p>
                     </CardContent>
                 </Card>
                  <Card>
@@ -75,17 +75,17 @@ export default function StatusPage() {
                     </CardHeader>
                     <CardContent>
                         <div className="text-2xl font-bold">5.2 bar</div>
-                        <p className="text-xs text-muted-foreground">Location 2 - Pump 1</p>
+                        <p className="text-xs text-muted-foreground">STP network - Pump 1</p>
                     </CardContent>
                 </Card>
                  <Card>
                     <CardHeader className="flex flex-row items-center justify-between pb-2">
-                        <CardTitle className="text-sm font-medium">Last Reading</CardTitle>
+                        <CardTitle className="text-sm font-medium">Flow Rate</CardTitle>
                         <Clock className="h-4 w-4 text-muted-foreground" />
                     </CardHeader>
                     <CardContent>
-                        <div className="text-2xl font-bold">14:32:10</div>
-                        <p className="text-xs text-muted-foreground">Today</p>
+                        <div className="text-2xl font-bold">450 m³/h</div>
+                        <p className="text-xs text-muted-foreground">Water Supply Stations - Outlet 1</p>
                     </CardContent>
                 </Card>
                  <Card>
