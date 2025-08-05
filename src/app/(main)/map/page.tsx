@@ -68,7 +68,7 @@ export default function MapPage() {
             <h1 className="text-3xl font-bold font-headline">Location Overview</h1>
             <Card className="w-full h-[calc(100vh-14rem)]">
                 <div className="relative w-full h-full rounded-lg overflow-hidden">
-                    <Image src="https://placehold.co/1600x900.png" layout="fill" objectFit="cover" alt="Map of locations" data-ai-hint="city map" />
+                    <Image src="https://placehold.co/1600x900.png" layout="fill" objectFit="cover" alt="Map of locations" data-ai-hint="Ahmedabad map" />
                     <LocationMarker name="Location 1" top="20%" left="30%" />
                     <LocationMarker name="Location 2" top="50%" left="50%" />
                     <LocationMarker name="Location 3" top="65%" left="70%" />
