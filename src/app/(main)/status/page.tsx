@@ -49,7 +49,7 @@ export default function StatusPage() {
                                 </ul>
                             </div>
                             <Button className="w-full" asChild>
-                                <Link href={`/location/${location.id}`}>View Changes</Link>
+                                <Link href={`/location/${location.id}`}>View Station</Link>
                             </Button>
                         </CardContent>
                     </Card>
