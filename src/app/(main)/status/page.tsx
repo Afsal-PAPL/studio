@@ -49,7 +49,7 @@ export default function StatusPage() {
                                 </ul>
                             </div>
                             {location.id === 1 ? (
-                                <div className="flex gap-2">
+                                <div className="flex flex-col gap-2">
                                     <Button className="w-full" asChild>
                                         <Link href={`/location/1`}>View Station 1</Link>
                                     </Button>
