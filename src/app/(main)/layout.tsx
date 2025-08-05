@@ -34,7 +34,7 @@ export default function MainLayout({ children }: { children: React.ReactNode }) 
         <SidebarContent>
           <SidebarMenu>
             <SidebarMenuItem>
-              <Link href="/map" legacyBehavior passHref>
+              <Link href="/map">
                 <SidebarMenuButton tooltip="Map Overview">
                   <Map />
                   Map Overview
@@ -42,7 +42,7 @@ export default function MainLayout({ children }: { children: React.ReactNode }) 
               </Link>
             </SidebarMenuItem>
             <SidebarMenuItem>
-              <Link href="/status" legacyBehavior passHref>
+              <Link href="/status">
                 <SidebarMenuButton tooltip="Location Status">
                   <MapPin />
                   Location Status
@@ -50,7 +50,7 @@ export default function MainLayout({ children }: { children: React.ReactNode }) 
               </Link>
             </SidebarMenuItem>
             <SidebarMenuItem>
-              <Link href="/reports" legacyBehavior passHref>
+              <Link href="/reports">
                 <SidebarMenuButton tooltip="BI Reports">
                   <BarChart3 />
                   BI Reports
@@ -62,7 +62,7 @@ export default function MainLayout({ children }: { children: React.ReactNode }) 
         <SidebarFooter>
           <SidebarMenu>
             <SidebarMenuItem>
-               <Link href="#" legacyBehavior passHref>
+               <Link href="#">
                 <SidebarMenuButton tooltip="Settings">
                   <Settings />
                   Settings
