@@ -18,9 +18,9 @@ const Gauge = ({ label, value, max, unit, progressColor }: { label: string; valu
 const MetricDisplay = ({ label, value, unit }: {label: string, value: string | number, unit?: string}) => (
     <div className="flex flex-col items-center justify-center p-4 bg-secondary/50 rounded-lg text-center">
         <p className="text-xs text-muted-foreground">{label}</p>
-        <div className="text-lg font-bold text-primary">
+        <div className="text-xl font-bold text-primary">
             <span>{value}</span>
-            {unit && <span className="text-sm font-normal text-muted-foreground ml-1">{unit}</span>}
+            {unit && <span className="text-xl font-bold text-primary ml-1">{unit}</span>}
         </div>
     </div>
 );
