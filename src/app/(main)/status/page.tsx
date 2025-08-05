@@ -27,8 +27,8 @@ export default function StatusPage() {
             pumps: {
                 label: "Water Discharge",
                 items: [
-                    { name: "Pump 1", value: "1250 m³/h", status: "green" },
-                    { name: "Pump 2", value: "1245 m³/h", status: "green" },
+                    { name: "Line 1", value: "1250 m³/h", status: "green" },
+                    { name: "Line 2", value: "1245 m³/h", status: "green" },
                 ]
             }
         },
