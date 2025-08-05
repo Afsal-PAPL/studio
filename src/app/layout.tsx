@@ -3,7 +3,7 @@ import { Toaster } from "@/components/ui/toaster";
 import './globals.css';
 
 export const metadata: Metadata = {
-  title: 'HydroView – IPMS',
+  title: 'IPMS – Integrated Performance Management System',
   description: 'Integrated Performance Management System for pumping systems.',
 };
 

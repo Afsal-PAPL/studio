@@ -11,7 +11,7 @@ import { Eye, EyeOff } from 'lucide-react';
 const Logo = () => (
     <div className="flex items-center gap-2 font-bold text-2xl font-headline text-primary">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-8 h-8"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0L12 2.69z"></path><path d="M12 12a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"></path><path d="M12 22v-6"></path></svg>
-        <span>HydroView</span>
+        <span>IPMS</span>
     </div>
 );
 
