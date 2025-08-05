@@ -12,9 +12,9 @@ const StatusIndicator = ({ color = 'gray' }: { color: 'green' | 'yellow' | 'red'
 
 export default function StatusPage() {
     const locations = [
-        { id: 1, name: "North Sector", status: 'Normal Operation', statusColor: 'secondary' },
-        { id: 2, name: "West Industrial Park", status: 'Normal Operation', statusColor: 'secondary' },
-        { id: 3, name: "South Residential", status: 'Maintenance Required', statusColor: 'destructive' },
+        { id: 1, name: "WTP and stations", status: 'Normal Operation', statusColor: 'secondary' },
+        { id: 2, name: "STP network", status: 'Normal Operation', statusColor: 'secondary' },
+        { id: 3, name: "Water Supply and Distribution Stations", status: 'Maintenance Required', statusColor: 'destructive' },
     ];
 
     return (
