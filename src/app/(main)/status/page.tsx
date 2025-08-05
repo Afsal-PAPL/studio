@@ -14,7 +14,7 @@ export default function StatusPage() {
     const locations = [
         { id: 1, name: "WTP and stations", status: 'Normal Operation', statusColor: 'secondary' },
         { id: 2, name: "STP network", status: 'Normal Operation', statusColor: 'secondary' },
-        { id: 3, name: "Water Supply and Distribution Stations", status: 'Maintenance Required', statusColor: 'destructive' },
+        { id: 3, name: "Storm Water Pumping Station Network", status: 'Maintenance Required', statusColor: 'destructive' },
     ];
 
     return (
