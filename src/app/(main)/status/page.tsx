@@ -14,7 +14,7 @@ export default function StatusPage() {
     const locations = [
         { 
             id: 1, 
-            name: "WTP and stations", 
+            name: "Drinking Water Distribution Network ( WTP & WDS)", 
             status: 'Normal Operation', 
             statusColor: 'secondary',
             reservoirs: {
