@@ -11,12 +11,12 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@
 
 
 const locations = [
-    { id: 1, name: 'Kotarpur WTP', type: 'WTP', status: 'Normal', top: '25%', left: '40%', data: { designedDischarge: 270, todayFlow: 281.31, reservoirLevel: 13.76, reservoirCapacity: 27.52, efficiency: 78.54, energy: 117314, pf: 0.89 } },
-    { id: 2, name: 'Raska WTP', type: 'WTP', status: 'Normal', top: '75%', left: '80%', data: { designedDischarge: 260, todayFlow: 275.1, reservoirLevel: 12.5, reservoirCapacity: 25.0, efficiency: 80.1, energy: 115000, pf: 0.90 } },
+    { id: 1, name: 'Kotarpur WTP', type: 'WTP', status: 'Normal', top: '25%', left: '40%', data: { designedDischarge: 270, todayFlow: 281.31, reservoirLevel: 13.76, reservoirCapacity: 27.52, efficiency: 78.54, energy: 117314, pf: 0.89, ph: 7.64, turbidity: 2.57, conductivity: 276.42, frc: 0.12, temperature: 24.70, tds: 138.21 } },
+    { id: 2, name: 'Raska WTP', type: 'WTP', status: 'Normal', top: '75%', left: '80%', data: { designedDischarge: 260, todayFlow: 275.1, reservoirLevel: 12.5, reservoirCapacity: 25.0, efficiency: 80.1, energy: 115000, pf: 0.90, ph: 7.66, turbidity: 2.99, conductivity: 300.98, frc: 0.17, temperature: 25.10, tds: 150.49 } },
     { id: 3, name: 'Dariyapur WDS', type: 'WDS', status: 'Normal', top: '48%', left: '52%', data: { designedDischarge: 150, todayFlow: 155.6, reservoirLevel: 10.2, reservoirCapacity: 20.0, efficiency: 82.3, energy: 95000, pf: 0.88 } },
     { id: 4, name: 'Mihir Tower WDS', type: 'WDS', status: 'Normal', top: '60%', left: '30%', data: { designedDischarge: 140, todayFlow: 148.2, reservoirLevel: 9.8, reservoirCapacity: 18.0, efficiency: 81.5, energy: 92000, pf: 0.89 } },
-    { id: 5, name: 'Daffnala STP', type: 'STP', status: 'Normal', top: '40%', left: '65%', data: { totalOutletWater: 34.13, inletWater: 85.88, plantEfficiency: 39.74 } },
-    { id: 6, name: 'Shankar Bhavan STP', type: 'STP', status: 'Normal', top: '55%', left: '45%', data: { totalOutletWater: 30.5, inletWater: 80.2, plantEfficiency: 41.2 } },
+    { id: 5, name: 'Daffnala STP', type: 'STP', status: 'Normal', top: '40%', left: '65%', data: { totalOutletWater: 34.13, inletWater: 85.88, plantEfficiency: 39.74, bod: 9.8, cod: 27.0, tss: 4.8 } },
+    { id: 6, name: 'Shankar Bhavan STP', type: 'STP', status: 'Normal', top: '55%', left: '45%', data: { totalOutletWater: 30.5, inletWater: 80.2, plantEfficiency: 41.2, bod: 9.5, cod: 26.2, tss: 4.5 } },
     { id: 7, name: 'W-5 Usmanpura SPS', type: 'SPS', status: 'Normal', top: '50%', left: '40%', data: { designedDischarge: 90, todayFlow: 95.3, reservoirLevel: 6.2, reservoirCapacity: 12.0, efficiency: 79.1, energy: 75000, pf: 0.91 } },
     { id: 8, name: 'Moterra SPS', type: 'SPS', status: 'Normal', top: '15%', left: '35%', data: { designedDischarge: 85, todayFlow: 91.7, reservoirLevel: 6.0, reservoirCapacity: 11.5, efficiency: 80.0, energy: 72000, pf: 0.92 } },
     { id: 9, name: 'Vejalpur SWPS', type: 'SWPS', status: 'Maintenance', top: '70%', left: '25%', data: { designedDischarge: 200, todayFlow: 190.5, reservoirLevel: 4.2, reservoirCapacity: 10.0, efficiency: 70.5, energy: 105000, pf: 0.85 } },
@@ -43,6 +43,7 @@ const LocationMarker = ({ location }: { location: (typeof locations)[0] }) => {
     const href = getHref(location.type, location.id);
     
     const isStp = location.type === 'STP';
+    const isWtp = location.type === 'WTP';
     const data = location.data as any;
 
     return (
@@ -57,35 +58,57 @@ const LocationMarker = ({ location }: { location: (typeof locations)[0] }) => {
             <PopoverContent className="w-[40rem] p-0" onMouseEnter={() => setIsOpen(true)} onMouseLeave={() => setIsOpen(false)}>
                 <div className="p-4 bg-gray-100 dark:bg-gray-800 rounded-t-lg">
                     <div className="flex justify-between items-center">
-                        <h3 className="font-bold text-lg">{isStp ? `${location.name} - Plant Summary` : `Pumping Station Details - ${location.name}`}</h3>
+                        <h3 className="font-bold text-lg">{isStp || isWtp ? `${location.name} - Plant Summary` : `Pumping Station Details - ${location.name}`}</h3>
                         <Button variant="ghost" size="icon" className="h-6 w-6" onClick={() => setIsOpen(false)}><X className="h-4 w-4" /></Button>
                     </div>
                 </div>
                 <div className="p-4 space-y-4">
                     {isStp ? (
-                        <div className="grid grid-cols-3 gap-4">
-                            <Card>
-                                <CardHeader><CardTitle className="text-sm font-medium">Total Outlet Water</CardTitle></CardHeader>
-                                <CardContent>
-                                    <p className="text-2xl font-bold">{data.totalOutletWater}<span className="text-sm font-normal"> KL</span></p>
-                                    <p className="text-xs text-muted-foreground">Outlet Water</p>
-                                </CardContent>
-                            </Card>
-                            <Card>
-                                <CardHeader><CardTitle className="text-sm font-medium">Inlet Water</CardTitle></CardHeader>
-                                <CardContent>
-                                    <p className="text-2xl font-bold">{data.inletWater}<span className="text-sm font-normal"> KLD</span></p>
-                                    <p className="text-xs text-muted-foreground">Inlet Water</p>
-                                </CardContent>
-                            </Card>
-                            <Card>
-                                <CardHeader><CardTitle className="text-sm font-medium">Plant Efficiency</CardTitle></CardHeader>
-                                <CardContent>
-                                    <p className="text-2xl font-bold">{data.plantEfficiency}%</p>
-                                    <p className="text-xs text-muted-foreground">Plant Efficiency</p>
-                                </CardContent>
-                            </Card>
-                        </div>
+                         <Table>
+                            <TableHeader>
+                                <TableRow className="bg-gray-50 dark:bg-gray-700">
+                                    <TableHead>Total Outlet Water</TableHead>
+                                    <TableHead>Inlet Water</TableHead>
+                                    <TableHead>Plant Efficiency</TableHead>
+                                    <TableHead>BOD (mg/l)</TableHead>
+                                    <TableHead>COD (ppm)</TableHead>
+                                    <TableHead>TSS (ppm)</TableHead>
+                                </TableRow>
+                            </TableHeader>
+                            <TableBody>
+                                <TableRow>
+                                    <TableCell>{data.totalOutletWater} KL</TableCell>
+                                    <TableCell>{data.inletWater} KLD</TableCell>
+                                    <TableCell>{data.plantEfficiency}%</TableCell>
+                                    <TableCell>{data.bod}</TableCell>
+                                    <TableCell>{data.cod}</TableCell>
+                                    <TableCell>{data.tss}</TableCell>
+                                </TableRow>
+                            </TableBody>
+                        </Table>
+                    ) : isWtp ? (
+                        <Table>
+                            <TableHeader>
+                                <TableRow className="bg-gray-50 dark:bg-gray-700">
+                                    <TableHead>pH (6.5-8.5)</TableHead>
+                                    <TableHead>Turbidity (&lt;5 NTU)</TableHead>
+                                    <TableHead>Elec. conductivity (&lt;1000 µS/cm)</TableHead>
+                                    <TableHead>FRC (&lt;0.2 ppm)</TableHead>
+                                    <TableHead>Temperature (15-30 °C)</TableHead>
+                                    <TableHead>TDS (&lt;500 ppm)</TableHead>
+                                </TableRow>
+                            </TableHeader>
+                            <TableBody>
+                                <TableRow>
+                                    <TableCell>{data.ph.toFixed(2)}</TableCell>
+                                    <TableCell>{data.turbidity.toFixed(2)}</TableCell>
+                                    <TableCell>{data.conductivity.toFixed(2)}</TableCell>
+                                    <TableCell>{data.frc.toFixed(2)}</TableCell>
+                                    <TableCell>{data.temperature.toFixed(2)}</TableCell>
+                                    <TableCell>{data.tds.toFixed(2)}</TableCell>
+                                </TableRow>
+                            </TableBody>
+                        </Table>
                     ) : (
                         <>
                             <Table>
