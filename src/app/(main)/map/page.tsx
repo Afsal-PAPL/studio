@@ -15,8 +15,8 @@ const locations = [
     { id: 2, name: 'Raska WTP', type: 'WTP', status: 'Normal', top: '75%', left: '80%', data: { designedDischarge: 260, todayFlow: 275.1, reservoirLevel: 12.5, reservoirCapacity: 25.0, efficiency: 80.1, energy: 115000, pf: 0.90 } },
     { id: 3, name: 'Dariyapur WDS', type: 'WDS', status: 'Normal', top: '48%', left: '52%', data: { designedDischarge: 150, todayFlow: 155.6, reservoirLevel: 10.2, reservoirCapacity: 20.0, efficiency: 82.3, energy: 95000, pf: 0.88 } },
     { id: 4, name: 'Mihir Tower WDS', type: 'WDS', status: 'Normal', top: '60%', left: '30%', data: { designedDischarge: 140, todayFlow: 148.2, reservoirLevel: 9.8, reservoirCapacity: 18.0, efficiency: 81.5, energy: 92000, pf: 0.89 } },
-    { id: 5, name: 'Daffnala STP', type: 'STP', status: 'Normal', top: '40%', left: '65%', data: { totalOutletWater: 34.13, inletWater: 85.88, mbrTankLevels: 82.32, plantEfficiency: 39.74 } },
-    { id: 6, name: 'Shankar Bhavan STP', type: 'STP', status: 'Normal', top: '55%', left: '45%', data: { totalOutletWater: 30.5, inletWater: 80.2, mbrTankLevels: 81.5, plantEfficiency: 41.2 } },
+    { id: 5, name: 'Daffnala STP', type: 'STP', status: 'Normal', top: '40%', left: '65%', data: { totalOutletWater: 34.13, inletWater: 85.88, plantEfficiency: 39.74 } },
+    { id: 6, name: 'Shankar Bhavan STP', type: 'STP', status: 'Normal', top: '55%', left: '45%', data: { totalOutletWater: 30.5, inletWater: 80.2, plantEfficiency: 41.2 } },
     { id: 7, name: 'W-5 Usmanpura SPS', type: 'SPS', status: 'Normal', top: '50%', left: '40%', data: { designedDischarge: 90, todayFlow: 95.3, reservoirLevel: 6.2, reservoirCapacity: 12.0, efficiency: 79.1, energy: 75000, pf: 0.91 } },
     { id: 8, name: 'Moterra SPS', type: 'SPS', status: 'Normal', top: '15%', left: '35%', data: { designedDischarge: 85, todayFlow: 91.7, reservoirLevel: 6.0, reservoirCapacity: 11.5, efficiency: 80.0, energy: 72000, pf: 0.92 } },
     { id: 9, name: 'Vejalpur SWPS', type: 'SWPS', status: 'Maintenance', top: '70%', left: '25%', data: { designedDischarge: 200, todayFlow: 190.5, reservoirLevel: 4.2, reservoirCapacity: 10.0, efficiency: 70.5, energy: 105000, pf: 0.85 } },
@@ -63,7 +63,7 @@ const LocationMarker = ({ location }: { location: (typeof locations)[0] }) => {
                 </div>
                 <div className="p-4 space-y-4">
                     {isStp ? (
-                        <div className="grid grid-cols-4 gap-4">
+                        <div className="grid grid-cols-3 gap-4">
                             <Card>
                                 <CardHeader><CardTitle className="text-sm font-medium">Total Outlet Water</CardTitle></CardHeader>
                                 <CardContent>
@@ -76,13 +76,6 @@ const LocationMarker = ({ location }: { location: (typeof locations)[0] }) => {
                                 <CardContent>
                                     <p className="text-2xl font-bold">{data.inletWater}<span className="text-sm font-normal"> KLD</span></p>
                                     <p className="text-xs text-muted-foreground">Inlet Water</p>
-                                </CardContent>
-                            </Card>
-                            <Card>
-                                <CardHeader><CardTitle className="text-sm font-medium">MBR Tank Levels</CardTitle></CardHeader>
-                                <CardContent>
-                                    <p className="text-2xl font-bold">{data.mbrTankLevels}%</p>
-                                    <p className="text-xs text-muted-foreground">MBR Tank Level</p>
                                 </CardContent>
                             </Card>
                             <Card>

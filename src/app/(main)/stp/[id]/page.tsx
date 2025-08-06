@@ -79,10 +79,9 @@ export default function STPDetailsPage({ params }: { params: { id: string } }) {
             <Breadcrumb items={breadcrumbItems} />
             <h1 className="text-3xl font-bold font-headline">{stationName} - Plant Summary</h1>
             
-            <div className="grid gap-4 grid-cols-2 md:grid-cols-4">
+            <div className="grid gap-4 grid-cols-2 md:grid-cols-3">
                 <MetricCard title="Total Outlet Water" value="34.13" unit="KL" description="Outlet Water" />
                 <MetricCard title="Inlet Water" value="85.88" unit="KLD" description="Inlet Water" />
-                <MetricCard title="MBR Tank Levels" value="82.32" unit="%" description="MBR Tank Level" />
                 <MetricCard title="Plant Efficiency" value="39.74" unit="%" description="Plant Efficiency" />
             </div>
 
