@@ -44,6 +44,18 @@ const stationsData = [
         powerFactor: "0.92",
         top: "65%",
         left: "70%",
+    },
+    {
+        id: 4,
+        name: "Pumping Station - Location 4",
+        dischargeRate: "2000 m³",
+        flow: "1400 m³/h",
+        reservoirLevel: "9.0 m",
+        efficiency: "90%",
+        energy: "450 kWh",
+        powerFactor: "0.95",
+        top: "40%",
+        left: "80%",
     }
 ];
 
