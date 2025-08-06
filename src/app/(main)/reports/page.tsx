@@ -77,7 +77,7 @@ function DatePickerWithRange({ className }: React.HTMLAttributes<HTMLDivElement>
 
 const alertsData = [
     {
-        location: { name: "Station 1 - Loc 3", level1: 3.88, level2: 3.83 },
+        location: { name: "Dariyapur WDS", level1: 3.88, level2: 3.83 },
         warnings: [
             { type: "Station", color: "yellow", items: ["Surge Tank Air Receiver Pressure (bar): 0", "Surge Tank 1 Air Vessel Pressure (bar): 0", "Surge Tank 2 Air Vessel Pressure (bar): 0", "Surge Tank 3 Air Vessel Pressure (bar): 0", "Surge Tank 1 Level Transmitter (m): 0", "Surge Tank 2 Level Transmitter (m): 0", "Surge Tank 3 Level Transmitter (m): 0"] }
         ],
@@ -87,7 +87,7 @@ const alertsData = [
         ]
     },
     {
-        location: { name: "Station 1 - Loc 2", level1: 4.44, level2: 4.47 },
+        location: { name: "Moterra SPS", level1: 4.44, level2: 4.47 },
         warnings: [
             { type: "Station", color: "yellow", items: ["Surge Tank 1 Level Transmitter (m): 0", "Surge Tank 2 Level Transmitter (m): 0", "Surge Tank 3 Level Transmitter (m): 0", "Surge Tank 4 Level Transmitter (m): 0"] }
         ],
@@ -97,7 +97,7 @@ const alertsData = [
         ]
     },
      {
-        location: { name: "Station 1 - Loc 1", level1: 4.67, level2: 4.62 },
+        location: { name: "Vejalpur SWPS", level1: 4.67, level2: 4.62 },
         warnings: [],
         pumps: [
             { name: "Pump 3", color: "amber", alerts: ["Combined Efficiency (%): 79.02"] },
