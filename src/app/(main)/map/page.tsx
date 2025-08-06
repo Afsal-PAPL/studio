@@ -1,10 +1,12 @@
 
+"use client"
 import { Card, CardContent } from '@/components/ui/card';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import { MapPin } from 'lucide-react';
+import React from 'react';
 
 const locations = [
     { id: 1, name: 'Kotarpur WTP', type: 'WTP', status: 'Normal', top: '25%', left: '40%' },
@@ -35,15 +37,18 @@ const getHref = (type: string, id: number) => {
 }
 
 const LocationMarker = ({ location }: { location: typeof locations[0] }) => {
+    const [isOpen, setIsOpen] = React.useState(false);
     const href = getHref(location.type, location.id);
     return (
-        <Popover>
+        <Popover open={isOpen} onOpenChange={setIsOpen}>
             <PopoverTrigger asChild style={{ top: location.top, left: location.left }} className="absolute -translate-x-1/2 -translate-y-1/2">
-                <Button variant="ghost" size="icon" className="rounded-full w-8 h-8 bg-background/80 hover:bg-background/100">
-                    <MapPin className="w-5 h-5 text-primary animate-pulse" />
-                </Button>
+                 <div onMouseEnter={() => setIsOpen(true)} onMouseLeave={() => setIsOpen(false)}>
+                    <Button variant="ghost" size="icon" className="rounded-full w-8 h-8 bg-background/80 hover:bg-background/100">
+                        <MapPin className="w-5 h-5 text-primary animate-pulse" />
+                    </Button>
+                </div>
             </PopoverTrigger>
-            <PopoverContent className="w-64">
+            <PopoverContent className="w-64" onMouseEnter={() => setIsOpen(true)} onMouseLeave={() => setIsOpen(false)}>
                 <div className="space-y-2">
                     <h4 className="font-semibold">{location.name}</h4>
                     <p className="text-sm text-muted-foreground">Type: {location.type}</p>
