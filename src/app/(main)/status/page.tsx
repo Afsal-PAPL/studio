@@ -41,17 +41,19 @@ export default function StatusPage() {
             status: 'Normal Operation', 
             statusColor: 'secondary',
             reservoirs: {
-                label: "Reservoir Levels",
+                label: "Sewage Treatment Plant (STP)",
                 items: [
-                    { name: "Reservoir A", value: "8.2m", status: "green", statusLabel: ""},
-                    { name: "Reservoir B", value: "5.1m", status: "yellow", statusLabel: "(Low)"},
+                    { name: "Total Sewage Treated", value: "150 MLD", status: "green", statusLabel: "" },
+                    { name: "Inlet vs Outlet", value: "155/150 MLD", status: "green", statusLabel: "" },
+                    { name: "Energy Consumed", value: "40 MWh", status: "green", statusLabel: "" },
+                    { name: "BOD/COD Reduction", value: "95%", status: "green", statusLabel: "" },
                 ]
             },
             pumps: {
-                label: "Water Discharge",
+                label: "Sewage Pumping Station (SPS)",
                 items: [
-                    { name: "Pump 1", value: "1250 m³/h", status: "green" },
-                    { name: "Pump 2", value: "1245 m³/h", status: "green" },
+                    { name: "Total Sewage Pumped", value: "152 MLD", status: "green" },
+                    { name: "Energy Consumed", value: "25 MWh", status: "green" },
                 ]
             }
         },
