@@ -62,7 +62,7 @@ const LocationMarker = ({ location }: { location: (typeof locations)[0] }) => {
             </PopoverTrigger>
             {isOpen && (
                 <PopoverPortal>
-                    <>
+                     <React.Fragment>
                         <div className="fixed inset-0 z-40 bg-black/50" onClick={() => setIsOpen(false)} />
                         <div className="fixed inset-0 z-50 flex items-center justify-center">
                             <PopoverContent
@@ -151,32 +151,6 @@ const LocationMarker = ({ location }: { location: (typeof locations)[0] }) => {
                                                         </TableRow>
                                                     </TableBody>
                                                 </Table>
-                                                <div className="grid grid-cols-3 gap-2 mt-4">
-                                                    <Card className="bg-slate-800 text-white p-1">
-                                                        <CardHeader className="p-1">
-                                                            <CardTitle className="text-xs font-medium">Total Designed Discharge (MLD)</CardTitle>
-                                                        </CardHeader>
-                                                        <CardContent className="p-1">
-                                                            <p className="text-lg font-bold">{data.designedDischarge}</p>
-                                                        </CardContent>
-                                                    </Card>
-                                                    <Card className="bg-slate-800 text-white p-1">
-                                                        <CardHeader className="p-1">
-                                                            <CardTitle className="text-xs font-medium">Total Flow Today (ML)</CardTitle>
-                                                        </CardHeader>
-                                                        <CardContent className="p-1">
-                                                            <p className="text-lg font-bold">{data.todayFlow}</p>
-                                                        </CardContent>
-                                                    </Card>
-                                                     <Card className="bg-slate-800 text-white p-1">
-                                                        <CardHeader className="p-1">
-                                                            <CardTitle className="text-xs font-medium">Total Energy Today (kWh)</CardTitle>
-                                                        </CardHeader>
-                                                        <CardContent className="p-1">
-                                                            <p className="text-lg font-bold">{data.energy.toLocaleString()}</p>
-                                                        </CardContent>
-                                                    </Card>
-                                                </div>
                                             </>
                                         )}
                                          <Button asChild size="sm" className="w-full mt-4">
@@ -186,7 +160,7 @@ const LocationMarker = ({ location }: { location: (typeof locations)[0] }) => {
                                 </ScrollArea>
                             </PopoverContent>
                         </div>
-                    </>
+                    </React.Fragment>
                 </PopoverPortal>
             )}
         </Popover>
