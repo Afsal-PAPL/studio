@@ -7,7 +7,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { ChartContainer, ChartTooltip, ChartTooltipContent, ChartConfig } from '@/components/ui/chart';
-import { Bar, BarChart, CartesianGrid, XAxis, YAxis, Line, LineChart, Tooltip } from 'recharts';
+import { Bar, BarChart, CartesianGrid, XAxis, YAxis, Line, LineChart, Tooltip, PieChart, Pie, Cell, Legend } from 'recharts';
 import { Printer, Calendar as CalendarIcon, Droplets, Gauge, Zap, AlertCircle, RefreshCw, XCircle } from 'lucide-react';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import { Calendar } from '@/components/ui/calendar';
@@ -133,7 +133,6 @@ const AlertCard = ({ title, alerts, color }: { title: string, alerts: string[], 
     );
 };
 
-
 const StationWarningCard = ({ warnings, color }: { warnings: string[], color: "red" | "yellow" | "amber" }) => {
     const colorClasses = {
         red: "bg-red-100 border-red-500 text-red-800",
@@ -160,6 +159,38 @@ const StationWarningCard = ({ warnings, color }: { warnings: string[], color: "r
     )
 }
 
+const pumpSequencingData = [
+  { combination: 'Pump 2,3,4,7,8', efficiency: 81.530, power: 703614, flow: 1431, spc: 491.56, count: 5, runHours: 109 },
+  { combination: 'Pump 2,3,4,6,8', efficiency: 81.320, power: 2941679, flow: 5947, spc: 494.63, count: 5, runHours: 458 },
+  { combination: 'Pump 1,3,4,6,8', efficiency: 81.090, power: 1212551, flow: 2438, spc: 497.26, count: 5, runHours: 188 },
+  { combination: 'Pump 1,2,4,6,8', efficiency: 80.620, power: 627659, flow: 1261, spc: 497.78, count: 5, runHours: 97 },
+  { combination: 'Pump 1,2,6,7,8', efficiency: 80.260, power: 3211341, flow: 6422, spc: 500.07, count: 5, runHours: 496 },
+];
+
+const pieChartConfig = {
+  combinations: {
+    label: 'Combinations',
+  },
+  'Pump 2,3,4,7,8': { label: 'Pump 2,3,4,7,8', color: '#22c55e' },
+  'Pump 2,3,4,6,8': { label: 'Pump 2,3,4,6,8', color: '#84cc16' },
+  'Pump 1,3,4,6,8': { label: 'Pump 1,3,4,6,8', color: '#facc15' },
+  'Pump 1,2,4,6,8': { label: 'Pump 1,2,4,6,8', color: '#f97316' },
+  'Pump 1,2,6,7,8': { label: 'Pump 1,2,6,7,8', color: '#ef4444' },
+} satisfies ChartConfig;
+
+const SequencingMetricCard = ({ title, value, unit }: { title: string, value: string | number, unit?: string }) => (
+    <Card className="text-center bg-primary/10">
+        <CardHeader className="pb-2">
+            <CardTitle className="text-sm font-medium text-primary/80">{title}</CardTitle>
+        </CardHeader>
+        <CardContent>
+            <p className="text-2xl font-bold text-primary">
+                {value} {unit && <span className="text-base font-normal">{unit}</span>}
+            </p>
+        </CardContent>
+    </Card>
+);
+
 export default function ReportsPage() {
     return (
         <div className="space-y-6">
@@ -172,9 +203,10 @@ export default function ReportsPage() {
             </div>
             
             <Tabs defaultValue="analysis" className="w-full">
-                <TabsList className="grid w-full grid-cols-2 md:w-auto md:inline-flex">
+                <TabsList className="grid w-full grid-cols-3 md:w-auto md:inline-flex">
                     <TabsTrigger value="analysis">Analysis</TabsTrigger>
                     <TabsTrigger value="alerts">Alerts</TabsTrigger>
+                    <TabsTrigger value="energy">Energy Analysis</TabsTrigger>
                 </TabsList>
 
                 <TabsContent value="analysis" className="space-y-4 mt-4">
@@ -285,7 +317,98 @@ export default function ReportsPage() {
                     </div>
 
                 </TabsContent>
+
+                <TabsContent value="energy" className="space-y-4 mt-4">
+                    <Card>
+                        <CardHeader>
+                            <CardTitle>Pump Sequencing Analysis</CardTitle>
+                            <CardDescription>Based on data from the last three months (April, May, June)</CardDescription>
+                        </CardHeader>
+                        <CardContent className="space-y-6">
+                            <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+                                <SequencingMetricCard title="Best Combination" value={pumpSequencingData[0].combination} />
+                                <SequencingMetricCard title="Best Efficiency" value={pumpSequencingData[0].efficiency.toFixed(3)} unit="%" />
+                                <SequencingMetricCard title="Best SPC" value={pumpSequencingData[0].spc.toFixed(2)} unit="kWh/MLD" />
+                                <SequencingMetricCard title="Total Run Hours" value={pumpSequencingData[0].runHours} unit="hrs" />
+                            </div>
+
+                            <div className="grid gap-6 md:grid-cols-3">
+                                <div className="md:col-span-2">
+                                     <Card>
+                                        <CardHeader>
+                                            <CardTitle>Sequencing Details</CardTitle>
+                                        </CardHeader>
+                                        <CardContent>
+                                            <Table>
+                                                <TableHeader>
+                                                    <TableRow>
+                                                        <TableHead>Pump Combination</TableHead>
+                                                        <TableHead>Efficiency (%)</TableHead>
+                                                        <TableHead>Power (kWh)</TableHead>
+                                                        <TableHead>Flow (MLD)</TableHead>
+                                                        <TableHead>SPC (kWh/MLD)</TableHead>
+                                                        <TableHead>Pump Count</TableHead>
+                                                        <TableHead>Run Hours</TableHead>
+                                                    </TableRow>
+                                                </TableHeader>
+                                                <TableBody>
+                                                    {pumpSequencingData.map((row, i) => (
+                                                        <TableRow key={i} className={i === 0 ? 'bg-primary/10' : ''}>
+                                                            <TableCell className="font-medium">{row.combination}</TableCell>
+                                                            <TableCell>{row.efficiency.toFixed(3)}</TableCell>
+                                                            <TableCell>{row.power.toLocaleString()}</TableCell>
+                                                            <TableCell>{row.flow.toLocaleString()}</TableCell>
+                                                            <TableCell>{row.spc.toFixed(2)}</TableCell>
+                                                            <TableCell>{row.count}</TableCell>
+                                                            <TableCell>{row.runHours}</TableCell>
+                                                        </TableRow>
+                                                    ))}
+                                                </TableBody>
+                                            </Table>
+                                        </CardContent>
+                                     </Card>
+                                </div>
+                                <div className="md:col-span-1">
+                                    <Card>
+                                        <CardHeader>
+                                            <CardTitle>SPC & Combination by Efficiency</CardTitle>
+                                        </CardHeader>
+                                        <CardContent>
+                                            <ChartContainer config={pieChartConfig} className="h-[300px] w-full">
+                                                 <PieChart accessibilityLayer>
+                                                    <Tooltip
+                                                        formatter={(value, name, props) => {
+                                                            const { payload } = props;
+                                                            return [`Efficiency: ${value}%`, `SPC: ${payload.spc.toFixed(2)}`];
+                                                        }}
+                                                    />
+                                                    <Pie
+                                                        data={pumpSequencingData}
+                                                        dataKey="efficiency"
+                                                        nameKey="combination"
+                                                        cx="50%"
+                                                        cy="50%"
+                                                        outerRadius={80}
+                                                        labelLine={false}
+                                                        label={({ percent }) => `${(percent * 100).toFixed(0)}%`}
+                                                    >
+                                                        {pumpSequencingData.map((entry, index) => (
+                                                            <Cell key={`cell-${index}`} fill={pieChartConfig[entry.combination as keyof typeof pieChartConfig]?.color || '#8884d8'} />
+                                                        ))}
+                                                    </Pie>
+                                                    <Legend wrapperStyle={{fontSize: '12px'}}/>
+                                                </PieChart>
+                                            </ChartContainer>
+                                        </CardContent>
+                                    </Card>
+                                </div>
+                            </div>
+                        </CardContent>
+                    </Card>
+                </TabsContent>
             </Tabs>
         </div>
     );
 }
+
+    
