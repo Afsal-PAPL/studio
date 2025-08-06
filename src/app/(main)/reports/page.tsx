@@ -277,6 +277,64 @@ const stationTabs = [
     { value: 'jaydeep-tower-swps', label: 'Jaydeep Tower SWPS' },
 ];
 
+const energyCostData = [
+  { name: 'Kotarpur WTP', designedFlow: 10044, actualFlow: 8137, designedEnergy: 4446, actualEnergy: 4007, designedRpm: 2767, actualRpm: 3078, designedTotal: 27788400, actualTotal: 25044119 },
+  { name: 'Raska WTP', designedFlow: 8370, actualFlow: 7816, designedEnergy: 4014, actualEnergy: 3965, designedRpm: 2997, actualRpm: 3170, designedTotal: 25086750, actualTotal: 24780606 },
+  { name: 'Dariyapur WDS', designedFlow: 8370, actualFlow: 8007, designedEnergy: 3396, actualEnergy: 3373, designedRpm: 2536, actualRpm: 2633, designedTotal: 21227250, actualTotal: 21080438 },
+  { name: 'Mihir Tower WDS', designedFlow: 7500, actualFlow: 7100, designedEnergy: 3200, actualEnergy: 3150, designedRpm: 2400, actualRpm: 2500, designedTotal: 18000000, actualTotal: 17750000 },
+  { name: 'Daffnala STP', designedFlow: 6000, actualFlow: 5800, designedEnergy: 2800, actualEnergy: 2750, designedRpm: 2200, actualRpm: 2250, designedTotal: 13200000, actualTotal: 13050000 },
+  { name: 'Shankar Bhavan STP', designedFlow: 5500, actualFlow: 5300, designedEnergy: 2600, actualEnergy: 2550, designedRpm: 2100, actualRpm: 2150, designedTotal: 11550000, actualTotal: 11395000 },
+  { name: 'W-5 Usmanpura SPS', designedFlow: 4500, actualFlow: 4300, designedEnergy: 2200, actualEnergy: 2150, designedRpm: 1900, actualRpm: 1950, designedTotal: 8550000, actualTotal: 8385000 },
+  { name: 'Moterra SPS', designedFlow: 4000, actualFlow: 3800, designedEnergy: 2000, actualEnergy: 1950, designedRpm: 1800, actualRpm: 1850, designedTotal: 7200000, actualTotal: 7030000 },
+  { name: 'Vejalpur SWPS', designedFlow: 9000, actualFlow: 8500, designedEnergy: 4000, actualEnergy: 3900, designedRpm: 2800, actualRpm: 2900, designedTotal: 25200000, actualTotal: 24650000 },
+  { name: 'Jaydeep Tower SWPS', designedFlow: 8000, actualFlow: 7600, designedEnergy: 3500, actualEnergy: 3400, designedRpm: 2600, actualRpm: 2700, designedTotal: 20800000, actualTotal: 20520000 },
+];
+
+const EnergyCostRow = ({ data }: { data: typeof energyCostData[0] }) => {
+    const difference = data.designedTotal - data.actualTotal;
+    return (
+        <div className="flex flex-col md:flex-row items-stretch border-b last:border-b-0">
+            <div className="w-full md:w-1/6 bg-primary/10 flex items-center justify-center p-4 font-bold text-primary text-center">
+                {data.name}
+            </div>
+            <div className="flex-1 grid grid-cols-2 sm:grid-cols-5">
+                <div className="p-4 border-l">
+                    <h4 className="font-semibold text-sm mb-2 text-center text-muted-foreground border-b pb-1">Total Flow (ML)</h4>
+                    <div className="flex justify-around mt-2">
+                        <div className="text-center"><p className="text-xs">Designed</p><p className="font-bold">{data.designedFlow.toLocaleString()}</p></div>
+                        <div className="text-center"><p className="text-xs">Actual</p><p className="font-bold">{data.actualFlow.toLocaleString()}</p></div>
+                    </div>
+                </div>
+                <div className="p-4 border-l">
+                    <h4 className="font-semibold text-sm mb-2 text-center text-muted-foreground border-b pb-1">Energy (MWh)</h4>
+                     <div className="flex justify-around mt-2">
+                        <div className="text-center"><p className="text-xs">Designed</p><p className="font-bold">{data.designedEnergy.toLocaleString()}</p></div>
+                        <div className="text-center"><p className="text-xs">Actual</p><p className="font-bold">{data.actualEnergy.toLocaleString()}</p></div>
+                    </div>
+                </div>
+                 <div className="p-4 border-l">
+                    <h4 className="font-semibold text-sm mb-2 text-center text-muted-foreground border-b pb-1">Rupees per ML</h4>
+                     <div className="flex justify-around mt-2">
+                        <div className="text-center"><p className="text-xs">Designed</p><p className="font-bold">{data.designedRpm.toLocaleString()}</p></div>
+                        <div className="text-center"><p className="text-xs">Actual</p><p className="font-bold">{data.actualRpm.toLocaleString()}</p></div>
+                    </div>
+                </div>
+                <div className="p-4 border-l">
+                    <h4 className="font-semibold text-sm mb-2 text-center text-muted-foreground border-b pb-1">Total (Rs)</h4>
+                     <div className="flex justify-around mt-2">
+                        <div className="text-center"><p className="text-xs">Designed</p><p className="font-bold">{data.designedTotal.toLocaleString('en-IN')}</p></div>
+                        <div className="text-center"><p className="text-xs">Actual</p><p className="font-bold">{data.actualTotal.toLocaleString('en-IN')}</p></div>
+                    </div>
+                </div>
+                <div className="p-4 border-l flex flex-col items-center justify-center">
+                     <h4 className="font-semibold text-sm mb-2 text-center text-muted-foreground border-b pb-1">Difference (+/-)</h4>
+                     <p className="font-bold text-lg mt-2">{difference.toLocaleString('en-IN')}</p>
+                </div>
+            </div>
+        </div>
+    );
+};
+
 export default function ReportsPage() {
     return (
         <div className="space-y-6">
@@ -289,10 +347,11 @@ export default function ReportsPage() {
             </div>
             
             <Tabs defaultValue="overview" className="w-full">
-                <TabsList className="grid w-full grid-cols-3 md:w-auto md:inline-flex">
+                <TabsList className="grid w-full grid-cols-2 md:w-auto md:inline-flex md:grid-cols-4">
                     <TabsTrigger value="overview">Overview</TabsTrigger>
                     <TabsTrigger value="alerts">Alerts</TabsTrigger>
                     <TabsTrigger value="energy">Energy Analysis</TabsTrigger>
+                    <TabsTrigger value="energy-cost">Energy Cost</TabsTrigger>
                 </TabsList>
 
                 <TabsContent value="overview" className="space-y-4 mt-4">
@@ -307,7 +366,7 @@ export default function ReportsPage() {
                     </Card>
 
                     <Tabs defaultValue="kotarpur-wtp" className="w-full">
-                        <TabsList className="grid w-full grid-cols-2 sm:grid-cols-3 md:grid-cols-5 lg:w-auto lg:inline-flex">
+                        <TabsList className="grid w-full grid-cols-2 sm:grid-cols-3 md:grid-cols-5 lg:w-auto lg:inline-flex overflow-x-auto">
                             {stationTabs.map(tab => (
                                 <TabsTrigger key={tab.value} value={tab.value}>{tab.label}</TabsTrigger>
                             ))}
@@ -497,6 +556,21 @@ export default function ReportsPage() {
                         </CardContent>
                     </Card>
                 </TabsContent>
+                
+                <TabsContent value="energy-cost" className="space-y-4 mt-4">
+                    <Card>
+                        <CardHeader>
+                            <CardTitle>Energy Cost Comparison</CardTitle>
+                            <CardDescription>A comparison of designed vs. actual energy costs for all stations.</CardDescription>
+                        </CardHeader>
+                        <CardContent className="space-y-2">
+                           {energyCostData.map(station => (
+                                <EnergyCostRow key={station.name} data={station} />
+                           ))}
+                        </CardContent>
+                    </Card>
+                </TabsContent>
+
             </Tabs>
         </div>
     );
