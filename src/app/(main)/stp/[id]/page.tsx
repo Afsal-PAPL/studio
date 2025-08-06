@@ -62,15 +62,22 @@ const QualityChartCard = ({ dataKey, title }: { dataKey: keyof typeof chartConfi
 );
 
 export default function STPDetailsPage({ params }: { params: { id: string } }) {
+    const stationNames: { [key: string]: string } = {
+        '1': 'Daffnala STP',
+        '2': 'Shankar Bhavan STP'
+    };
+
+    const stationName = stationNames[params.id] || `STP Station ${params.id}`;
+
     const breadcrumbItems = [
         { label: "Location Wise Status", href: "/status" },
-        { label: `STP Station ${params.id}` }
+        { label: stationName }
     ];
     
     return (
         <div className="space-y-6">
             <Breadcrumb items={breadcrumbItems} />
-            <h1 className="text-3xl font-bold font-headline">STP Station {params.id} - Plant Summary</h1>
+            <h1 className="text-3xl font-bold font-headline">{stationName} - Plant Summary</h1>
             
             <div className="grid gap-4 grid-cols-2 md:grid-cols-4">
                 <MetricCard title="Total Outlet Water" value="34.13" unit="KL" description="Outlet Water" />
