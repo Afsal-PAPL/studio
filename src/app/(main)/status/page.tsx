@@ -146,10 +146,10 @@ export default function StatusPage() {
                                         <AccordionTrigger className="font-semibold text-primary">STP</AccordionTrigger>
                                         <AccordionContent className="flex flex-col gap-2 pt-2">
                                             <Button className="w-full" asChild>
-                                                <Link href={`/location/5`}>View Station 1</Link>
+                                                <Link href={`/stp/1`}>View Station 1</Link>
                                             </Button>
                                             <Button className="w-full" asChild>
-                                                <Link href={`/location/6`}>View Station 2</Link>
+                                                <Link href={`/stp/2`}>View Station 2</Link>
                                             </Button>
                                         </AccordionContent>
                                     </AccordionItem>
