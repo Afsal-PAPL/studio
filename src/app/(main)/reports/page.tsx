@@ -290,6 +290,12 @@ const energyCostData = [
   { name: 'Jaydeep Tower SWPS', designedFlow: 180, actualFlow: 175.8, designedEnergy: 100000, actualEnergy: 102000, designedRpm: 2600, actualRpm: 2700, designedTotal: 20800000, actualTotal: 20520000 },
 ];
 
+const formatInLakhs = (value: number) => {
+    if (value === 0) return '0';
+    const inLakhs = value / 100000;
+    return `${inLakhs.toFixed(2)} L`;
+};
+
 const EnergyCostRow = ({ data }: { data: typeof energyCostData[0] }) => {
     const difference = data.designedTotal - data.actualTotal;
     return (
@@ -321,14 +327,14 @@ const EnergyCostRow = ({ data }: { data: typeof energyCostData[0] }) => {
                 </div>
                 <div className="p-4 border-l">
                     <h4 className="font-semibold text-sm mb-2 text-center text-muted-foreground border-b pb-1">Total (Rs)</h4>
-                     <div className="flex justify-around mt-2 text-sm">
-                        <div className="text-center"><p className="text-xs">Designed</p><p className="font-bold text-sm">{data.designedTotal.toLocaleString('en-IN')}</p></div>
-                        <div className="text-center"><p className="text-xs">Actual</p><p className="font-bold text-sm">{data.actualTotal.toLocaleString('en-IN')}</p></div>
+                     <div className="flex justify-around mt-2 text-xs">
+                        <div className="text-center"><p className="text-xs">Designed</p><p className="font-bold">{formatInLakhs(data.designedTotal)}</p></div>
+                        <div className="text-center"><p className="text-xs">Actual</p><p className="font-bold">{formatInLakhs(data.actualTotal)}</p></div>
                     </div>
                 </div>
                 <div className="p-4 border-l flex flex-col items-center justify-center">
                      <h4 className="font-semibold text-sm mb-2 text-center text-muted-foreground border-b pb-1">Difference (+/-)</h4>
-                     <p className="font-bold text-lg mt-2">{difference.toLocaleString('en-IN')}</p>
+                     <p className="font-bold text-base mt-2">{formatInLakhs(difference)}</p>
                 </div>
             </div>
         </div>
