@@ -24,6 +24,7 @@ export default function StatusPage() {
                 items: [
                     { name: "Total Water Treated Today", value: "250 MLD", status: "green", statusLabel: ""},
                     { name: "Intake vs Outtake vs Loss", value: "260/250/10 MLD", status: "green", statusLabel: ""},
+                    { name: "Total Energy Consumed", value: "55 MWh", status: "green", statusLabel: "" },
                 ]
             },
             pumps: {
