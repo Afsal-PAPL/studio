@@ -421,7 +421,7 @@ export default function ReportsPage() {
                     <TabsTrigger value="overview">Overview</TabsTrigger>
                     <TabsTrigger value="alerts">Alerts</TabsTrigger>
                     <TabsTrigger value="energy">Energy Consumption Analysis</TabsTrigger>
-                    <TabsTrigger value="energy-cost">Energy Cost</TabsTrigger>
+                    <TabsTrigger value="energy-cost">Energy Cost Comparison</TabsTrigger>
                     <TabsTrigger value="predictive">Predictive Analytics</TabsTrigger>
                 </TabsList>
 
