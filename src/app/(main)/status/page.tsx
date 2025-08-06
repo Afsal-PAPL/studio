@@ -132,7 +132,7 @@ export default function StatusPage() {
                                         <AccordionTrigger className="font-semibold text-primary">WDS</AccordionTrigger>
                                         <AccordionContent className="flex flex-col gap-2 pt-2">
                                             <Button className="w-full" asChild>
-                                                <Link href={`/location/3`}>View Batata Mill WDS</Link>
+                                                <Link href={`/location/3`}>View Dariyapur WDS</Link>
                                             </Button>
                                             <Button className="w-full" asChild>
                                                 <Link href={`/location/4`}>View Mihir Tower WDS</Link>
