@@ -56,7 +56,7 @@ const LocationMarker = ({ location }: { location: (typeof locations)[0] }) => {
                     </Button>
                 </div>
             </PopoverTrigger>
-            <PopoverContent side="top" align="center" className="w-auto max-w-2xl p-0" onMouseEnter={() => setIsOpen(true)} onMouseLeave={() => setIsOpen(false)}>
+            <PopoverContent side="top" align="center" className="w-auto max-w-sm p-0" onMouseEnter={() => setIsOpen(true)} onMouseLeave={() => setIsOpen(false)} sideOffset={10}>
                  <ScrollArea className="max-h-[400px]">
                     <div className="p-4 bg-gray-100 dark:bg-gray-800 rounded-t-lg">
                         <div className="flex justify-between items-center">
@@ -196,5 +196,7 @@ export default function MapPage() {
         </div>
     );
 }
+
+    
 
     
