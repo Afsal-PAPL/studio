@@ -139,6 +139,31 @@ export default function StatusPage() {
                                         </AccordionContent>
                                     </AccordionItem>
                                 </Accordion>
+                            ) : location.id === 2 ? (
+                                <Accordion type="multiple" className="w-full">
+                                    <AccordionItem value="stp">
+                                        <AccordionTrigger className="font-semibold text-primary">STP</AccordionTrigger>
+                                        <AccordionContent className="flex flex-col gap-2 pt-2">
+                                            <Button className="w-full" asChild>
+                                                <Link href={`/location/5`}>View Station 1</Link>
+                                            </Button>
+                                            <Button className="w-full" asChild>
+                                                <Link href={`/location/6`}>View Station 2</Link>
+                                            </Button>
+                                        </AccordionContent>
+                                    </AccordionItem>
+                                    <AccordionItem value="sps">
+                                        <AccordionTrigger className="font-semibold text-primary">SPS</AccordionTrigger>
+                                        <AccordionContent className="flex flex-col gap-2 pt-2">
+                                            <Button className="w-full" asChild>
+                                                <Link href={`/location/7`}>View Station 3</Link>
+                                            </Button>
+                                            <Button className="w-full" asChild>
+                                                <Link href={`/location/8`}>View Station 4</Link>
+                                            </Button>
+                                        </AccordionContent>
+                                    </AccordionItem>
+                                </Accordion>
                             ) : (
                                 <Button className="w-full" asChild>
                                     <Link href={`/location/${location.id}`}>View Station</Link>
