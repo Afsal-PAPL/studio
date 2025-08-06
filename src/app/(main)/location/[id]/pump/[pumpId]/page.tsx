@@ -24,10 +24,19 @@ const MetricDisplay = ({ label, value, unit }: {label: string, value: string | n
     </div>
 );
 
+const locationNames: { [key: string]: string } = {
+    '3': 'Dariyapur WDS',
+    '4': 'Mihir Tower WDS',
+    '7': 'W-5 Usmanpura SPS',
+    '8': 'Moterra SPS',
+    '9': 'Vejalpur SWPS',
+    '10': 'Jaydeep Tower SWPS',
+};
 
 export default function PumpDetailsPage({ params }: { params: { id: string, pumpId: string } }) {
+    const locationName = locationNames[params.id] || `Location ${params.id}`;
     const breadcrumbItems = [
-        { label: `Location ${params.id}`, href: `/location/${params.id}` },
+        { label: locationName, href: `/location/${params.id}` },
         { label: `Pump ${params.pumpId}` }
     ];
 

@@ -17,7 +17,18 @@ const pumpData = [
     { id: 4, status: 'gray', discharge: 'N/A', head: 'N/A', efficiency: 'N/A', voltage: 'N/A', hours: 0, energy: '0 MWh' },
 ];
 
+const locationNames: { [key: string]: string } = {
+    '3': 'Dariyapur WDS',
+    '4': 'Mihir Tower WDS',
+    '7': 'W-5 Usmanpura SPS',
+    '8': 'Moterra SPS',
+    '9': 'Vejalpur SWPS',
+    '10': 'Jaydeep Tower SWPS',
+};
+
 export default function LocationDetailsPage({ params }: { params: { id: string } }) {
+    const locationName = locationNames[params.id] || `Location ${params.id}`;
+
     return (
         <div className="space-y-6">
             <div className="flex flex-wrap items-center justify-between gap-4">
@@ -28,7 +39,7 @@ export default function LocationDetailsPage({ params }: { params: { id: string }
                             Back to Locations
                         </Link>
                     </Button>
-                    <h1 className="text-3xl font-bold font-headline">Location {params.id} Equipment</h1>
+                    <h1 className="text-3xl font-bold font-headline">{locationName} Equipment</h1>
                 </div>
                 <Button variant="outline"><RefreshCw className="mr-2 h-4 w-4" /> Refresh</Button>
             </div>
