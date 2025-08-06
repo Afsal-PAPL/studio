@@ -1,3 +1,4 @@
+
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
@@ -165,9 +166,14 @@ export default function StatusPage() {
                                     </AccordionItem>
                                 </Accordion>
                             ) : (
-                                <Button className="w-full" asChild>
-                                    <Link href={`/location/${location.id}`}>View Station</Link>
-                                </Button>
+                                <div className="flex flex-col gap-2 pt-2">
+                                    <Button className="w-full" asChild>
+                                        <Link href={`/location/9`}>View Station 1</Link>
+                                    </Button>
+                                    <Button className="w-full" asChild>
+                                        <Link href={`/location/10`}>View Station 2</Link>
+                                    </Button>
+                                </div>
                             )}
                         </CardContent>
                     </Card>
