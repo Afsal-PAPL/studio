@@ -9,12 +9,12 @@ import { MapPin } from 'lucide-react';
 
 const stationData = {
   name: "Pumping Station - Location 2",
-  dischargeRate: "1,200 m³/h",
-  flow: "1,150 m³/h",
+  dischargeRate: "110 m³/h",
+  flow: "1150 m³/h",
   reservoirLevel: "7.5 m",
   efficiency: "85%",
-  energy: "350 kWh",
-  powerFactor: "0.92",
+  energy: "325 kWh",
+  powerFactor: "0.91",
 };
 
 const LocationMarker = ({ name, top, left }: { name: string; top: string; left: string }) => (
