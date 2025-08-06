@@ -20,17 +20,16 @@ export default function StatusPage() {
             status: 'Normal Operation', 
             statusColor: 'secondary',
             reservoirs: {
-                label: "Reservoir Levels",
+                label: "Water Treatment Plant (WTP)",
                 items: [
-                    { name: "Reservoir A", value: "8.2m", status: "green", statusLabel: ""},
-                    { name: "Reservoir B", value: "5.1m", status: "yellow", statusLabel: "(Low)"},
+                    { name: "Total Water Treated Today", value: "250 MLD", status: "green", statusLabel: ""},
+                    { name: "Intake vs Outtake vs Loss", value: "260/250/10 MLD", status: "green", statusLabel: ""},
                 ]
             },
             pumps: {
-                label: "Water Discharge",
+                label: "Water Distribution System (WDS)",
                 items: [
-                    { name: "Line 1", value: "1250 m³/h", status: "green" },
-                    { name: "Line 2", value: "1245 m³/h", status: "green" },
+                    { name: "WDS Discharge", value: "245 MLD", status: "green" },
                 ]
             }
         },
