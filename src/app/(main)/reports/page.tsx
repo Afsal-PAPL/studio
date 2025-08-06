@@ -212,13 +212,69 @@ const stationData = {
         efficiencyChange: '+2.1% from previous period',
         totalEnergy: '4,500 kWh',
         chartData: chartData.map(d => ({ ...d, efficiency: d.efficiency + 3, flow: d.flow + 200, energy: d.energy + 100 })),
+    },
+    'raska-wtp': {
+        totalFlow: '14,800 m³',
+        avgEfficiency: '87.5%',
+        efficiencyChange: '+1.8% from previous period',
+        totalEnergy: '4,350 kWh',
+        chartData: chartData.map(d => ({ ...d, efficiency: d.efficiency + 2, flow: d.flow + 150, energy: d.energy + 80 })),
+    },
+    'daffnala-stp': {
+        totalFlow: '5,200 m³',
+        avgEfficiency: '91.2%',
+        efficiencyChange: '+0.5% from previous period',
+        totalEnergy: '1,500 kWh',
+        chartData: chartData.map(d => ({ ...d, efficiency: d.efficiency + 6, flow: d.flow - 700, energy: d.energy - 200 })),
+    },
+    'shankar-bhavan-stp': {
+        totalFlow: '4,900 m³',
+        avgEfficiency: '90.5%',
+        efficiencyChange: '+0.2% from previous period',
+        totalEnergy: '1,450 kWh',
+        chartData: chartData.map(d => ({ ...d, efficiency: d.efficiency + 5, flow: d.flow - 750, energy: d.energy - 210 })),
+    },
+    'w-5-usmanpura-sps': {
+        totalFlow: '6,100 m³',
+        avgEfficiency: '82.1%',
+        efficiencyChange: '-1.1% from previous period',
+        totalEnergy: '1,900 kWh',
+        chartData: chartData.map(d => ({ ...d, efficiency: d.efficiency - 3, flow: d.flow - 600, energy: d.energy - 150 })),
+    },
+    'moterra-sps': {
+        totalFlow: '5,800 m³',
+        avgEfficiency: '83.3%',
+        efficiencyChange: '-0.9% from previous period',
+        totalEnergy: '1,800 kWh',
+        chartData: chartData.map(d => ({ ...d, efficiency: d.efficiency - 2, flow: d.flow - 650, energy: d.energy - 160 })),
+    },
+    'vejalpur-swps': {
+        totalFlow: '9,500 m³',
+        avgEfficiency: '79.8%',
+        efficiencyChange: '-2.5% from previous period',
+        totalEnergy: '3,200 kWh',
+        chartData: chartData.map(d => ({ ...d, efficiency: d.efficiency - 5, flow: d.flow - 250, energy: d.energy + 50 })),
+    },
+    'jaydeep-tower-swps': {
+        totalFlow: '9,100 m³',
+        avgEfficiency: '80.5%',
+        efficiencyChange: '-2.1% from previous period',
+        totalEnergy: '3,000 kWh',
+        chartData: chartData.map(d => ({ ...d, efficiency: d.efficiency - 4, flow: d.flow - 300, energy: d.energy + 30 })),
     }
 };
 
 const stationTabs = [
+    { value: 'kotarpur-wtp', label: 'Kotarpur WTP' },
+    { value: 'raska-wtp', label: 'Raska WTP' },
     { value: 'dariyapur-wds', label: 'Dariyapur WDS' },
     { value: 'mihir-tower-wds', label: 'Mihir Tower WDS' },
-    { value: 'kotarpur-wtp', label: 'Kotarpur WTP' },
+    { value: 'daffnala-stp', label: 'Daffnala STP' },
+    { value: 'shankar-bhavan-stp', label: 'Shankar Bhavan STP' },
+    { value: 'w-5-usmanpura-sps', label: 'W-5 Usmanpura SPS' },
+    { value: 'moterra-sps', label: 'Moterra SPS' },
+    { value: 'vejalpur-swps', label: 'Vejalpur SWPS' },
+    { value: 'jaydeep-tower-swps', label: 'Jaydeep Tower SWPS' },
 ];
 
 export default function ReportsPage() {
@@ -250,8 +306,8 @@ export default function ReportsPage() {
                         </CardContent>
                     </Card>
 
-                    <Tabs defaultValue="dariyapur-wds" className="w-full">
-                        <TabsList className="grid w-full grid-cols-1 md:grid-cols-3 md:w-auto md:inline-flex">
+                    <Tabs defaultValue="kotarpur-wtp" className="w-full">
+                        <TabsList className="grid w-full grid-cols-2 sm:grid-cols-3 md:grid-cols-5 lg:w-auto lg:inline-flex">
                             {stationTabs.map(tab => (
                                 <TabsTrigger key={tab.value} value={tab.value}>{tab.label}</TabsTrigger>
                             ))}
