@@ -1,8 +1,9 @@
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { RefreshCw } from 'lucide-react';
+import { RefreshCw, ChevronDown } from 'lucide-react';
 import Link from 'next/link';
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 
 const StatusIndicator = ({ color = 'gray' }: { color: 'green' | 'yellow' | 'red' | 'gray' }) => (
     <span className={`inline-block h-2.5 w-2.5 rounded-full mr-2 shrink-0 ${
@@ -114,14 +115,30 @@ export default function StatusPage() {
                                 </ul>
                             </div>
                             {location.id === 1 ? (
-                                <div className="flex flex-col gap-2">
-                                    <Button className="w-full" asChild>
-                                        <Link href={`/location/1`}>View Station 1</Link>
-                                    </Button>
-                                    <Button className="w-full" asChild>
-                                        <Link href={`/location/2`}>View Station 2</Link>
-                                    </Button>
-                                </div>
+                                <Accordion type="multiple" className="w-full">
+                                    <AccordionItem value="wtp">
+                                        <AccordionTrigger className="font-semibold text-primary">WTP</AccordionTrigger>
+                                        <AccordionContent className="flex flex-col gap-2 pt-2">
+                                            <Button className="w-full" asChild>
+                                                <Link href={`/location/1`}>View Station 1</Link>
+                                            </Button>
+                                            <Button className="w-full" asChild>
+                                                <Link href={`/location/2`}>View Station 2</Link>
+                                            </Button>
+                                        </AccordionContent>
+                                    </AccordionItem>
+                                    <AccordionItem value="wds">
+                                        <AccordionTrigger className="font-semibold text-primary">WDS</AccordionTrigger>
+                                        <AccordionContent className="flex flex-col gap-2 pt-2">
+                                            <Button className="w-full" asChild>
+                                                <Link href={`/location/3`}>View Station 3</Link>
+                                            </Button>
+                                            <Button className="w-full" asChild>
+                                                <Link href={`/location/4`}>View Station 4</Link>
+                                            </Button>
+                                        </AccordionContent>
+                                    </AccordionItem>
+                                </Accordion>
                             ) : (
                                 <Button className="w-full" asChild>
                                     <Link href={`/location/${location.id}`}>View Station</Link>
