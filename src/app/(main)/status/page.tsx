@@ -121,10 +121,10 @@ export default function StatusPage() {
                                         <AccordionTrigger className="font-semibold text-primary">WTP</AccordionTrigger>
                                         <AccordionContent className="flex flex-col gap-2 pt-2">
                                             <Button className="w-full" asChild>
-                                                <Link href={`/location/1`}>View Station 1</Link>
+                                                <Link href={`/wtp/1`}>View Station 1</Link>
                                             </Button>
                                             <Button className="w-full" asChild>
-                                                <Link href={`/location/2`}>View Station 2</Link>
+                                                <Link href={`/wtp/2`}>View Station 2</Link>
                                             </Button>
                                         </AccordionContent>
                                     </AccordionItem>
