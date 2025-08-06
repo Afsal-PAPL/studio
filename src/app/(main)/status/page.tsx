@@ -31,6 +31,7 @@ export default function StatusPage() {
                 label: "Water Distribution System (WDS)",
                 items: [
                     { name: "WDS Discharge", value: "245 MLD", status: "green" },
+                    { name: "Total Energy Consumed", value: "35 MWh", status: "green" },
                 ]
             }
         },
