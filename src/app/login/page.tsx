@@ -10,8 +10,20 @@ import { Eye, EyeOff } from 'lucide-react';
 
 const Logo = () => (
     <div className="flex items-center gap-2 font-bold text-2xl font-headline text-primary">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-8 h-8"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0L12 2.69z"></path><path d="M12 12a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"></path><path d="M12 22v-6"></path></svg>
-        <span>IPMS</span>
+        <svg width="102" height="24" viewBox="0 0 102 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0.832031 23.5V0.5H5.81203V23.5H0.832031Z" fill="#2E8B57"/>
+            <path d="M12.4344 23.5V0.5H23.5544V5.16H17.4144V9.8H22.9944V14.46H17.4144V18.84H23.6144V23.5H12.4344Z" fill="#2E8B57"/>
+            <path d="M36.1333 16.18L32.9533 23.5H27.5533L33.7933 12L27.6733 0.5H33.1933L36.2533 7.48L39.3133 0.5H44.6533L38.5333 12L44.7733 23.5H39.3733L36.1333 16.18Z" fill="#2E8B57"/>
+            <path d="M47.7801 23.5V0.5H52.7601V23.5H47.7801Z" fill="#2E8B57"/>
+            <path d="M60.9711 23.5V5.16H55.8511V0.5H71.3311V5.16H66.2111V23.5H60.9711Z" fill="#2E8B57"/>
+            <path d="M79.9193 23.5L74.0393 0.5H79.6793L82.5593 15.28L85.5593 0.5H91.0193L94.0193 15.28L96.8993 0.5H101.999L96.1193 23.5H90.8393L88.2593 9.4L85.6193 23.5H79.9193Z" fill="#2E8B57"/>
+            <path d="M0.832031 23.5V0.5H5.81203V23.5H0.832031Z" fill="#4682B4"/>
+            <path d="M12.4344 23.5V0.5H23.5544V5.16H17.4144V9.8H22.9944V14.46H17.4144V18.84H23.6144V23.5H12.4344Z" fill="#4682B4"/>
+            <path d="M36.1333 16.18L32.9533 23.5H27.5533L33.7933 12L27.6733 0.5H33.1933L36.2533 7.48L39.3133 0.5H44.6533L38.5333 12L44.7733 23.5H39.3733L36.1333 16.18Z" fill="#4682B4"/>
+            <path d="M47.7801 23.5V0.5H52.7601V23.5H47.7801Z" fill="#4682B4"/>
+            <path d="M60.9711 23.5V5.16H55.8511V0.5H71.3311V5.16H66.2111V23.5H60.9711Z" fill="#4682B4"/>
+            <path d="M79.9193 23.5L74.0393 0.5H79.6793L82.5593 15.28L85.5593 0.5H91.0193L94.0193 15.28L96.8993 0.5H101.999L96.1193 23.5H90.8393L88.2593 9.4L85.6193 23.5H79.9193Z" fill="#4682B4"/>
+        </svg>
     </div>
 );
 
