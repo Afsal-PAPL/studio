@@ -9,7 +9,7 @@ import { MapPin } from 'lucide-react';
 
 const stationData = {
   name: "Pumping Station - Location 2",
-  dischargeRate: "110 m³/h",
+  dischargeRate: "1100 m³/h",
   flow: "1150 m³/h",
   reservoirLevel: "7.5 m",
   efficiency: "85%",
@@ -68,7 +68,7 @@ export default function MapPage() {
             <h1 className="text-3xl font-bold font-headline">Location Overview</h1>
             <Card className="w-full h-[calc(100vh-14rem)]">
                 <div className="relative w-full h-full rounded-lg overflow-hidden">
-                    <Image src="https://i.imgur.com/tV8n2Qh.png" layout="fill" objectFit="cover" alt="Map of Ahmedabad" data-ai-hint="Ahmedabad map" />
+                    <Image src="https://i.imgur.com/3Yd3p2A.png" layout="fill" objectFit="cover" alt="Map of Ahmedabad" data-ai-hint="Ahmedabad map" />
                     <LocationMarker name="Location 1" top="20%" left="30%" />
                     <LocationMarker name="Location 2" top="50%" left="50%" />
                     <LocationMarker name="Location 3" top="65%" left="70%" />
