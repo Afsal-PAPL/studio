@@ -146,10 +146,10 @@ export default function StatusPage() {
                                         <AccordionTrigger className="font-semibold text-primary">STP</AccordionTrigger>
                                         <AccordionContent className="flex flex-col gap-2 pt-2">
                                             <Button className="w-full" asChild>
-                                                <Link href={`/stp/1`}>View Station 1</Link>
+                                                <Link href={`/stp/1`}>View Daffnala STP</Link>
                                             </Button>
                                             <Button className="w-full" asChild>
-                                                <Link href={`/stp/2`}>View Station 2</Link>
+                                                <Link href={`/stp/2`}>View Shankar Bhavan STP</Link>
                                             </Button>
                                         </AccordionContent>
                                     </AccordionItem>
@@ -157,10 +157,10 @@ export default function StatusPage() {
                                         <AccordionTrigger className="font-semibold text-primary">SPS</AccordionTrigger>
                                         <AccordionContent className="flex flex-col gap-2 pt-2">
                                             <Button className="w-full" asChild>
-                                                <Link href={`/location/7`}>View Station 3</Link>
+                                                <Link href={`/location/7`}>View W-5 Usmanpura SPS</Link>
                                             </Button>
                                             <Button className="w-full" asChild>
-                                                <Link href={`/location/8`}>View Station 4</Link>
+                                                <Link href={`/location/8`}>View Moterra SPS</Link>
                                             </Button>
                                         </AccordionContent>
                                     </AccordionItem>
