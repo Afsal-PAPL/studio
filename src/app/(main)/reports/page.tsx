@@ -192,74 +192,74 @@ const SequencingMetricCard = ({ title, value, unit }: { title: string, value: st
 );
 
 const stationData = {
-    'dariyapur-wds': {
-        totalFlow: '8,460 m³',
-        avgEfficiency: '85.7%',
+    'kotarpur-wtp': {
+        totalFlow: '281.31 MLD',
+        avgEfficiency: '78.54%',
         efficiencyChange: '+1.2% from previous period',
-        totalEnergy: '2,488 kWh',
+        totalEnergy: '117,314 kWh',
         chartData: chartData,
     },
-    'mihir-tower-wds': {
-        totalFlow: '7,920 m³',
-        avgEfficiency: '84.2%',
+    'raska-wtp': {
+        totalFlow: '275.10 MLD',
+        avgEfficiency: '80.10%',
         efficiencyChange: '-0.5% from previous period',
-        totalEnergy: '2,310 kWh',
+        totalEnergy: '115,000 kWh',
         chartData: chartData.map(d => ({ ...d, efficiency: d.efficiency - 2, flow: d.flow - 50, energy: d.energy - 20 })),
     },
-    'kotarpur-wtp': {
-        totalFlow: '15,300 m³',
-        avgEfficiency: '88.1%',
+    'dariyapur-wds': {
+        totalFlow: '155.60 MLD',
+        avgEfficiency: '82.30%',
         efficiencyChange: '+2.1% from previous period',
-        totalEnergy: '4,500 kWh',
+        totalEnergy: '95,000 kWh',
         chartData: chartData.map(d => ({ ...d, efficiency: d.efficiency + 3, flow: d.flow + 200, energy: d.energy + 100 })),
     },
-    'raska-wtp': {
-        totalFlow: '14,800 m³',
-        avgEfficiency: '87.5%',
+    'mihir-tower-wds': {
+        totalFlow: '148.20 MLD',
+        avgEfficiency: '81.50%',
         efficiencyChange: '+1.8% from previous period',
-        totalEnergy: '4,350 kWh',
+        totalEnergy: '92,000 kWh',
         chartData: chartData.map(d => ({ ...d, efficiency: d.efficiency + 2, flow: d.flow + 150, energy: d.energy + 80 })),
     },
     'daffnala-stp': {
-        totalFlow: '5,200 m³',
-        avgEfficiency: '91.2%',
+        totalFlow: '34.13 KL',
+        avgEfficiency: '39.74%',
         efficiencyChange: '+0.5% from previous period',
-        totalEnergy: '1,500 kWh',
+        totalEnergy: 'N/A',
         chartData: chartData.map(d => ({ ...d, efficiency: d.efficiency + 6, flow: d.flow - 700, energy: d.energy - 200 })),
     },
     'shankar-bhavan-stp': {
-        totalFlow: '4,900 m³',
-        avgEfficiency: '90.5%',
+        totalFlow: '30.50 KL',
+        avgEfficiency: '41.20%',
         efficiencyChange: '+0.2% from previous period',
-        totalEnergy: '1,450 kWh',
+        totalEnergy: 'N/A',
         chartData: chartData.map(d => ({ ...d, efficiency: d.efficiency + 5, flow: d.flow - 750, energy: d.energy - 210 })),
     },
     'w-5-usmanpura-sps': {
-        totalFlow: '6,100 m³',
-        avgEfficiency: '82.1%',
+        totalFlow: '95.30 MLD',
+        avgEfficiency: '79.10%',
         efficiencyChange: '-1.1% from previous period',
-        totalEnergy: '1,900 kWh',
+        totalEnergy: '75,000 kWh',
         chartData: chartData.map(d => ({ ...d, efficiency: d.efficiency - 3, flow: d.flow - 600, energy: d.energy - 150 })),
     },
     'moterra-sps': {
-        totalFlow: '5,800 m³',
-        avgEfficiency: '83.3%',
+        totalFlow: '91.70 MLD',
+        avgEfficiency: '80.00%',
         efficiencyChange: '-0.9% from previous period',
-        totalEnergy: '1,800 kWh',
+        totalEnergy: '72,000 kWh',
         chartData: chartData.map(d => ({ ...d, efficiency: d.efficiency - 2, flow: d.flow - 650, energy: d.energy - 160 })),
     },
     'vejalpur-swps': {
-        totalFlow: '9,500 m³',
-        avgEfficiency: '79.8%',
+        totalFlow: '190.50 MLD',
+        avgEfficiency: '70.50%',
         efficiencyChange: '-2.5% from previous period',
-        totalEnergy: '3,200 kWh',
+        totalEnergy: '105,000 kWh',
         chartData: chartData.map(d => ({ ...d, efficiency: d.efficiency - 5, flow: d.flow - 250, energy: d.energy + 50 })),
     },
     'jaydeep-tower-swps': {
-        totalFlow: '9,100 m³',
-        avgEfficiency: '80.5%',
+        totalFlow: '175.80 MLD',
+        avgEfficiency: '72.30%',
         efficiencyChange: '-2.1% from previous period',
-        totalEnergy: '3,000 kWh',
+        totalEnergy: '102,000 kWh',
         chartData: chartData.map(d => ({ ...d, efficiency: d.efficiency - 4, flow: d.flow - 300, energy: d.energy + 30 })),
     }
 };
@@ -278,16 +278,16 @@ const stationTabs = [
 ];
 
 const energyCostData = [
-  { name: 'Kotarpur WTP', designedFlow: 10044, actualFlow: 8137, designedEnergy: 4446, actualEnergy: 4007, designedRpm: 2767, actualRpm: 3078, designedTotal: 27788400, actualTotal: 25044119 },
-  { name: 'Raska WTP', designedFlow: 8370, actualFlow: 7816, designedEnergy: 4014, actualEnergy: 3965, designedRpm: 2997, actualRpm: 3170, designedTotal: 25086750, actualTotal: 24780606 },
-  { name: 'Dariyapur WDS', designedFlow: 8370, actualFlow: 8007, designedEnergy: 3396, actualEnergy: 3373, designedRpm: 2536, actualRpm: 2633, designedTotal: 21227250, actualTotal: 21080438 },
-  { name: 'Mihir Tower WDS', designedFlow: 7500, actualFlow: 7100, designedEnergy: 3200, actualEnergy: 3150, designedRpm: 2400, actualRpm: 2500, designedTotal: 18000000, actualTotal: 17750000 },
-  { name: 'Daffnala STP', designedFlow: 6000, actualFlow: 5800, designedEnergy: 2800, actualEnergy: 2750, designedRpm: 2200, actualRpm: 2250, designedTotal: 13200000, actualTotal: 13050000 },
-  { name: 'Shankar Bhavan STP', designedFlow: 5500, actualFlow: 5300, designedEnergy: 2600, actualEnergy: 2550, designedRpm: 2100, actualRpm: 2150, designedTotal: 11550000, actualTotal: 11395000 },
-  { name: 'W-5 Usmanpura SPS', designedFlow: 4500, actualFlow: 4300, designedEnergy: 2200, actualEnergy: 2150, designedRpm: 1900, actualRpm: 1950, designedTotal: 8550000, actualTotal: 8385000 },
-  { name: 'Moterra SPS', designedFlow: 4000, actualFlow: 3800, designedEnergy: 2000, actualEnergy: 1950, designedRpm: 1800, actualRpm: 1850, designedTotal: 7200000, actualTotal: 7030000 },
-  { name: 'Vejalpur SWPS', designedFlow: 9000, actualFlow: 8500, designedEnergy: 4000, actualEnergy: 3900, designedRpm: 2800, actualRpm: 2900, designedTotal: 25200000, actualTotal: 24650000 },
-  { name: 'Jaydeep Tower SWPS', designedFlow: 8000, actualFlow: 7600, designedEnergy: 3500, actualEnergy: 3400, designedRpm: 2600, actualRpm: 2700, designedTotal: 20800000, actualTotal: 20520000 },
+  { name: 'Kotarpur WTP', designedFlow: 270, actualFlow: 281.31, designedEnergy: 110000, actualEnergy: 117314, designedRpm: 2767, actualRpm: 3078, designedTotal: 27788400, actualTotal: 25044119 },
+  { name: 'Raska WTP', designedFlow: 260, actualFlow: 275.1, designedEnergy: 112000, actualEnergy: 115000, designedRpm: 2997, actualRpm: 3170, designedTotal: 25086750, actualTotal: 24780606 },
+  { name: 'Dariyapur WDS', designedFlow: 150, actualFlow: 155.6, designedEnergy: 94000, actualEnergy: 95000, designedRpm: 2536, actualRpm: 2633, designedTotal: 21227250, actualTotal: 21080438 },
+  { name: 'Mihir Tower WDS', designedFlow: 140, actualFlow: 148.2, designedEnergy: 90000, actualEnergy: 92000, designedRpm: 2400, actualRpm: 2500, designedTotal: 18000000, actualTotal: 17750000 },
+  { name: 'Daffnala STP', designedFlow: 0, actualFlow: 34.13, designedEnergy: 0, actualEnergy: 0, designedRpm: 0, actualRpm: 0, designedTotal: 0, actualTotal: 0 },
+  { name: 'Shankar Bhavan STP', designedFlow: 0, actualFlow: 30.5, designedEnergy: 0, actualEnergy: 0, designedRpm: 0, actualRpm: 0, designedTotal: 0, actualTotal: 0 },
+  { name: 'W-5 Usmanpura SPS', designedFlow: 90, actualFlow: 95.3, designedEnergy: 74000, actualEnergy: 75000, designedRpm: 1900, actualRpm: 1950, designedTotal: 8550000, actualTotal: 8385000 },
+  { name: 'Moterra SPS', designedFlow: 85, actualFlow: 91.7, designedEnergy: 70000, actualEnergy: 72000, designedRpm: 1800, actualRpm: 1850, designedTotal: 7200000, actualTotal: 7030000 },
+  { name: 'Vejalpur SWPS', designedFlow: 200, actualFlow: 190.5, designedEnergy: 100000, actualEnergy: 105000, designedRpm: 2800, actualRpm: 2900, designedTotal: 25200000, actualTotal: 24650000 },
+  { name: 'Jaydeep Tower SWPS', designedFlow: 180, actualFlow: 175.8, designedEnergy: 100000, actualEnergy: 102000, designedRpm: 2600, actualRpm: 2700, designedTotal: 20800000, actualTotal: 20520000 },
 ];
 
 const EnergyCostRow = ({ data }: { data: typeof energyCostData[0] }) => {
@@ -299,14 +299,14 @@ const EnergyCostRow = ({ data }: { data: typeof energyCostData[0] }) => {
             </div>
             <div className="flex-1 grid grid-cols-2 sm:grid-cols-5">
                 <div className="p-4 border-l">
-                    <h4 className="font-semibold text-sm mb-2 text-center text-muted-foreground border-b pb-1">Total Flow (ML)</h4>
+                    <h4 className="font-semibold text-sm mb-2 text-center text-muted-foreground border-b pb-1">Total Flow (MLD)</h4>
                     <div className="flex justify-around mt-2">
                         <div className="text-center"><p className="text-xs">Designed</p><p className="font-bold">{data.designedFlow.toLocaleString()}</p></div>
                         <div className="text-center"><p className="text-xs">Actual</p><p className="font-bold">{data.actualFlow.toLocaleString()}</p></div>
                     </div>
                 </div>
                 <div className="p-4 border-l">
-                    <h4 className="font-semibold text-sm mb-2 text-center text-muted-foreground border-b pb-1">Energy (MWh)</h4>
+                    <h4 className="font-semibold text-sm mb-2 text-center text-muted-foreground border-b pb-1">Energy (kWh)</h4>
                      <div className="flex justify-around mt-2">
                         <div className="text-center"><p className="text-xs">Designed</p><p className="font-bold">{data.designedEnergy.toLocaleString()}</p></div>
                         <div className="text-center"><p className="text-xs">Actual</p><p className="font-bold">{data.actualEnergy.toLocaleString()}</p></div>
