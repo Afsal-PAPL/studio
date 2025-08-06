@@ -56,8 +56,12 @@ const LocationMarker = ({ location }: { location: (typeof locations)[0] }) => {
                     </Button>
                 </div>
             </PopoverTrigger>
-            <PopoverContent side="top" align="center" className="w-auto max-w-sm p-0" onMouseEnter={() => setIsOpen(true)} onMouseLeave={() => setIsOpen(false)} sideOffset={10}>
-                 <ScrollArea className="max-h-[400px]">
+            <PopoverContent 
+                className="w-auto max-w-4xl p-0 fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" 
+                onMouseEnter={() => setIsOpen(true)} 
+                onMouseLeave={() => setIsOpen(false)}
+            >
+                 <ScrollArea className="max-h-[80vh] overflow-y-auto">
                     <div className="p-4 bg-gray-100 dark:bg-gray-800 rounded-t-lg">
                         <div className="flex justify-between items-center">
                             <h3 className="font-bold text-lg">{isStp || isWtp ? `${location.name} - Plant Summary` : `Pumping Station Details - ${location.name}`}</h3>
