@@ -182,7 +182,7 @@ export default function MapPage() {
             <h1 className="text-3xl font-bold font-headline">Location Overview</h1>
             <Card className="w-full h-[calc(100vh-14rem)]">
                 <div className="relative w-full h-full rounded-lg overflow-hidden">
-                    <Image src="https://i.imgur.com/gK2xG43.png" layout="fill" objectFit="cover" alt="Map of Ahmedabad" data-ai-hint="Ahmedabad map" />
+                    <Image src="https://i.imgur.com/qL6pA8h.png" layout="fill" objectFit="cover" alt="Map of Ahmedabad" data-ai-hint="Ahmedabad map" />
                     {stationsData.map(station => (
                         <LocationMarker key={station.id} stationData={station} />
                     ))}
