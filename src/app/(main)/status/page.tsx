@@ -168,10 +168,10 @@ export default function StatusPage() {
                             ) : (
                                 <div className="flex flex-col gap-2 pt-2">
                                     <Button className="w-full" asChild>
-                                        <Link href={`/location/9`}>View Station 1</Link>
+                                        <Link href={`/location/9`}>View Vejalpur</Link>
                                     </Button>
                                     <Button className="w-full" asChild>
-                                        <Link href={`/location/10`}>View Station 2</Link>
+                                        <Link href={`/location/10`}>View Jaydeep Tower Vasnala</Link>
                                     </Button>
                                 </div>
                             )}
