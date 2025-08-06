@@ -65,15 +65,16 @@ export default function StatusPage() {
             reservoirs: {
                 label: "Sump Levels",
                 items: [
-                    { name: "Sump A", value: "8.2m", status: "green", statusLabel: "" },
-                    { name: "Sump B", value: "5.1m", status: "yellow", statusLabel: "(Low)" },
+                    { name: "Sump Level", value: "4.2m / 2.1m", status: "green", statusLabel: "(Vejalpur/Jaydeep Tower)" },
+                    { name: "Inflow vs Discharge", value: "500/480 m³/h", status: "green", statusLabel: "" },
+                    { name: "Total Energy Consumed", value: "15 MWh", status: "green", statusLabel: "" },
                 ]
             },
             pumps: {
-                label: "Water Discharge",
+                label: "Pump Status",
                 items: [
-                    { name: "Pump 1", value: "1250 m³/h", status: "green" },
-                    { name: "Pump 2", value: "1245 m³/h", status: "green" },
+                    { name: "Vejalpur Pumps", value: "2/3 Running", status: "green" },
+                    { name: "Jaydeep Tower Pumps", value: "1/2 Running", status: "yellow" },
                 ]
             }
         },
