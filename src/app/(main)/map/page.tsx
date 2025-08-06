@@ -1,12 +1,12 @@
 
 "use client"
 import React from 'react';
-import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogTrigger } from '@/components/ui/dialog';
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Table, TableBody, TableCell, TableRow } from '@/components/ui/table';
 import { MapPin } from 'lucide-react';
+import { APIProvider, Map, AdvancedMarker } from '@vis.gl/react-google-maps';
 
 const stationsData = [
     {
@@ -18,8 +18,7 @@ const stationsData = [
         efficiency: "85%",
         energy: "325 kWh",
         powerFactor: "0.93",
-        top: "20%",
-        left: "30%",
+        position: { lat: 23.0225, lng: 72.5714 } // Ahmedabad
     },
     {
         id: 2,
@@ -30,8 +29,7 @@ const stationsData = [
         efficiency: "85%",
         energy: "325 kWh",
         powerFactor: "0.91",
-        top: "50%",
-        left: "50%",
+        position: { lat: 23.033, lng: 72.585 } // Navrangpura
     },
     {
         id: 3,
@@ -42,8 +40,7 @@ const stationsData = [
         efficiency: "88%",
         energy: "400 kWh",
         powerFactor: "0.92",
-        top: "65%",
-        left: "70%",
+        position: { lat: 23.039, lng: 72.56 } // Satellite
     },
     {
         id: 4,
@@ -54,8 +51,7 @@ const stationsData = [
         efficiency: "90%",
         energy: "450 kWh",
         powerFactor: "0.95",
-        top: "40%",
-        left: "80%",
+        position: { lat: 23.07, lng: 72.53 } // Chandkheda
     },
     {
         id: 5,
@@ -66,8 +62,7 @@ const stationsData = [
         efficiency: "89%",
         energy: "420 kWh",
         powerFactor: "0.94",
-        top: "10%",
-        left: "50%",
+        position: { lat: 22.99, lng: 72.6 } // Maninagar
     },
     {
         id: 6,
@@ -78,8 +73,7 @@ const stationsData = [
         efficiency: "91%",
         energy: "480 kWh",
         powerFactor: "0.96",
-        top: "25%",
-        left: "65%",
+        position: { lat: 23.08, lng: 72.63 } // Bapunagar
     },
     {
         id: 7,
@@ -90,8 +84,7 @@ const stationsData = [
         efficiency: "86%",
         energy: "380 kWh",
         powerFactor: "0.92",
-        top: "55%",
-        left: "15%",
+        position: { lat: 23.0, lng: 72.51 } // Vasna
     },
     {
         id: 8,
@@ -102,8 +95,7 @@ const stationsData = [
         efficiency: "92%",
         energy: "500 kWh",
         powerFactor: "0.97",
-        top: "75%",
-        left: "25%",
+        position: { lat: 23.045, lng: 72.65 } // Vastral
     },
     {
         id: 9,
@@ -114,8 +106,7 @@ const stationsData = [
         efficiency: "84%",
         energy: "300 kWh",
         powerFactor: "0.90",
-        top: "80%",
-        left: "55%",
+        position: { lat: 23.01, lng: 72.53 } // Paldi
     },
     {
         id: 10,
@@ -126,15 +117,14 @@ const stationsData = [
         efficiency: "90%",
         energy: "460 kWh",
         powerFactor: "0.95",
-        top: "30%",
-        left: "10%",
+        position: { lat: 23.09, lng: 72.56 } // Sabarmati
     }
 ];
 
 const LocationMarker = ({ stationData }: { stationData: typeof stationsData[0] }) => (
     <Dialog>
         <DialogTrigger asChild>
-            <Button variant="secondary" className="absolute flex items-center gap-2 shadow-lg" style={{ top: stationData.top, left: stationData.left }}>
+             <Button variant="secondary" className="flex items-center gap-2 shadow-lg">
                 <MapPin className="h-4 w-4 text-primary" />
                 Location {stationData.id}
             </Button>
@@ -177,17 +167,37 @@ const LocationMarker = ({ stationData }: { stationData: typeof stationsData[0] }
 );
 
 export default function MapPage() {
+    const apiKey = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY;
+
+    if (!apiKey) {
+        return (
+            <div className="flex flex-col items-center justify-center h-full">
+                <p className="text-red-500">Google Maps API key is missing.</p>
+                <p>Please add NEXT_PUBLIC_GOOGLE_MAPS_API_KEY to your environment variables.</p>
+            </div>
+        )
+    }
+
     return (
-        <div className="flex flex-col gap-6">
-            <h1 className="text-3xl font-bold font-headline">Location Overview</h1>
-            <Card className="w-full h-[calc(100vh-14rem)]">
-                <div className="relative w-full h-full rounded-lg overflow-hidden">
-                    <Image src="https://th.bing.com/th/id/R.b5a74cdd5259d810b99655e66015ceea?rik=o5Dq4LLodt4W3g&riu=http%3a%2f%2fmapsof.net%2fuploads%2fstatic-maps%2fmap_of_Ahmedabad.jpg&ehk=Y09aosLEdAdXnCVeKTKFfyz%2fP58qBlgbzBJUIQS34GQ%3d&risl=&pid=ImgRaw&r=0" layout="fill" objectFit="cover" alt="Map of Ahmedabad" data-ai-hint="Ahmedabad map" />
-                    {stationsData.map(station => (
-                        <LocationMarker key={station.id} stationData={station} />
-                    ))}
-                </div>
-            </Card>
-        </div>
+        <APIProvider apiKey={apiKey}>
+            <div className="flex flex-col gap-6">
+                <h1 className="text-3xl font-bold font-headline">Location Overview</h1>
+                <Card className="w-full h-[calc(100vh-14rem)]">
+                    <div className="relative w-full h-full rounded-lg overflow-hidden">
+                        <Map
+                            defaultCenter={{ lat: 23.0225, lng: 72.5714 }} // Centered on Ahmedabad
+                            defaultZoom={11}
+                            mapId="ahmedabad_map"
+                        >
+                            {stationsData.map(station => (
+                                <AdvancedMarker key={station.id} position={station.position}>
+                                    <LocationMarker stationData={station} />
+                                </AdvancedMarker>
+                            ))}
+                        </Map>
+                    </div>
+                </Card>
+            </div>
+        </APIProvider>
     );
 }
