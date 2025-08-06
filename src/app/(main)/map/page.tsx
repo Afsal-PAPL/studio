@@ -8,6 +8,7 @@ import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover
 import { MapPin, X } from 'lucide-react';
 import React from 'react';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
+import { ScrollArea } from '@/components/ui/scroll-area';
 
 
 const locations = [
@@ -55,120 +56,122 @@ const LocationMarker = ({ location }: { location: (typeof locations)[0] }) => {
                     </Button>
                 </div>
             </PopoverTrigger>
-            <PopoverContent className="w-[36rem] p-0" onMouseEnter={() => setIsOpen(true)} onMouseLeave={() => setIsOpen(false)}>
-                <div className="p-4 bg-gray-100 dark:bg-gray-800 rounded-t-lg">
-                    <div className="flex justify-between items-center">
-                        <h3 className="font-bold text-lg">{isStp || isWtp ? `${location.name} - Plant Summary` : `Pumping Station Details - ${location.name}`}</h3>
-                        <Button variant="ghost" size="icon" className="h-6 w-6" onClick={() => setIsOpen(false)}><X className="h-4 w-4" /></Button>
+            <PopoverContent side="top" align="center" className="w-auto max-w-2xl p-0" onMouseEnter={() => setIsOpen(true)} onMouseLeave={() => setIsOpen(false)}>
+                 <ScrollArea className="max-h-[400px]">
+                    <div className="p-4 bg-gray-100 dark:bg-gray-800 rounded-t-lg">
+                        <div className="flex justify-between items-center">
+                            <h3 className="font-bold text-lg">{isStp || isWtp ? `${location.name} - Plant Summary` : `Pumping Station Details - ${location.name}`}</h3>
+                            <Button variant="ghost" size="icon" className="h-6 w-6" onClick={() => setIsOpen(false)}><X className="h-4 w-4" /></Button>
+                        </div>
                     </div>
-                </div>
-                <div className="p-4 space-y-4">
-                    {isStp ? (
-                         <Table>
-                            <TableHeader>
-                                <TableRow className="bg-gray-50 dark:bg-gray-700">
-                                    <TableHead>Total Outlet Water</TableHead>
-                                    <TableHead>Inlet Water</TableHead>
-                                    <TableHead>Plant Efficiency</TableHead>
-                                    <TableHead>BOD (mg/l)</TableHead>
-                                    <TableHead>COD (ppm)</TableHead>
-                                    <TableHead>TSS (ppm)</TableHead>
-                                </TableRow>
-                            </TableHeader>
-                            <TableBody>
-                                <TableRow>
-                                    <TableCell>{data.totalOutletWater} KL</TableCell>
-                                    <TableCell>{data.inletWater} KLD</TableCell>
-                                    <TableCell>{data.plantEfficiency}%</TableCell>
-                                    <TableCell>{data.bod}</TableCell>
-                                    <TableCell>{data.cod}</TableCell>
-                                    <TableCell>{data.tss}</TableCell>
-                                </TableRow>
-                            </TableBody>
-                        </Table>
-                    ) : isWtp ? (
-                        <Table>
-                            <TableHeader>
-                                <TableRow className="bg-gray-50 dark:bg-gray-700">
-                                    <TableHead>pH (6.5-8.5)</TableHead>
-                                    <TableHead>Turbidity (&lt;5 NTU)</TableHead>
-                                    <TableHead>Elec. conductivity (&lt;1000 µS/cm)</TableHead>
-                                    <TableHead>FRC (&lt;0.2 ppm)</TableHead>
-                                    <TableHead>Temperature (15-30 °C)</TableHead>
-                                    <TableHead>TDS (&lt;500 ppm)</TableHead>
-                                </TableRow>
-                            </TableHeader>
-                            <TableBody>
-                                <TableRow>
-                                    <TableCell>{data.ph.toFixed(2)}</TableCell>
-                                    <TableCell>{data.turbidity.toFixed(2)}</TableCell>
-                                    <TableCell>{data.conductivity.toFixed(2)}</TableCell>
-                                    <TableCell>{data.frc.toFixed(2)}</TableCell>
-                                    <TableCell>{data.temperature.toFixed(2)}</TableCell>
-                                    <TableCell>{data.tds.toFixed(2)}</TableCell>
-                                </TableRow>
-                            </TableBody>
-                        </Table>
-                    ) : (
-                        <>
-                            <Table>
+                    <div className="p-4 space-y-4">
+                        {isStp ? (
+                             <Table>
                                 <TableHeader>
                                     <TableRow className="bg-gray-50 dark:bg-gray-700">
-                                        <TableHead>Station</TableHead>
-                                        <TableHead>Designed Discharge Rate (MLD)</TableHead>
-                                        <TableHead>Today Flow (ML)</TableHead>
-                                        <TableHead>Reservoir Level (m)</TableHead>
-                                        <TableHead>Reservoir Capacity</TableHead>
-                                        <TableHead>Efficiency (%)</TableHead>
-                                        <TableHead>Energy Today (kWh)</TableHead>
-                                        <TableHead>PF</TableHead>
+                                        <TableHead>Total Outlet Water</TableHead>
+                                        <TableHead>Inlet Water</TableHead>
+                                        <TableHead>Plant Efficiency</TableHead>
+                                        <TableHead>BOD (mg/l)</TableHead>
+                                        <TableHead>COD (ppm)</TableHead>
+                                        <TableHead>TSS (ppm)</TableHead>
                                     </TableRow>
                                 </TableHeader>
                                 <TableBody>
                                     <TableRow>
-                                        <TableCell>{location.name}</TableCell>
-                                        <TableCell>{data.designedDischarge.toFixed(2)}</TableCell>
-                                        <TableCell>{data.todayFlow.toFixed(2)}</TableCell>
-                                        <TableCell>{data.reservoirLevel.toFixed(2)}</TableCell>
-                                        <TableCell>{data.reservoirCapacity.toFixed(2)}</TableCell>
-                                        <TableCell>{data.efficiency.toFixed(2)}</TableCell>
-                                        <TableCell>{data.energy.toLocaleString()}</TableCell>
-                                        <TableCell>{data.pf.toFixed(2)}</TableCell>
+                                        <TableCell>{data.totalOutletWater} KL</TableCell>
+                                        <TableCell>{data.inletWater} KLD</TableCell>
+                                        <TableCell>{data.plantEfficiency}%</TableCell>
+                                        <TableCell>{data.bod}</TableCell>
+                                        <TableCell>{data.cod}</TableCell>
+                                        <TableCell>{data.tss}</TableCell>
                                     </TableRow>
                                 </TableBody>
                             </Table>
-                            <div className="grid grid-cols-3 gap-4">
-                                <Card className="bg-slate-800 text-white">
-                                    <CardHeader>
-                                        <CardTitle className="text-sm font-medium">Total Designed Discharge (MLD)</CardTitle>
-                                    </CardHeader>
-                                    <CardContent>
-                                        <p className="text-2xl font-bold">{data.designedDischarge}</p>
-                                    </CardContent>
-                                </Card>
-                                <Card className="bg-slate-800 text-white">
-                                    <CardHeader>
-                                        <CardTitle className="text-sm font-medium">Total Flow Today (ML)</CardTitle>
-                                    </CardHeader>
-                                    <CardContent>
-                                        <p className="text-2xl font-bold">{data.todayFlow}</p>
-                                    </CardContent>
-                                </Card>
-                                 <Card className="bg-slate-800 text-white">
-                                    <CardHeader>
-                                        <CardTitle className="text-sm font-medium">Total Energy Today (kWh)</CardTitle>
-                                    </CardHeader>
-                                    <CardContent>
-                                        <p className="text-2xl font-bold">{data.energy.toLocaleString()}</p>
-                                    </CardContent>
-                                </Card>
-                            </div>
-                        </>
-                    )}
-                     <Button asChild size="sm" className="w-full">
-                        <Link href={href}>View More Details</Link>
-                    </Button>
-                </div>
+                        ) : isWtp ? (
+                            <Table>
+                                <TableHeader>
+                                    <TableRow className="bg-gray-50 dark:bg-gray-700">
+                                        <TableHead>pH (6.5-8.5)</TableHead>
+                                        <TableHead>Turbidity (&lt;5 NTU)</TableHead>
+                                        <TableHead>Elec. conductivity (&lt;1000 µS/cm)</TableHead>
+                                        <TableHead>FRC (&lt;0.2 ppm)</TableHead>
+                                        <TableHead>Temperature (15-30 °C)</TableHead>
+                                        <TableHead>TDS (&lt;500 ppm)</TableHead>
+                                    </TableRow>
+                                </TableHeader>
+                                <TableBody>
+                                    <TableRow>
+                                        <TableCell>{data.ph.toFixed(2)}</TableCell>
+                                        <TableCell>{data.turbidity.toFixed(2)}</TableCell>
+                                        <TableCell>{data.conductivity.toFixed(2)}</TableCell>
+                                        <TableCell>{data.frc.toFixed(2)}</TableCell>
+                                        <TableCell>{data.temperature.toFixed(2)}</TableCell>
+                                        <TableCell>{data.tds.toFixed(2)}</TableCell>
+                                    </TableRow>
+                                </TableBody>
+                            </Table>
+                        ) : (
+                            <>
+                                <Table>
+                                    <TableHeader>
+                                        <TableRow className="bg-gray-50 dark:bg-gray-700">
+                                            <TableHead>Station</TableHead>
+                                            <TableHead>Designed Discharge Rate (MLD)</TableHead>
+                                            <TableHead>Today Flow (ML)</TableHead>
+                                            <TableHead>Reservoir Level (m)</TableHead>
+                                            <TableHead>Reservoir Capacity</TableHead>
+                                            <TableHead>Efficiency (%)</TableHead>
+                                            <TableHead>Energy Today (kWh)</TableHead>
+                                            <TableHead>PF</TableHead>
+                                        </TableRow>
+                                    </TableHeader>
+                                    <TableBody>
+                                        <TableRow>
+                                            <TableCell>{location.name}</TableCell>
+                                            <TableCell>{data.designedDischarge.toFixed(2)}</TableCell>
+                                            <TableCell>{data.todayFlow.toFixed(2)}</TableCell>
+                                            <TableCell>{data.reservoirLevel.toFixed(2)}</TableCell>
+                                            <TableCell>{data.reservoirCapacity.toFixed(2)}</TableCell>
+                                            <TableCell>{data.efficiency.toFixed(2)}</TableCell>
+                                            <TableCell>{data.energy.toLocaleString()}</TableCell>
+                                            <TableCell>{data.pf.toFixed(2)}</TableCell>
+                                        </TableRow>
+                                    </TableBody>
+                                </Table>
+                                <div className="grid grid-cols-3 gap-4">
+                                    <Card className="bg-slate-800 text-white">
+                                        <CardHeader>
+                                            <CardTitle className="text-sm font-medium">Total Designed Discharge (MLD)</CardTitle>
+                                        </CardHeader>
+                                        <CardContent>
+                                            <p className="text-2xl font-bold">{data.designedDischarge}</p>
+                                        </CardContent>
+                                    </Card>
+                                    <Card className="bg-slate-800 text-white">
+                                        <CardHeader>
+                                            <CardTitle className="text-sm font-medium">Total Flow Today (ML)</CardTitle>
+                                        </CardHeader>
+                                        <CardContent>
+                                            <p className="text-2xl font-bold">{data.todayFlow}</p>
+                                        </CardContent>
+                                    </Card>
+                                     <Card className="bg-slate-800 text-white">
+                                        <CardHeader>
+                                            <CardTitle className="text-sm font-medium">Total Energy Today (kWh)</CardTitle>
+                                        </CardHeader>
+                                        <CardContent>
+                                            <p className="text-2xl font-bold">{data.energy.toLocaleString()}</p>
+                                        </CardContent>
+                                    </Card>
+                                </div>
+                            </>
+                        )}
+                         <Button asChild size="sm" className="w-full">
+                            <Link href={href}>View More Details</Link>
+                        </Button>
+                    </div>
+                </ScrollArea>
             </PopoverContent>
         </Popover>
     )
@@ -193,3 +196,5 @@ export default function MapPage() {
         </div>
     );
 }
+
+    
