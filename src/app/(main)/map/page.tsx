@@ -1,3 +1,4 @@
+
 "use client"
 import React from 'react';
 import Image from 'next/image';
@@ -7,22 +8,51 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/com
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { MapPin } from 'lucide-react';
 
-const stationData = {
-  name: "Pumping Station - Location 2",
-  dischargeRate: "1200 m³",
-  flow: "1150 m³/h",
-  reservoirLevel: "7.5 m",
-  efficiency: "85%",
-  energy: "325 kWh",
-  powerFactor: "0.91",
-};
+const stationsData = [
+    {
+        id: 1,
+        name: "Pumping Station - Location 1",
+        dischargeRate: "2500 m³",
+        flow: "1150 m³/h",
+        reservoirLevel: "7.5 m",
+        efficiency: "85%",
+        energy: "325 kWh",
+        powerFactor: "0.93",
+        top: "20%",
+        left: "30%",
+    },
+    {
+        id: 2,
+        name: "Pumping Station - Location 2",
+        dischargeRate: "1200 m³",
+        flow: "1150 m³/h",
+        reservoirLevel: "7.5 m",
+        efficiency: "85%",
+        energy: "325 kWh",
+        powerFactor: "0.91",
+        top: "50%",
+        left: "50%",
+    },
+    {
+        id: 3,
+        name: "Pumping Station - Location 3",
+        dischargeRate: "1500 m³",
+        flow: "1300 m³/h",
+        reservoirLevel: "8.1 m",
+        efficiency: "88%",
+        energy: "400 kWh",
+        powerFactor: "0.92",
+        top: "65%",
+        left: "70%",
+    }
+];
 
-const LocationMarker = ({ name, top, left }: { name: string; top: string; left: string }) => (
+const LocationMarker = ({ stationData }: { stationData: typeof stationsData[0] }) => (
     <Dialog>
         <DialogTrigger asChild>
-            <Button variant="secondary" className="absolute flex items-center gap-2 shadow-lg" style={{ top, left }}>
+            <Button variant="secondary" className="absolute flex items-center gap-2 shadow-lg" style={{ top: stationData.top, left: stationData.left }}>
                 <MapPin className="h-4 w-4 text-primary" />
-                {name}
+                Location {stationData.id}
             </Button>
         </DialogTrigger>
         <DialogContent className="sm:max-w-[800px]">
@@ -69,9 +99,9 @@ export default function MapPage() {
             <Card className="w-full h-[calc(100vh-14rem)]">
                 <div className="relative w-full h-full rounded-lg overflow-hidden">
                     <Image src="https://i.imgur.com/gK2xG43.png" layout="fill" objectFit="cover" alt="Map of Ahmedabad" data-ai-hint="Ahmedabad map" />
-                    <LocationMarker name="Location 1" top="20%" left="30%" />
-                    <LocationMarker name="Location 2" top="50%" left="50%" />
-                    <LocationMarker name="Location 3" top="65%" left="70%" />
+                    {stationsData.map(station => (
+                        <LocationMarker key={station.id} stationData={station} />
+                    ))}
                 </div>
             </Card>
         </div>
