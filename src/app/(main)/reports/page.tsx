@@ -321,9 +321,9 @@ const EnergyCostRow = ({ data }: { data: typeof energyCostData[0] }) => {
                 </div>
                 <div className="p-4 border-l">
                     <h4 className="font-semibold text-sm mb-2 text-center text-muted-foreground border-b pb-1">Total (Rs)</h4>
-                     <div className="flex justify-around mt-2">
-                        <div className="text-center"><p className="text-xs">Designed</p><p className="font-bold">{data.designedTotal.toLocaleString('en-IN')}</p></div>
-                        <div className="text-center"><p className="text-xs">Actual</p><p className="font-bold">{data.actualTotal.toLocaleString('en-IN')}</p></div>
+                     <div className="flex justify-around mt-2 text-sm">
+                        <div className="text-center"><p className="text-xs">Designed</p><p className="font-bold text-sm">{data.designedTotal.toLocaleString('en-IN')}</p></div>
+                        <div className="text-center"><p className="text-xs">Actual</p><p className="font-bold text-sm">{data.actualTotal.toLocaleString('en-IN')}</p></div>
                     </div>
                 </div>
                 <div className="p-4 border-l flex flex-col items-center justify-center">
