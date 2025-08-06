@@ -191,6 +191,36 @@ const SequencingMetricCard = ({ title, value, unit }: { title: string, value: st
     </Card>
 );
 
+const stationData = {
+    'dariyapur-wds': {
+        totalFlow: '8,460 m³',
+        avgEfficiency: '85.7%',
+        efficiencyChange: '+1.2% from previous period',
+        totalEnergy: '2,488 kWh',
+        chartData: chartData,
+    },
+    'mihir-tower-wds': {
+        totalFlow: '7,920 m³',
+        avgEfficiency: '84.2%',
+        efficiencyChange: '-0.5% from previous period',
+        totalEnergy: '2,310 kWh',
+        chartData: chartData.map(d => ({ ...d, efficiency: d.efficiency - 2, flow: d.flow - 50, energy: d.energy - 20 })),
+    },
+    'kotarpur-wtp': {
+        totalFlow: '15,300 m³',
+        avgEfficiency: '88.1%',
+        efficiencyChange: '+2.1% from previous period',
+        totalEnergy: '4,500 kWh',
+        chartData: chartData.map(d => ({ ...d, efficiency: d.efficiency + 3, flow: d.flow + 200, energy: d.energy + 100 })),
+    }
+};
+
+const stationTabs = [
+    { value: 'dariyapur-wds', label: 'Dariyapur WDS' },
+    { value: 'mihir-tower-wds', label: 'Mihir Tower WDS' },
+    { value: 'kotarpur-wtp', label: 'Kotarpur WTP' },
+];
+
 export default function ReportsPage() {
     return (
         <div className="space-y-6">
@@ -202,14 +232,14 @@ export default function ReportsPage() {
                 </div>
             </div>
             
-            <Tabs defaultValue="analysis" className="w-full">
+            <Tabs defaultValue="overview" className="w-full">
                 <TabsList className="grid w-full grid-cols-3 md:w-auto md:inline-flex">
-                    <TabsTrigger value="analysis">Analysis</TabsTrigger>
+                    <TabsTrigger value="overview">Overview</TabsTrigger>
                     <TabsTrigger value="alerts">Alerts</TabsTrigger>
                     <TabsTrigger value="energy">Energy Analysis</TabsTrigger>
                 </TabsList>
 
-                <TabsContent value="analysis" className="space-y-4 mt-4">
+                <TabsContent value="overview" className="space-y-4 mt-4">
                     <Card>
                         <CardHeader><CardTitle>Filters</CardTitle></CardHeader>
                         <CardContent className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -220,49 +250,54 @@ export default function ReportsPage() {
                         </CardContent>
                     </Card>
 
-                    <Tabs defaultValue="pump1" className="w-full">
-                        <TabsList className="grid w-full grid-cols-3 md:w-auto md:inline-flex">
-                            <TabsTrigger value="pump1">Pump 1</TabsTrigger>
-                            <TabsTrigger value="pump2">Pump 2</TabsTrigger>
-                            <TabsTrigger value="pump3">Pump 3</TabsTrigger>
+                    <Tabs defaultValue="dariyapur-wds" className="w-full">
+                        <TabsList className="grid w-full grid-cols-1 md:grid-cols-3 md:w-auto md:inline-flex">
+                            {stationTabs.map(tab => (
+                                <TabsTrigger key={tab.value} value={tab.value}>{tab.label}</TabsTrigger>
+                            ))}
                         </TabsList>
-                        <TabsContent value="pump1" className="space-y-4 mt-4">
-                            <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-                                <Card><CardHeader className="flex flex-row items-center justify-between pb-2"><CardTitle className="text-sm font-medium">Total Flow</CardTitle><Droplets className="h-4 w-4 text-muted-foreground"/></CardHeader><CardContent><div className="text-2xl font-bold">8,460 m³</div><p className="text-xs text-muted-foreground">over selected period</p></CardContent></Card>
-                                <Card><CardHeader className="flex flex-row items-center justify-between pb-2"><CardTitle className="text-sm font-medium">Average Efficiency</CardTitle><Gauge className="h-4 w-4 text-muted-foreground"/></CardHeader><CardContent><div className="text-2xl font-bold">85.7%</div><p className="text-xs text-muted-foreground">+1.2% from previous period</p></CardContent></Card>
-                                <Card><CardHeader className="flex flex-row items-center justify-between pb-2"><CardTitle className="text-sm font-medium">Total Energy</CardTitle><Zap className="h-4 w-4 text-muted-foreground"/></CardHeader><CardContent><div className="text-2xl font-bold">2,488 kWh</div><p className="text-xs text-muted-foreground">consumed in this period</p></CardContent></Card>
-                            </div>
-                            <div className="grid gap-4 md:grid-cols-2">
-                              <Card>
-                                  <CardHeader><CardTitle>Efficiency Over Time</CardTitle></CardHeader>
-                                  <CardContent>
-                                      <ChartContainer config={chartConfig} className="h-[300px] w-full">
-                                          <LineChart accessibilityLayer data={chartData} margin={{ top: 5, right: 20, left: -10, bottom: 5 }}>
+                        {stationTabs.map(tab => {
+                            const data = stationData[tab.value as keyof typeof stationData];
+                            return (
+                                <TabsContent key={tab.value} value={tab.value} className="space-y-4 mt-4">
+                                    <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+                                        <Card><CardHeader className="flex flex-row items-center justify-between pb-2"><CardTitle className="text-sm font-medium">Total Flow</CardTitle><Droplets className="h-4 w-4 text-muted-foreground"/></CardHeader><CardContent><div className="text-2xl font-bold">{data.totalFlow}</div><p className="text-xs text-muted-foreground">over selected period</p></CardContent></Card>
+                                        <Card><CardHeader className="flex flex-row items-center justify-between pb-2"><CardTitle className="text-sm font-medium">Average Efficiency</CardTitle><Gauge className="h-4 w-4 text-muted-foreground"/></CardHeader><CardContent><div className="text-2xl font-bold">{data.avgEfficiency}</div><p className="text-xs text-muted-foreground">{data.efficiencyChange}</p></CardContent></Card>
+                                        <Card><CardHeader className="flex flex-row items-center justify-between pb-2"><CardTitle className="text-sm font-medium">Total Energy</CardTitle><Zap className="h-4 w-4 text-muted-foreground"/></CardHeader><CardContent><div className="text-2xl font-bold">{data.totalEnergy}</div><p className="text-xs text-muted-foreground">consumed in this period</p></CardContent></Card>
+                                    </div>
+                                    <div className="grid gap-4 md:grid-cols-2">
+                                      <Card>
+                                          <CardHeader><CardTitle>Efficiency Over Time</CardTitle></CardHeader>
+                                          <CardContent>
+                                              <ChartContainer config={chartConfig} className="h-[300px] w-full">
+                                                  <LineChart accessibilityLayer data={data.chartData} margin={{ top: 5, right: 20, left: -10, bottom: 5 }}>
+                                                      <CartesianGrid vertical={false} />
+                                                      <XAxis dataKey="date" tickLine={false} axisLine={false} tickMargin={8} tickFormatter={(value) => new Date(value).toLocaleDateString('en-US', { day: 'numeric', month: 'short' })} />
+                                                      <YAxis yAxisId="left" orientation="left" stroke="#888888" fontSize={12} tickLine={false} axisLine={false} tickFormatter={(value) => `${value}%`} />
+                                                      <Tooltip content={<ChartTooltipContent />} />
+                                                      <Line yAxisId="left" type="monotone" dataKey="efficiency" stroke="hsl(var(--primary))" strokeWidth={2} dot={false} />
+                                                  </LineChart>
+                                              </ChartContainer>
+                                          </CardContent>
+                                      </Card>
+                                      <Card>
+                                        <CardHeader><CardTitle>Flow vs Energy</CardTitle></CardHeader>
+                                        <CardContent>
+                                          <ChartContainer config={chartConfig} className="h-[300px] w-full">
+                                            <BarChart accessibilityLayer data={data.chartData} margin={{ top: 5, right: 20, left: -10, bottom: 5 }}>
                                               <CartesianGrid vertical={false} />
                                               <XAxis dataKey="date" tickLine={false} axisLine={false} tickMargin={8} tickFormatter={(value) => new Date(value).toLocaleDateString('en-US', { day: 'numeric', month: 'short' })} />
-                                              <YAxis yAxisId="left" orientation="left" stroke="#888888" fontSize={12} tickLine={false} axisLine={false} tickFormatter={(value) => `${value}%`} />
-                                              <Tooltip content={<ChartTooltipContent />} />
-                                              <Line yAxisId="left" type="monotone" dataKey="efficiency" stroke="hsl(var(--primary))" strokeWidth={2} dot={false} />
-                                          </LineChart>
-                                      </ChartContainer>
-                                  </CardContent>
-                              </Card>
-                              <Card>
-                                <CardHeader><CardTitle>Flow vs Energy</CardTitle></CardHeader>
-                                <CardContent>
-                                  <ChartContainer config={chartConfig} className="h-[300px] w-full">
-                                    <BarChart accessibilityLayer data={chartData} margin={{ top: 5, right: 20, left: -10, bottom: 5 }}>
-                                      <CartesianGrid vertical={false} />
-                                      <XAxis dataKey="date" tickLine={false} axisLine={false} tickMargin={8} tickFormatter={(value) => new Date(value).toLocaleDateString('en-US', { day: 'numeric', month: 'short' })} />
-                                      <YAxis />
-                                      <Tooltip content={<ChartTooltipContent indicator="dot" />} />
-                                      <Bar dataKey="flow" fill="hsl(var(--accent))" radius={4} />
-                                    </BarChart>
-                                  </ChartContainer>
-                                </CardContent>
-                              </Card>
-                            </div>
-                        </TabsContent>
+                                              <YAxis />
+                                              <Tooltip content={<ChartTooltipContent indicator="dot" />} />
+                                              <Bar dataKey="flow" fill="hsl(var(--accent))" radius={4} />
+                                            </BarChart>
+                                          </ChartContainer>
+                                        </CardContent>
+                                      </Card>
+                                    </div>
+                                </TabsContent>
+                            );
+                        })}
                     </Tabs>
                 </TabsContent>
 
@@ -410,5 +445,3 @@ export default function ReportsPage() {
         </div>
     );
 }
-
-    
