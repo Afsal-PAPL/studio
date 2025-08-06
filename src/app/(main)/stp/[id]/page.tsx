@@ -80,14 +80,14 @@ export default function STPDetailsPage({ params }: { params: { id: string } }) {
             <h1 className="text-3xl font-bold font-headline">{stationName} - Plant Summary</h1>
             
             <div className="grid gap-4 grid-cols-2 md:grid-cols-3">
-                <MetricCard title="Total Outlet Water" value="34.13" unit="KL" description="Outlet Water" />
+                <MetricCard title="Total Output Water" value="34.13" unit="KL" description="Output Water" />
                 <MetricCard title="Inlet Water" value="85.88" unit="KLD" description="Inlet Water" />
                 <MetricCard title="Plant Efficiency" value="39.74" unit="%" description="Plant Efficiency" />
             </div>
 
             <Card>
                 <CardHeader>
-                    <CardTitle>Inlet and Outlet Water Quality</CardTitle>
+                    <CardTitle>Inlet and Output Water Quality</CardTitle>
                 </CardHeader>
                 <CardContent className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
                     <QualityChartCard dataKey="bod" title="Treated Water BOD (Ref: <10 mg/l)" />

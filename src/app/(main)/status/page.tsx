@@ -23,7 +23,7 @@ export default function StatusPage() {
                 label: "Water Treatment Plant (WTP)",
                 items: [
                     { name: "Total Water Treated Today", value: "250 MLD", status: "green", statusLabel: ""},
-                    { name: "Intake vs Outtake vs Loss", value: "260/250/10 MLD", status: "green", statusLabel: ""},
+                    { name: "Intake vs Output vs Loss", value: "260/250/10 MLD", status: "green", statusLabel: ""},
                     { name: "Total Energy Consumed", value: "55 MWh", status: "green", statusLabel: "" },
                 ]
             },
@@ -44,7 +44,7 @@ export default function StatusPage() {
                 label: "Sewage Treatment Plant (STP)",
                 items: [
                     { name: "Total Sewage Treated", value: "150 MLD", status: "green", statusLabel: "" },
-                    { name: "Inlet vs Outlet", value: "155/150 MLD", status: "green", statusLabel: "" },
+                    { name: "Inlet vs Output", value: "155/150 MLD", status: "green", statusLabel: "" },
                     { name: "Energy Consumed", value: "40 MWh", status: "green", statusLabel: "" },
                     { name: "BOD/COD Reduction", value: "95%", status: "green", statusLabel: "" },
                 ]
