@@ -51,9 +51,9 @@ export default function MainLayout({ children }: { children: React.ReactNode }) 
             </SidebarMenuItem>
             <SidebarMenuItem>
               <Link href="/status">
-                <SidebarMenuButton tooltip="Location Status">
+                <SidebarMenuButton tooltip="Location-Wise Status">
                   <MapPin />
-                  Location Status
+                  Location-Wise Status
                 </SidebarMenuButton>
               </Link>
             </SidebarMenuItem>

@@ -83,7 +83,7 @@ export default function StatusPage() {
     return (
         <div className="flex flex-col gap-6">
             <div className="flex flex-wrap items-center justify-between gap-4">
-                <h1 className="text-3xl font-bold font-headline">Location Wise Status</h1>
+                <h1 className="text-3xl font-bold font-headline">Location-Wise Status</h1>
                 <Button variant="outline"><RefreshCw className="mr-2 h-4 w-4" /> Refresh Data</Button>
             </div>
 
