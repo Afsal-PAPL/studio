@@ -51,15 +51,22 @@ const QualityRow = ({ parameter, refValue, value }: { parameter: string, refValu
 
 
 export default function WTPDetailsPage({ params }: { params: { id: string } }) {
+    const stationNames: { [key: string]: string } = {
+        '1': 'Kotarpur WTP',
+        '2': 'Raska WTP'
+    };
+
+    const stationName = stationNames[params.id] || `WTP Station ${params.id}`;
+    
     const breadcrumbItems = [
         { label: "Location Wise Status", href: "/status" },
-        { label: `WTP Station ${params.id}` }
+        { label: stationName }
     ];
     
     return (
         <div className="space-y-6">
             <Breadcrumb items={breadcrumbItems} />
-            <h1 className="text-3xl font-bold font-headline">WTP Station {params.id} - Plant Summary</h1>
+            <h1 className="text-3xl font-bold font-headline">{stationName} - Plant Summary</h1>
             
             <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
                  <Card className="col-span-1 lg:col-span-2">
