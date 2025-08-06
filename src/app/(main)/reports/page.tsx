@@ -420,7 +420,7 @@ export default function ReportsPage() {
                 <TabsList className="grid w-full grid-cols-2 md:w-auto md:inline-flex md:grid-cols-5">
                     <TabsTrigger value="overview">Overview</TabsTrigger>
                     <TabsTrigger value="alerts">Alerts</TabsTrigger>
-                    <TabsTrigger value="energy">Energy Analysis</TabsTrigger>
+                    <TabsTrigger value="energy">Energy Consumption Analysis</TabsTrigger>
                     <TabsTrigger value="energy-cost">Energy Cost</TabsTrigger>
                     <TabsTrigger value="predictive">Predictive Analytics</TabsTrigger>
                 </TabsList>
