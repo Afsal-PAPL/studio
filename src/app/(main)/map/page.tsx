@@ -53,8 +53,6 @@ const LocationMarker = ({ location }: { location: (typeof locations)[0] }) => {
                 <div 
                     style={{ top: location.top, left: location.left }} 
                     className="absolute -translate-x-1/2 -translate-y-1/2 flex flex-col items-center cursor-pointer"
-                    onMouseEnter={() => setIsOpen(true)} 
-                    onMouseLeave={() => setIsOpen(false)}
                 >
                     <Button variant="ghost" size="icon" className="rounded-full w-8 h-8 bg-background/80 hover:bg-background/100">
                         <MapPin className="w-5 h-5 text-primary animate-pulse" />
@@ -62,12 +60,9 @@ const LocationMarker = ({ location }: { location: (typeof locations)[0] }) => {
                     <span className="text-xs font-semibold text-primary-foreground bg-primary/80 px-2 py-1 rounded-md mt-1 whitespace-nowrap">{location.name}</span>
                 </div>
             </PopoverTrigger>
-            {isOpen && (
-             <PopoverPortal>
+            <PopoverPortal>
                 <div
                     className="fixed inset-0 z-50 flex items-center justify-center bg-black/50"
-                    onMouseEnter={() => setIsOpen(true)} 
-                    onMouseLeave={() => setIsOpen(false)}
                 >
                     <PopoverContent
                         className="w-auto max-w-4xl p-0"
@@ -191,7 +186,6 @@ const LocationMarker = ({ location }: { location: (typeof locations)[0] }) => {
                     </PopoverContent>
                 </div>
             </PopoverPortal>
-            )}
         </Popover>
     )
 }
