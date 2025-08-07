@@ -45,7 +45,7 @@ const mapConfig = {
     height: 1000, // The height of your map image in pixels
     // Bounding box for Ahmedabad area shown on map
     bounds: {
-        lat: { min: 22.95, max: 23.07 },
+        lat: { min: 22.95, max: 23.075 },
         long: { min: 72.37, max: 72.62 }
     }
 };
