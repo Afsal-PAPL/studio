@@ -12,8 +12,8 @@ import { ScrollArea } from '@/components/ui/scroll-area';
 
 
 const locations = [
-    { id: 1, name: 'Kotarpur WTP', type: 'WTP', status: 'Normal', top: '10%', left: '45%', data: { designedDischarge: 270, todayFlow: 281.31, reservoirLevel: 13.76, reservoirCapacity: 27.52, efficiency: 78.54, energy: 117314, pf: 0.89, ph: 7.64, turbidity: 2.57, conductivity: 276.42, frc: 0.12, temperature: 24.70, tds: 138.21 } },
-    { id: 2, name: 'Raska WTP', type: 'WTP', status: 'Normal', top: '80%', left: '70%', data: { designedDischarge: 260, todayFlow: 275.1, reservoirLevel: 12.5, reservoirCapacity: 25.0, efficiency: 80.1, energy: 115000, pf: 0.90, ph: 7.66, turbidity: 2.99, conductivity: 300.98, frc: 0.17, temperature: 25.10, tds: 150.49 } },
+    { id: 1, name: 'Kotarpur WTP', type: 'WTP', status: 'Normal', top: '10%', left: '45%', data: { designedDischarge: 270, todayFlow: 281.31, reservoirLevel: 13.76, reservoirCapacity: 27.52, efficiency: 78.54, energy: 117314, pf: 0.89, ph: 7.64, turbidity: 2.57, frc: 0.12, tds: 138.21 } },
+    { id: 2, name: 'Raska WTP', type: 'WTP', status: 'Normal', top: '80%', left: '70%', data: { designedDischarge: 260, todayFlow: 275.1, reservoirLevel: 12.5, reservoirCapacity: 25.0, efficiency: 80.1, energy: 115000, pf: 0.90, ph: 7.66, turbidity: 2.99, frc: 0.17, tds: 150.49 } },
     { id: 3, name: 'Dariyapur WDS', type: 'WDS', status: 'Normal', top: '45%', left: '80%', data: { designedDischarge: 150, todayFlow: 155.6, reservoirLevel: 10.2, reservoirCapacity: 20.0, efficiency: 82.3, energy: 95000, pf: 0.88 } },
     { id: 4, name: 'Mihir Tower WDS', type: 'WDS', status: 'Normal', top: '70%', left: '90%', data: { designedDischarge: 140, todayFlow: 148.2, reservoirLevel: 9.8, reservoirCapacity: 18.0, efficiency: 81.5, energy: 92000, pf: 0.89 } },
     { id: 5, name: 'Daffnala STP', type: 'STP', status: 'Normal', top: '35%', left: '85%', data: { totalOutputWater: 34.13, inletWater: 85.88, plantEfficiency: 39.74, bod: 9.8, cod: 27.0, tss: 4.8 } },
@@ -107,9 +107,7 @@ const LocationMarker = ({ location }: { location: (typeof locations)[0] }) => {
                                                     <TableRow className="bg-gray-50 dark:bg-gray-700">
                                                         <TableHead>pH (6.5-8.5)</TableHead>
                                                         <TableHead>Turbidity (&lt;5 NTU)</TableHead>
-                                                        <TableHead>Elec. conductivity (&lt;1000 µS/cm)</TableHead>
                                                         <TableHead>FRC (&lt;0.2 ppm)</TableHead>
-                                                        <TableHead>Temperature (15-30 °C)</TableHead>
                                                         <TableHead>TDS (&lt;500 ppm)</TableHead>
                                                     </TableRow>
                                                 </TableHeader>
@@ -117,9 +115,7 @@ const LocationMarker = ({ location }: { location: (typeof locations)[0] }) => {
                                                     <TableRow>
                                                         <TableCell>{data.ph.toFixed(2)}</TableCell>
                                                         <TableCell>{data.turbidity.toFixed(2)}</TableCell>
-                                                        <TableCell>{data.conductivity.toFixed(2)}</TableCell>
                                                         <TableCell>{data.frc.toFixed(2)}</TableCell>
-                                                        <TableCell>{data.temperature.toFixed(2)}</TableCell>
                                                         <TableCell>{data.tds.toFixed(2)}</TableCell>
                                                     </TableRow>
                                                 </TableBody>
