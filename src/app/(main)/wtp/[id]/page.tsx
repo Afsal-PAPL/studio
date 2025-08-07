@@ -91,14 +91,12 @@ const treatedWaterPumps = [
 
 
 export default function WTPDetailsPage({ params }: { params: { id: string } }) {
-    const { id } = params;
-
     const stationNames: { [key: string]: string } = {
         '1': 'Kotarpur WTP',
         '2': 'Raska WTP'
     };
 
-    const stationName = stationNames[id] || `WTP Station ${id}`;
+    const stationName = stationNames[params.id] || `WTP Station ${params.id}`;
     
     const breadcrumbItems = [
         { label: "Location Wise Status", href: "/status" },
@@ -195,12 +193,12 @@ export default function WTPDetailsPage({ params }: { params: { id: string } }) {
                 </TabsContent>
                 <TabsContent value="raw-water" className="mt-4">
                     <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-                       {rawWaterPumps.map(pump => <PumpCard key={pump.id} stationId={id} pump={pump} type="Raw Water" />)}
+                       {rawWaterPumps.map(pump => <PumpCard key={pump.id} stationId={params.id} pump={pump} type="Raw Water" />)}
                     </div>
                 </TabsContent>
                 <TabsContent value="treated-water" className="mt-4">
                      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-                       {treatedWaterPumps.map(pump => <PumpCard key={pump.id} stationId={id} pump={pump} type="Treated Water" />)}
+                       {treatedWaterPumps.map(pump => <PumpCard key={pump.id} stationId={params.id} pump={pump} type="Treated Water" />)}
                     </div>
                 </TabsContent>
             </Tabs>
