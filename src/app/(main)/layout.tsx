@@ -16,7 +16,7 @@ import {
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
 import { Button } from '@/components/ui/button';
-import { Bell, HelpCircle, Map, MapPin, BarChart3, Settings, LogOut, BookText } from 'lucide-react';
+import { Bell, HelpCircle, Map, MapPin, BarChart3, Settings, LogOut, BookText, MessageSquare } from 'lucide-react';
 
 const Logo = () => (
     <div className="flex items-center gap-2 font-bold text-lg font-headline text-primary">
@@ -72,6 +72,14 @@ export default function MainLayout({ children }: { children: React.ReactNode }) 
                   Knowledge Base
                 </SidebarMenuButton>
               </Link>
+            </SidebarMenuItem>
+            <SidebarMenuItem>
+                <Link href="/chat">
+                    <SidebarMenuButton tooltip="Chat with Data">
+                        <MessageSquare />
+                        Chat with Data
+                    </SidebarMenuButton>
+                </Link>
             </SidebarMenuItem>
           </SidebarMenu>
         </SidebarContent>
