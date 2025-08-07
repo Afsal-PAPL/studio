@@ -43,7 +43,7 @@ export default function ChatPage() {
     React.useEffect(() => {
         const selectedLocation = locations.find(l => l.value === location)?.label;
         const selectedDataType = dataTypes.find(d => d.value === dataType)?.label;
-        const initialMessage = `Greetings! ${selectedDataType} for ${selectedLocation} is available. What parameters would you like to explore?`;
+        const initialMessage = `Greetings from iPUMPNET Chatbot! ${selectedDataType} for ${selectedLocation} is available. What parameters would you like to explore?`;
         setMessages([{ text: initialMessage, sender: 'bot' }]);
     }, [location, dataType]);
 
@@ -61,7 +61,7 @@ export default function ChatPage() {
     const handleClearChat = () => {
         const selectedLocation = locations.find(l => l.value === location)?.label;
         const selectedDataType = dataTypes.find(d => d.value === dataType)?.label;
-        const initialMessage = `Greetings! ${selectedDataType} for ${selectedLocation} is available. What parameters would you like to explore?`;
+        const initialMessage = `Greetings from iPUMPNET Chatbot! ${selectedDataType} for ${selectedLocation} is available. What parameters would you like to explore?`;
         setMessages([{ text: initialMessage, sender: 'bot' }]);
     }
 
