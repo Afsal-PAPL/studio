@@ -12,7 +12,7 @@ import { ScrollArea } from '@/components/ui/scroll-area';
 
 
 const locations = [
-    { id: 1, name: 'Kotarpur WTP', type: 'WTP', status: 'Normal', top: '15%', left: '75%', data: { designedDischarge: 270, todayFlow: 281.31, reservoirLevel: 13.76, reservoirCapacity: 27.52, efficiency: 78.54, energy: 117314, pf: 0.89, ph: 7.64, turbidity: 2.57, conductivity: 276.42, frc: 0.12, temperature: 24.70, tds: 138.21 } },
+    { id: 1, name: 'Kotarpur WTP', type: 'WTP', status: 'Normal', top: '10%', left: '45%', data: { designedDischarge: 270, todayFlow: 281.31, reservoirLevel: 13.76, reservoirCapacity: 27.52, efficiency: 78.54, energy: 117314, pf: 0.89, ph: 7.64, turbidity: 2.57, conductivity: 276.42, frc: 0.12, temperature: 24.70, tds: 138.21 } },
     { id: 2, name: 'Raska WTP', type: 'WTP', status: 'Normal', top: '80%', left: '70%', data: { designedDischarge: 260, todayFlow: 275.1, reservoirLevel: 12.5, reservoirCapacity: 25.0, efficiency: 80.1, energy: 115000, pf: 0.90, ph: 7.66, turbidity: 2.99, conductivity: 300.98, frc: 0.17, temperature: 25.10, tds: 150.49 } },
     { id: 3, name: 'Dariyapur WDS', type: 'WDS', status: 'Normal', top: '45%', left: '80%', data: { designedDischarge: 150, todayFlow: 155.6, reservoirLevel: 10.2, reservoirCapacity: 20.0, efficiency: 82.3, energy: 95000, pf: 0.88 } },
     { id: 4, name: 'Mihir Tower WDS', type: 'WDS', status: 'Normal', top: '70%', left: '90%', data: { designedDischarge: 140, todayFlow: 148.2, reservoirLevel: 9.8, reservoirCapacity: 18.0, efficiency: 81.5, energy: 92000, pf: 0.89 } },
@@ -175,11 +175,12 @@ export default function MapPage() {
             <Card className="w-full h-[calc(100vh-14rem)]">
                 <div className="relative w-full h-full rounded-lg overflow-hidden">
                     <Image
-                        src="https://th.bing.com/th/id/R.b5a74cdd5259d810b99655e66015ceea?rik=o5Dq4LLodt4W3g&riu=http%3a%2f%2fmapsof.net%2fuploads%2fstatic-maps%2fmap_of_Ahmedabad.jpg&ehk=Y09aosLEdAdXnCVeKTKFfyz%2fP58qBlgbzBJUIQS34GQ%3d&risl=&pid=ImgRaw&r=0"
+                        src="https://i.ibb.co/pP9bQd3/map-of-Ahmedabad.jpg"
                         alt="Map of Ahmedabad with pumping stations"
                         layout="fill"
                         objectFit="cover"
                         data-ai-hint="city map"
+                        unoptimized
                     />
                     {locations.map(loc => <LocationMarker key={loc.id} location={loc} />)}
                 </div>
