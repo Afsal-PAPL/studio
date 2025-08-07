@@ -27,9 +27,9 @@ const pumps = [
 const dataPoints = [
     { id: 'power', icon: Zap, top: '85%', left: '15%', popover: { Label: 'Current', Meaning: 'Motor Current Draw', Value: '45 A' }, color: 'text-yellow-400' },
     { id: 'motor-temp', icon: Thermometer, top: '45%', left: '8%', popover: { Label: 'Motor Temp', Meaning: 'Motor Winding Temp', Value: '75 °C' }, color: 'text-blue-400' },
-    { id: 'motor-vibration', icon: Waves, top: '35%', left: '8%', popover: { Label: 'Motor VDE', Meaning: 'Motor Vibration Drive End', Value: '0.18 mm/s' }, color: 'text-blue-400' },
+    { id: 'motor-vibration-nde', icon: Waves, top: '35%', left: '8%', popover: { Label: 'Motor Vibration NDE', Meaning: 'Motor Vibration Non-Drive End', Value: '0.18 mm/s' }, color: 'text-blue-400' },
     { id: 'comms', icon: Rss, top: '45%', left: '30%', popover: { Label: 'Comms', Meaning: 'Communication Status', Value: 'Online' }, color: 'text-blue-400' },
-    { id: 'coupling', icon: Waves, top: '40%', left: '48%', popover: { Label: 'Coupling Vib', Meaning: 'Coupling Vibration', Value: '0.12 mm/s' }, color: 'text-purple-400' },
+    { id: 'motor-vibration-de', icon: Waves, top: '40%', left: '48%', popover: { Label: 'Motor Vibration DE', Meaning: 'Motor Vibration Drive End', Value: '0.12 mm/s' }, color: 'text-purple-400' },
     { id: 'pump-vibration', icon: Waves, top: '35%', left: '60%', popover: { Label: 'Pump VDE', Meaning: 'Pump Vibration Drive End', Value: '0.21 mm/s' }, color: 'text-purple-400' },
     { id: 'bearing-temp', icon: Thermometer, top: '65%', left: '65%', popover: { Label: 'Bearing Temp', Meaning: 'Pump Bearing Temperature', Value: '68 °C' }, color: 'text-purple-400' },
     { id: 'seal-temp', icon: Thermometer, top: '38%', left: '75%', popover: { Label: 'Seal Temp', Meaning: 'Mechanical Seal Temperature', Value: '62 °C' }, color: 'text-purple-400' },
