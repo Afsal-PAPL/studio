@@ -12,7 +12,7 @@ import { ScrollArea } from '@/components/ui/scroll-area';
 
 
 const locations = [
-    { id: 1, name: 'Kotarpur WTP', type: 'WTP', status: 'Normal', top: '28%', left: '55%', data: { designedDischarge: 270, todayFlow: 281.31, reservoirLevel: 13.76, reservoirCapacity: 27.52, efficiency: 78.54, energy: 117314, pf: 0.89, ph: 7.64, turbidity: 2.57, conductivity: 276.42, frc: 0.12, temperature: 24.70, tds: 138.21 } },
+    { id: 1, name: 'Kotarpur WTP', type: 'WTP', status: 'Normal', top: '30%', left: '78%', data: { designedDischarge: 270, todayFlow: 281.31, reservoirLevel: 13.76, reservoirCapacity: 27.52, efficiency: 78.54, energy: 117314, pf: 0.89, ph: 7.64, turbidity: 2.57, conductivity: 276.42, frc: 0.12, temperature: 24.70, tds: 138.21 } },
     { id: 2, name: 'Raska WTP', type: 'WTP', status: 'Normal', top: '80%', left: '70%', data: { designedDischarge: 260, todayFlow: 275.1, reservoirLevel: 12.5, reservoirCapacity: 25.0, efficiency: 80.1, energy: 115000, pf: 0.90, ph: 7.66, turbidity: 2.99, conductivity: 300.98, frc: 0.17, temperature: 25.10, tds: 150.49 } },
     { id: 3, name: 'Dariyapur WDS', type: 'WDS', status: 'Normal', top: '45%', left: '80%', data: { designedDischarge: 150, todayFlow: 155.6, reservoirLevel: 10.2, reservoirCapacity: 20.0, efficiency: 82.3, energy: 95000, pf: 0.88 } },
     { id: 4, name: 'Mihir Tower WDS', type: 'WDS', status: 'Normal', top: '70%', left: '90%', data: { designedDischarge: 140, todayFlow: 148.2, reservoirLevel: 9.8, reservoirCapacity: 18.0, efficiency: 81.5, energy: 92000, pf: 0.89 } },
