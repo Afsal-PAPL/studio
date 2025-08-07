@@ -110,7 +110,7 @@ export default function DigitalTwinPage() {
             <Tabs defaultValue="pumpset">
                 <TabsList className="grid w-full grid-cols-2 md:w-[400px]">
                     <TabsTrigger value="pumpset">Pumpset View</TabsTrigger>
-                    <TabsTrigger value="scada">SCADA View</TabsTrigger>
+                    <TabsTrigger value="scada">Process Overview</TabsTrigger>
                 </TabsList>
                 
                 <TabsContent value="pumpset" className="mt-4">
@@ -164,7 +164,7 @@ export default function DigitalTwinPage() {
                     <Card>
                         <CardHeader>
                             <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-                                <CardTitle>SCADA View for {locations.find(l => l.value === location)?.label}</CardTitle>
+                                <CardTitle>Process Overview for {locations.find(l => l.value === location)?.label}</CardTitle>
                                 <div className="flex flex-col md:flex-row gap-2 w-full md:w-auto">
                                      <Select value={location} onValueChange={setLocation}>
                                         <SelectTrigger className="w-full md:w-[200px]"><SelectValue /></SelectTrigger>
