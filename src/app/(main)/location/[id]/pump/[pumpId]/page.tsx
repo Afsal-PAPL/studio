@@ -59,6 +59,15 @@ export default function PumpDetailsPage({ params }: { params: { id: string, pump
                     </CardContent>
                 </Card>
 
+                 <Card>
+                    <CardHeader><CardTitle>Efficiency Monitoring</CardTitle></CardHeader>
+                    <CardContent className="space-y-4">
+                        <Gauge label="Pump Efficiency" value={88} max={100} unit="%" />
+                        <Gauge label="Motor Efficiency" value={92} max={100} unit="%" />
+                        <Gauge label="Combined Unit Efficiency" value={81} max={100} unit="%" />
+                    </CardContent>
+                </Card>
+
                 <Card>
                     <CardHeader><CardTitle>Bearing Temperatures</CardTitle></CardHeader>
                     <CardContent className="space-y-4">
