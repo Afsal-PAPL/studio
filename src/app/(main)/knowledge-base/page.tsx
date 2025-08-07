@@ -70,8 +70,8 @@ const causeDetails = {
     },
     'Cavitation': {
         description: 'Vapor bubbles form in the liquid when suction pressure drops too low and then collapse violently inside the pump. This causes noise, vibration, and severe damage to the impeller and casing.',
-        image: 'https://i.imgur.com/8Q7E0A0.gif',
-        imageHint: 'cavitation mechanism',
+        image: 'https://media.licdn.com/dms/image/v2/D5612AQFY4qR5PufpGQ/article-cover_image-shrink_423_752/article-cover_image-shrink_423_752/0/1678420372575?e=1759968000&v=beta&t=DMleE-manobc8n2uRyMyClxnZjTT6J5XbUxHm_ZOUk0',
+        imageHint: 'cavitation damage',
         link: 'https://www.pumpsandsystems.com/reducing-cavitation-centrifugal-pumps'
     },
     'Leakage joint excessive': {
