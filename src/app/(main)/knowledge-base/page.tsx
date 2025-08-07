@@ -72,7 +72,7 @@ const causeDetails = {
         description: 'Vapor bubbles form in the liquid when suction pressure drops too low and then collapse violently inside the pump. This causes noise, vibration, and severe damage to the impeller and casing.',
         image: 'https://placehold.co/600x400.png',
         imageHint: 'damaged impeller',
-        link: 'https://www.flowserve.com/en/our-story/blog/understanding-cavitation-and-how-to-prevent-it/'
+        link: 'https://www.pumpsandsystems.com/reducing-cavitation-centrifugal-pumps'
     },
     'Leakage joint excessive': {
         description: 'Excessive leakage from mechanical seals, packing, or gaskets. This results in lost product, potential safety hazards, and can indicate a failing seal or improper installation.',
