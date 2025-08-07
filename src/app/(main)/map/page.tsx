@@ -175,7 +175,7 @@ export default function MapPage() {
             <Card className="w-full h-[calc(100vh-14rem)]">
                 <div className="relative w-full h-full rounded-lg overflow-hidden">
                     <Image
-                        src="https://i.ibb.co/pP9bQd3/map-of-Ahmedabad.jpg"
+                        src="https://th.bing.com/th/id/R.b5a74cdd5259d810b99655e66015ceea?rik=o5Dq4LLodt4W3g&riu=http%3a%2f%2fmapsof.net%2fuploads%2fstatic-maps%2fmap_of_Ahmedabad.jpg&ehk=Y09aosLEdAdXnCVeKTKFfyz%2fP58qBlgbzBJUIQS34GQ%3d&risl=&pid=ImgRaw&r=0"
                         alt="Map of Ahmedabad with pumping stations"
                         layout="fill"
                         objectFit="cover"
@@ -188,5 +188,3 @@ export default function MapPage() {
         </div>
     );
 }
-
-    
