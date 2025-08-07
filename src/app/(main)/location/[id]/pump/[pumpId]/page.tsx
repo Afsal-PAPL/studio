@@ -40,6 +40,10 @@ export default function PumpDetailsPage({ params }: { params: { id: string, pump
         { label: locationName, href: `/location/${params.id}` },
         { label: `Pump ${params.pumpId}` }
     ];
+    
+    const pumpEfficiency = 82;
+    const motorEfficiency = 94;
+    const combinedEfficiency = Math.round((pumpEfficiency / 100) * (motorEfficiency / 100) * 100);
 
     return (
         <div className="space-y-6">
@@ -62,9 +66,9 @@ export default function PumpDetailsPage({ params }: { params: { id: string, pump
                  <Card>
                     <CardHeader><CardTitle>Efficiency Monitoring</CardTitle></CardHeader>
                     <CardContent className="space-y-4">
-                        <Gauge label="Pump Efficiency" value={88} max={100} unit="%" />
-                        <Gauge label="Motor Efficiency" value={92} max={100} unit="%" />
-                        <Gauge label="Combined Unit Efficiency" value={81} max={100} unit="%" />
+                        <Gauge label="Pump Efficiency" value={pumpEfficiency} max={100} unit="%" />
+                        <Gauge label="Motor Efficiency" value={motorEfficiency} max={100} unit="%" />
+                        <Gauge label="Combined Unit Efficiency" value={combinedEfficiency} max={100} unit="%" />
                     </CardContent>
                 </Card>
 
