@@ -33,6 +33,12 @@ const nextConfig: NextConfig = {
         hostname: 'media.licdn.com',
         port: '',
         pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'www.pumpsandsystems.com',
+        port: '',
+        pathname: '/**',
       }
     ],
   },

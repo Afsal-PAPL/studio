@@ -28,9 +28,9 @@ const failureModes = [
 const causeDetails = {
     'Air entrainment': {
         description: 'Air getting into the pump or suction line. This can be caused by leaks in the suction piping, low liquid levels in the suction tank, or vortexing at the suction inlet. It reduces pump performance and can cause noise and vibration.',
-        image: 'https://placehold.co/600x400.png',
+        image: 'https://www.pumpsandsystems.com/sites/default/files/1217/Air-binding-common-pump-mistakes.jpg',
         imageHint: 'air bubbles water',
-        link: 'https://www.michael-smith-engineers.co.uk/resources/useful-info/pump-cavitation-and-air-entrainment'
+        link: 'https://www.pumpsandsystems.com/how-reduce-or-eliminate-air-entrainment'
     },
     'Suction obstructed': {
         description: 'The suction line is partially or fully blocked, preventing liquid from reaching the pump. This can be caused by a closed or partially closed valve, a clogged strainer, or debris in the pipeline.',
