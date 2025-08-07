@@ -26,7 +26,7 @@ const failureModes = [
 ];
 
 const causeDetails = {
-    'Air entertainment': {
+    'Air entrainment': {
         description: 'Air getting into the pump or suction line. This can be caused by leaks in the suction piping, low liquid levels in the suction tank, or vortexing at the suction inlet. It reduces pump performance and can cause noise and vibration.',
         image: 'https://placehold.co/600x400.png',
         imageHint: 'air bubbles water',
@@ -236,7 +236,7 @@ const troubleChartData: TroubleChartRow[] = [
     {
         symptom: 'Insufficient Flow',
         causes: [
-            { name: 'Air entertainment' }, { name: 'Suction obstructed' }, { name: 'Poor pump design' }, { name: 'Speed too low' }, { name: 'Incorrect rotation' },
+            { name: 'Air entrainment' }, { name: 'Suction obstructed' }, { name: 'Poor pump design' }, { name: 'Speed too low' }, { name: 'Incorrect rotation' },
             { name: 'Pump flow too low' }, { name: 'Change in viscosity' }, { name: 'Cavitation' }, { name: 'Leakage joint excessive' }, { name: 'Foreign matter in impeller' },
             { name: 'Damaged impeller' }, { name: 'Incorrect type of packing' }, { name: 'Gland too tight' }, { name: 'Dirt or grit in pumped liquid' }, { name: 'Impeller or coupling unbalanced' }
         ]
@@ -244,7 +244,7 @@ const troubleChartData: TroubleChartRow[] = [
     {
         symptom: 'Pressure too Low',
         causes: [
-            { name: 'Air entertainment' }, { name: 'Suction obstructed' }, { name: 'Poor pump design' }, { name: 'Speed too low' }, { name: 'Incorrect rotation' },
+            { name: 'Air entrainment' }, { name: 'Suction obstructed' }, { name: 'Poor pump design' }, { name: 'Speed too low' }, { name: 'Incorrect rotation' },
             { name: 'Pump flow too low' }, { name: 'Change in viscosity' }, { name: 'Cavitation' }, { name: 'Leakage joint excessive' }, { name: 'Loose impeller' }, { name: 'Damaged impeller' }
         ]
     },
@@ -266,14 +266,14 @@ const troubleChartData: TroubleChartRow[] = [
     {
         symptom: 'Seal / Packing Fails Early',
         causes: [
-            { name: 'Air entertainment' }, { name: 'Pump flow too low' }, { name: 'Poor pump design' }, { name: 'Cavitation' }, { name: 'Foreign matter in impeller' },
+            { name: 'Air entrainment' }, { name: 'Pump flow too low' }, { name: 'Poor pump design' }, { name: 'Cavitation' }, { name: 'Foreign matter in impeller' },
             { name: 'Misalignment' }, { name: 'Dirt or grit in pumped liquid' }, { name: 'Excessive shaft run-out' }, { name: 'Impeller or coupling unbalanced' }
         ]
     },
     {
         symptom: 'High Vibration / Noise',
         causes: [
-            { name: 'Air entertainment' }, { name: 'Suction obstructed' }, { name: 'Incorrect rotation' }, { name: 'Pump flow too high' }, { name: 'Change in density' }, { name: 'Misalignment' },
+            { name: 'Air entrainment' }, { name: 'Suction obstructed' }, { name: 'Incorrect rotation' }, { name: 'Pump flow too high' }, { name: 'Change in density' }, { name: 'Misalignment' },
             { name: 'Worn bearings' }, { name: 'Impeller or wear ring rubbing' }, { name: 'Foundation not rigid' }, { name: 'Shaft bent' }
         ]
     },
@@ -287,7 +287,7 @@ const troubleChartData: TroubleChartRow[] = [
     {
         symptom: 'Bearings Run too Hot',
         causes: [
-            { name: 'Air entertainment' }, { name: 'Pump flow too low' }, { name: 'Cavitation' }, { name: 'Misalignment' }, { name: 'Change in density' }, { name: 'Worn bearings' },
+            { name: 'Air entrainment' }, { name: 'Pump flow too low' }, { name: 'Cavitation' }, { name: 'Misalignment' }, { name: 'Change in density' }, { name: 'Worn bearings' },
             { name: 'Impeller or coupling unbalanced' }, { name: 'Bearing cooling water failure' }, { name: 'Inadequate bearing lubrication' }, { name: 'High ambient temperature' },
             { name: 'High process liquid temperature' }
         ]
