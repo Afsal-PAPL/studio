@@ -135,7 +135,7 @@ export default function DigitalTwinPage() {
                            <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
                                <div className="lg:col-span-3 relative w-full aspect-[4/3] bg-gray-100 dark:bg-gray-800 rounded-lg overflow-hidden">
                                    <Image 
-                                        src="https://i.imgur.com/gO9H32j.png"
+                                        src="https://forteenergyservices.com/wp-content/uploads/2020/05/0f0c4ec4732ad0fa9bc6c2d7e953cdb8.png"
                                         alt="Industrial pump digital twin"
                                         layout="fill"
                                         objectFit="contain"
