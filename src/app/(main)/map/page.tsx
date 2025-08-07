@@ -12,17 +12,18 @@ import { ScrollArea } from '@/components/ui/scroll-area';
 
 
 const locations = [
-    { id: 1, name: 'Kotarpur WTP', type: 'WTP', status: 'Normal', lat: 23.07, long: 72.385, data: { designedDischarge: 270, todayFlow: 281.31, reservoirLevel: 13.76, reservoirCapacity: 27.52, efficiency: 78.54, energy: 117314, pf: 0.89, ph: 7.64, turbidity: 2.57, conductivity: 276.42, frc: 0.12, temperature: 24.70, tds: 138.21 } },
-    { id: 2, name: 'Raska WTP', type: 'WTP', status: 'Normal', lat: 22.96, long: 72.547, data: { designedDischarge: 260, todayFlow: 275.1, reservoirLevel: 12.5, reservoirCapacity: 25.0, efficiency: 80.1, energy: 115000, pf: 0.90, ph: 7.66, turbidity: 2.99, conductivity: 300.98, frc: 0.17, temperature: 25.10, tds: 150.49 } },
-    { id: 3, name: 'Dariyapur WDS', type: 'WDS', status: 'Normal', lat: 23.033, long: 72.593, data: { designedDischarge: 150, todayFlow: 155.6, reservoirLevel: 10.2, reservoirCapacity: 20.0, efficiency: 82.3, energy: 95000, pf: 0.88 } },
-    { id: 4, name: 'Mihir Tower WDS', type: 'WDS', status: 'Normal', lat: 22.995, long: 72.605, data: { designedDischarge: 140, todayFlow: 148.2, reservoirLevel: 9.8, reservoirCapacity: 18.0, efficiency: 81.5, energy: 92000, pf: 0.89 } },
-    { id: 5, name: 'Daffnala STP', type: 'STP', status: 'Normal', lat: 23.05, long: 72.597, data: { totalOutputWater: 34.13, inletWater: 85.88, plantEfficiency: 39.74, bod: 9.8, cod: 27.0, tss: 4.8 } },
-    { id: 6, name: 'Shankar Bhavan STP', type: 'STP', status: 'Normal', lat: 23.037, long: 72.56, data: { totalOutputWater: 30.5, inletWater: 80.2, plantEfficiency: 41.2, bod: 9.5, cod: 26.2, tss: 4.5 } },
-    { id: 7, name: 'W-5 Usmanpura SPS', type: 'SPS', status: 'Normal', lat: 23.042, long: 72.573, data: { designedDischarge: 90, todayFlow: 95.3, reservoirLevel: 6.2, reservoirCapacity: 12.0, efficiency: 79.1, energy: 75000, pf: 0.91 } },
-    { id: 8, name: 'Moterra SPS', type: 'SPS', status: 'Normal', lat: 23.041, long: 72.58, data: { designedDischarge: 85, todayFlow: 91.7, reservoirLevel: 6.0, reservoirCapacity: 11.5, efficiency: 80.0, energy: 72000, pf: 0.92 } },
-    { id: 9, name: 'Vejalpur SWPS', type: 'SWPS', status: 'Maintenance', lat: 23.00, long: 72.515, data: { designedDischarge: 200, todayFlow: 190.5, reservoirLevel: 4.2, reservoirCapacity: 10.0, efficiency: 70.5, energy: 105000, pf: 0.85 } },
-    { id: 10, name: 'Jaydeep Tower SWPS', type: 'SWPS', status: 'Normal', lat: 23.01, long: 72.548, data: { designedDischarge: 180, todayFlow: 175.8, reservoirLevel: 3.9, reservoirCapacity: 9.0, efficiency: 72.3, energy: 102000, pf: 0.87 } }
+    { id: 1, name: 'Kotarpur WTP', type: 'WTP', status: 'Normal', top: '25%', left: '30%', data: { designedDischarge: 270, todayFlow: 281.31, reservoirLevel: 13.76, reservoirCapacity: 27.52, efficiency: 78.54, energy: 117314, pf: 0.89, ph: 7.64, turbidity: 2.57, conductivity: 276.42, frc: 0.12, temperature: 24.70, tds: 138.21 } },
+    { id: 2, name: 'Raska WTP', type: 'WTP', status: 'Normal', top: '80%', left: '70%', data: { designedDischarge: 260, todayFlow: 275.1, reservoirLevel: 12.5, reservoirCapacity: 25.0, efficiency: 80.1, energy: 115000, pf: 0.90, ph: 7.66, turbidity: 2.99, conductivity: 300.98, frc: 0.17, temperature: 25.10, tds: 150.49 } },
+    { id: 3, name: 'Dariyapur WDS', type: 'WDS', status: 'Normal', top: '45%', left: '80%', data: { designedDischarge: 150, todayFlow: 155.6, reservoirLevel: 10.2, reservoirCapacity: 20.0, efficiency: 82.3, energy: 95000, pf: 0.88 } },
+    { id: 4, name: 'Mihir Tower WDS', type: 'WDS', status: 'Normal', top: '70%', left: '90%', data: { designedDischarge: 140, todayFlow: 148.2, reservoirLevel: 9.8, reservoirCapacity: 18.0, efficiency: 81.5, energy: 92000, pf: 0.89 } },
+    { id: 5, name: 'Daffnala STP', type: 'STP', status: 'Normal', top: '35%', left: '85%', data: { totalOutputWater: 34.13, inletWater: 85.88, plantEfficiency: 39.74, bod: 9.8, cod: 27.0, tss: 4.8 } },
+    { id: 6, name: 'Shankar Bhavan STP', type: 'STP', status: 'Normal', top: '48%', left: '60%', data: { totalOutputWater: 30.5, inletWater: 80.2, plantEfficiency: 41.2, bod: 9.5, cod: 26.2, tss: 4.5 } },
+    { id: 7, name: 'W-5 Usmanpura SPS', type: 'SPS', status: 'Normal', top: '40%', left: '70%', data: { designedDischarge: 90, todayFlow: 95.3, reservoirLevel: 6.2, reservoirCapacity: 12.0, efficiency: 79.1, energy: 75000, pf: 0.91 } },
+    { id: 8, name: 'Moterra SPS', type: 'SPS', status: 'Normal', top: '42%', left: '75%', data: { designedDischarge: 85, todayFlow: 91.7, reservoirLevel: 6.0, reservoirCapacity: 11.5, efficiency: 80.0, energy: 72000, pf: 0.92 } },
+    { id: 9, name: 'Vejalpur SWPS', type: 'SWPS', status: 'Maintenance', top: '65%', left: '40%', data: { designedDischarge: 200, todayFlow: 190.5, reservoirLevel: 4.2, reservoirCapacity: 10.0, efficiency: 70.5, energy: 105000, pf: 0.85 } },
+    { id: 10, name: 'Jaydeep Tower SWPS', type: 'SWPS', status: 'Normal', top: '60%', left: '55%', data: { designedDischarge: 180, todayFlow: 175.8, reservoirLevel: 3.9, reservoirCapacity: 9.0, efficiency: 72.3, energy: 102000, pf: 0.87 } }
 ];
+
 
 const getHref = (type: string, id: number) => {
     switch (type) {
@@ -39,27 +40,6 @@ const getHref = (type: string, id: number) => {
     }
 }
 
-// Map dimensions and bounding box for Ahmedabad
-const mapConfig = {
-    width: 800, // The width of your map image in pixels
-    height: 1000, // The height of your map image in pixels
-    // Bounding box for Ahmedabad area shown on map
-    bounds: {
-        lat: { min: 22.95, max: 23.075 },
-        long: { min: 72.37, max: 72.62 }
-    }
-};
-
-const convertCoordsToPixels = (lat: number, long: number) => {
-    const { width, height, bounds } = mapConfig;
-    const { lat: latBounds, long: longBounds } = bounds;
-
-    const left = ((long - longBounds.min) / (longBounds.max - longBounds.min)) * width;
-    const top = ((latBounds.max - lat) / (latBounds.max - latBounds.min)) * height;
-
-    return { left, top };
-};
-
 const LocationMarker = ({ location }: { location: (typeof locations)[0] }) => {
     const [isOpen, setIsOpen] = React.useState(false);
     const href = getHref(location.type, location.id);
@@ -68,13 +48,11 @@ const LocationMarker = ({ location }: { location: (typeof locations)[0] }) => {
     const isWtp = location.type === 'WTP';
     const data = location.data as any;
 
-    const { top, left } = convertCoordsToPixels(location.lat, location.long);
-
     return (
         <Popover open={isOpen} onOpenChange={setIsOpen}>
             <PopoverTrigger asChild>
                 <div 
-                    style={{ top: `${top}px`, left: `${left}px` }} 
+                    style={{ top: location.top, left: location.left }} 
                     className="absolute -translate-x-1/2 -translate-y-1/2 flex flex-col items-center cursor-pointer"
                 >
                     <Button variant="ghost" size="icon" className="rounded-full w-8 h-8 bg-background/80 hover:bg-background/100">
@@ -199,9 +177,8 @@ export default function MapPage() {
                     <Image
                         src="https://th.bing.com/th/id/R.b5a74cdd5259d810b99655e66015ceea?rik=o5Dq4LLodt4W3g&riu=http%3a%2f%2fmapsof.net%2fuploads%2fstatic-maps%2fmap_of_Ahmedabad.jpg&ehk=Y09aosLEdAdXnCVeKTKFfyz%2fP58qBlgbzBJUIQS34GQ%3d&risl=&pid=ImgRaw&r=0"
                         alt="Map of Ahmedabad with pumping stations"
-                        width={mapConfig.width}
-                        height={mapConfig.height}
-                        style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                        layout="fill"
+                        objectFit="cover"
                         data-ai-hint="city map"
                     />
                     {locations.map(loc => <LocationMarker key={loc.id} location={loc} />)}
@@ -210,6 +187,3 @@ export default function MapPage() {
         </div>
     );
 }
-
-
-    
