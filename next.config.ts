@@ -52,6 +52,12 @@ const nextConfig: NextConfig = {
         hostname: 'forteenergyservices.com',
         port: '',
         pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'www.pumpacademy.in',
+        port: '',
+        pathname: '/**',
       }
     ],
   },
