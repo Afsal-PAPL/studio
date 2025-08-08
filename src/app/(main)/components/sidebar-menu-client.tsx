@@ -7,7 +7,7 @@ import {
   SidebarMenuItem,
   SidebarMenuButton,
 } from '@/components/ui/sidebar';
-import { Map, MapPin, BarChart3, MessageSquare, Cpu, TrendingUp, ShieldCheck, AlertTriangle, ListOrdered, Warehouse, Truck, History, Droplets, Users, Calendar, Timer, FileCheck, UserCog, Plug, Database, ListChecks, BookText } from 'lucide-react';
+import { Map, MapPin, BarChart3, MessageSquare, Cpu, TrendingUp, ShieldCheck, AlertTriangle, ListOrdered, Warehouse, Truck, History, Droplets, Users, Calendar, Timer, FileCheck, UserCog, Plug, Database, ListChecks, BookText, Video, GraduationCap, FileQuestion } from 'lucide-react';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 
 export default function SidebarMenuClient() {
@@ -72,8 +72,8 @@ export default function SidebarMenuClient() {
            </SidebarMenu>
         </AccordionContent>
       </AccordionItem>
-       <AccordionItem value="item-5">
-        <AccordionTrigger className="px-4 py-2 text-sm font-semibold text-muted-foreground hover:no-underline">Knowledge</AccordionTrigger>
+       <AccordionItem value="resource-hub">
+        <AccordionTrigger className="px-4 py-2 text-sm font-semibold text-muted-foreground hover:no-underline">Resource Hub</AccordionTrigger>
         <AccordionContent className="pb-0 pl-4">
           <SidebarMenu>
             <SidebarMenuItem>
@@ -81,6 +81,30 @@ export default function SidebarMenuClient() {
                 <SidebarMenuButton tooltip="Knowledge Base" size="sm">
                   <BookText />
                   Knowledge Base
+                </SidebarMenuButton>
+              </Link>
+            </SidebarMenuItem>
+             <SidebarMenuItem>
+              <Link href="/video-library">
+                <SidebarMenuButton tooltip="Video Library" size="sm">
+                  <Video />
+                  Video Library
+                </SidebarMenuButton>
+              </Link>
+            </SidebarMenuItem>
+             <SidebarMenuItem>
+              <Link href="/learning-development">
+                <SidebarMenuButton tooltip="Learning & Development" size="sm">
+                  <GraduationCap />
+                  Learning & Development
+                </SidebarMenuButton>
+              </Link>
+            </SidebarMenuItem>
+             <SidebarMenuItem>
+              <Link href="/quizzes-assessments">
+                <SidebarMenuButton tooltip="Quizzes & Assessments" size="sm">
+                  <FileQuestion />
+                  Quizzes & Assessments
                 </SidebarMenuButton>
               </Link>
             </SidebarMenuItem>
