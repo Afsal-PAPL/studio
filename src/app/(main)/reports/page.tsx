@@ -406,6 +406,7 @@ const HealthScoreGauge = ({ score }: { score: number }) => {
 }
 
 export default function ReportsPage() {
+    const [activeTab, setActiveTab] = React.useState(stationTabs[0].value);
     return (
         <div className="space-y-6">
             <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
@@ -426,18 +427,25 @@ export default function ReportsPage() {
                 </TabsList>
 
                 <TabsContent value="overview" className="space-y-4 mt-4">
-                    <Card>
-                        <CardHeader><CardTitle>Filters</CardTitle></CardHeader>
-                        <CardContent className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-                            <Select defaultValue="loc1"><SelectTrigger><SelectValue /></SelectTrigger><SelectContent><SelectItem value="loc1">Location 1</SelectItem><SelectItem value="loc2">Location 2</SelectItem></SelectContent></Select>
-                            <Select defaultValue="perf"><SelectTrigger><SelectValue /></SelectTrigger><SelectContent><SelectItem value="perf">Performance Summary</SelectItem><SelectItem value="energy">Energy Consumption</SelectItem></SelectContent></Select>
-                            <DatePickerWithRange />
-                            <Button className="w-full lg:w-auto lg:self-end">Generate Report</Button>
-                        </CardContent>
-                    </Card>
+                     <Tabs defaultValue={activeTab} onValueChange={setActiveTab} className="w-full">
+                        <Card>
+                            <CardHeader><CardTitle>Filters</CardTitle></CardHeader>
+                            <CardContent className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                                <Select value={activeTab} onValueChange={setActiveTab}>
+                                    <SelectTrigger><SelectValue /></SelectTrigger>
+                                    <SelectContent>
+                                        {stationTabs.map(tab => (
+                                             <SelectItem key={tab.value} value={tab.value}>{tab.label}</SelectItem>
+                                        ))}
+                                    </SelectContent>
+                                </Select>
+                                <Select defaultValue="perf"><SelectTrigger><SelectValue /></SelectTrigger><SelectContent><SelectItem value="perf">Performance Summary</SelectItem><SelectItem value="energy">Energy Consumption</SelectItem></SelectContent></Select>
+                                <DatePickerWithRange />
+                                <Button className="w-full lg:w-auto lg:self-end">Generate Report</Button>
+                            </CardContent>
+                        </Card>
 
-                    <Tabs defaultValue="kotarpur-wtp" className="w-full">
-                        <TabsList className="grid w-full grid-cols-2 sm:grid-cols-3 md:grid-cols-5 lg:w-auto lg:inline-flex overflow-x-auto">
+                        <TabsList className="grid w-full grid-cols-2 sm:grid-cols-3 md:grid-cols-5 lg:w-auto lg:inline-flex overflow-x-auto mt-4">
                             {stationTabs.map(tab => (
                                 <TabsTrigger key={tab.value} value={tab.value}>{tab.label}</TabsTrigger>
                             ))}
@@ -592,7 +600,7 @@ export default function ReportsPage() {
                                 <div className="md:col-span-1">
                                     <Card>
                                         <CardHeader>
-                                            <CardTitle>SPC & Combination by Efficiency</CardTitle>
+                                            <CardTitle>SPC &amp; Combination by Efficiency</CardTitle>
                                         </CardHeader>
                                         <CardContent>
                                             <ChartContainer config={pieChartConfig} className="h-[300px] w-full">
@@ -774,3 +782,4 @@ export default function ReportsPage() {
     );
 }
 
+    
