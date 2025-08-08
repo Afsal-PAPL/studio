@@ -1,23 +1,116 @@
 
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Video } from 'lucide-react';
+"use client"
+import React, { useState } from 'react';
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { Search, Upload, Film, PlayCircle, BarChart2 } from 'lucide-react';
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
+import Image from 'next/image';
+
+const videos = [
+    { title: 'How to Perform a Shaft Alignment', category: 'Maintenance', level: 'Intermediate', thumbnail: 'https://i.ibb.co/hZJ1p1x/shaft-alignment.png', thumbnailHint: 'laser shaft alignment' },
+    { title: 'Troubleshooting Pump Cavitation', category: 'Troubleshooting', level: 'Advanced', thumbnail: 'https://i.ibb.co/jGNqLqH/pump-cavitation.png', thumbnailHint: 'pump cavitation diagram' },
+    { title: 'Daily Safety Inspection Checklist', category: 'Safety', level: 'Beginner', thumbnail: 'https://i.ibb.co/6P6XyYd/safety-checklist.png', thumbnailHint: 'safety checklist' },
+    { title: 'Replacing a Mechanical Seal', category: 'Maintenance', level: 'Advanced', thumbnail: 'https://i.ibb.co/n6ZzBf0/mechanical-seal.png', thumbnailHint: 'mechanical pump seal' },
+    { title: 'Understanding Your VFD', category: 'Electrical', level: 'Intermediate', thumbnail: 'https://i.ibb.co/z50mB02/vfd-panel.png', thumbnailHint: 'VFD panel' },
+    { title: 'Reading a P&ID Diagram', category: 'Operational', level: 'Beginner', thumbnail: 'https://i.ibb.co/9gP6fgy/pid-diagram.png', thumbnailHint: 'P&ID diagram' },
+];
+
+const VideoCard = ({ video }: { video: typeof videos[0] }) => (
+    <Dialog>
+        <DialogTrigger asChild>
+            <Card className="cursor-pointer hover:shadow-xl transition-shadow group">
+                <CardHeader className="p-0">
+                    <div className="relative aspect-video">
+                        <Image src={video.thumbnail} alt={video.title} layout="fill" objectFit="cover" className="rounded-t-lg" data-ai-hint={video.thumbnailHint} unoptimized/>
+                        <div className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                            <PlayCircle className="h-12 w-12 text-white" />
+                        </div>
+                    </div>
+                </CardHeader>
+                <CardContent className="p-4">
+                    <CardTitle className="text-base font-bold mb-2">{video.title}</CardTitle>
+                    <div className="flex gap-2">
+                        <span className="text-xs font-semibold bg-primary/10 text-primary px-2 py-1 rounded-full">{video.category}</span>
+                         <span className="text-xs font-semibold bg-secondary text-secondary-foreground px-2 py-1 rounded-full">{video.level}</span>
+                    </div>
+                </CardContent>
+            </Card>
+        </DialogTrigger>
+        <DialogContent className="max-w-4xl p-0">
+            <DialogHeader className="p-4">
+                <DialogTitle>{video.title}</DialogTitle>
+            </DialogHeader>
+            <div className="aspect-video bg-black flex items-center justify-center">
+                 <div className="text-white text-center">
+                    <Film className="h-16 w-16 mx-auto mb-4" />
+                    <p>Video Player Placeholder</p>
+                </div>
+            </div>
+        </DialogContent>
+    </Dialog>
+);
+
+const AnalyticsCard = ({ title, value, icon: Icon }: {title: string, value: string, icon: React.ElementType}) => (
+    <Card>
+        <CardHeader className="flex flex-row items-center justify-between pb-2">
+            <CardTitle className="text-sm font-medium">{title}</CardTitle>
+            <Icon className="h-4 w-4 text-muted-foreground" />
+        </CardHeader>
+        <CardContent>
+            <p className="text-2xl font-bold">{value}</p>
+        </CardContent>
+    </Card>
+)
 
 export default function VideoLibraryPage() {
     return (
         <div className="space-y-6">
             <div>
                 <h1 className="text-3xl font-bold font-headline">Video Library</h1>
-                <p className="text-muted-foreground">Browse training and instructional videos.</p>
+                <p className="text-muted-foreground">Browse training, operational, and safety videos.</p>
             </div>
+            
             <Card>
                 <CardHeader>
-                    <CardTitle>Coming Soon</CardTitle>
+                    <CardTitle>Library Analytics</CardTitle>
                 </CardHeader>
-                <CardContent className="flex flex-col items-center justify-center text-center text-muted-foreground py-12">
-                    <Video className="h-16 w-16 mb-4" />
-                    <p>The Video Library is under construction.</p>
+                <CardContent className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <AnalyticsCard title="Total Videos" value="128" icon={Film} />
+                    <AnalyticsCard title="Total Views" value="1,500" icon={PlayCircle} />
+                    <AnalyticsCard title="Avg. Completion Rate" value="78%" icon={BarChart2} />
                 </CardContent>
             </Card>
+
+            <Card>
+                <CardHeader className="flex-col md:flex-row gap-4 justify-between items-center">
+                    <CardTitle>Browse Videos</CardTitle>
+                    <div className="w-full md:w-auto flex flex-col md:flex-row gap-2">
+                        <div className="relative w-full md:w-64">
+                            <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
+                            <Input placeholder="Search videos..." className="pl-8" />
+                        </div>
+                        <Select>
+                            <SelectTrigger className="w-full md:w-[180px]"><SelectValue placeholder="All Categories" /></SelectTrigger>
+                            <SelectContent>
+                                <SelectItem value="maintenance">Maintenance</SelectItem>
+                                <SelectItem value="troubleshooting">Troubleshooting</SelectItem>
+                                <SelectItem value="safety">Safety</SelectItem>
+                                <SelectItem value="operational">Operational</SelectItem>
+                            </SelectContent>
+                        </Select>
+                         <Button className="w-full md:w-auto"><Upload className="mr-2 h-4 w-4" /> Upload</Button>
+                    </div>
+                </CardHeader>
+                <CardContent>
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        {videos.map((video, index) => <VideoCard key={index} video={video} />)}
+                    </div>
+                </CardContent>
+            </Card>
+
         </div>
     );
 }
