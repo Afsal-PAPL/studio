@@ -177,6 +177,7 @@ export default function MapPage() {
                         objectFit="cover"
                         data-ai-hint="city map"
                         unoptimized
+                        className="opacity-50"
                     />
                     {locations.map(loc => <LocationMarker key={loc.id} location={loc} />)}
                 </div>
@@ -184,3 +185,4 @@ export default function MapPage() {
         </div>
     );
 }
+
