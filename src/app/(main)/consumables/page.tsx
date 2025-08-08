@@ -30,7 +30,7 @@ const consumablesData = [
 ];
 
 export default function ConsumablesPage() {
-    const alertItem = consumablesData.find(item => item.item === 'Mechanical Seal 45mm');
+    const alertItem = consumablesData.find(item => item.item === 'Synthetic Gear Oil VG68');
     return (
         <div className="space-y-6">
             <div>
@@ -58,7 +58,7 @@ export default function ConsumablesPage() {
                 </Card>
                  <Card>
                     <CardHeader>
-                        <CardTitle className="flex items-center gap-2"><AlertTriangle className="h-5 w-5 text-yellow-500" /> Usage Alerts</CardTitle>
+                        <CardTitle className="flex items-center gap-2"><AlertTriangle className="h-5 w-5 text-yellow-500" /> Oil Usage Alert</CardTitle>
                         <CardDescription>Notifications for consumption anomalies.</CardDescription>
                     </CardHeader>
                     <CardContent className="space-y-3">
