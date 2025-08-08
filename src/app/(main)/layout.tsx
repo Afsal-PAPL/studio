@@ -60,7 +60,7 @@ export default function MainLayout({ children }: { children: React.ReactNode }) 
               <AccordionTrigger className="px-4 py-2 text-sm font-semibold text-muted-foreground hover:no-underline">Analytics</AccordionTrigger>
               <AccordionContent className="pb-0 pl-4">
                  <SidebarMenu>
-                    <SidebarMenuItem><Link href="/reports"><SidebarMenuButton tooltip="Reports" size="sm"><BarChart3 />Reports & BI</SidebarMenuButton></Link></SidebarMenuItem>
+                    <SidebarMenuItem><Link href="/reports"><SidebarMenuButton tooltip="Reports" size="sm"><BarChart3 />Reports and Analytics</SidebarMenuButton></Link></SidebarMenuItem>
                     <SidebarMenuItem><Link href="/chat"><SidebarMenuButton tooltip="Chat with Data" size="sm"><MessageSquare />Chat with Data</SidebarMenuButton></Link></SidebarMenuItem>
                     <SidebarMenuItem><Link href="#"><SidebarMenuButton tooltip="Energy Optimization" size="sm"><TrendingUp />Energy Optimization</SidebarMenuButton></Link></SidebarMenuItem>
                     <SidebarMenuItem><Link href="#"><SidebarMenuButton tooltip="Compliance" size="sm"><ShieldCheck />Compliance</SidebarMenuButton></Link></SidebarMenuItem>

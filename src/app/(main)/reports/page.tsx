@@ -410,7 +410,7 @@ export default function ReportsPage() {
     return (
         <div className="space-y-6">
             <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-                <h1 className="text-3xl font-bold font-headline">Reports &amp; Analysis</h1>
+                <h1 className="text-3xl font-bold font-headline">Reports and Analytics</h1>
                 <div className="flex gap-2">
                     <Button><Printer className="mr-2 h-4 w-4" /> Print Reports</Button>
                     <Button variant="outline"><RefreshCw className="mr-2 h-4 w-4" /> Refresh Data</Button>
@@ -781,5 +781,3 @@ export default function ReportsPage() {
         </div>
     );
 }
-
-    
