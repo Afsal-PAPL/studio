@@ -8,6 +8,7 @@ import { History, Star, TrendingUp, CircleDollarSign } from 'lucide-react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Badge } from '@/components/ui/badge';
 import { Progress } from '@/components/ui/progress';
+import { cn } from '@/lib/utils';
 
 const vendorData = [
   { name: 'SKF Bearings', category: 'Mechanical Spares', sla: 98, contact: 'sales.skf@example.com' },
