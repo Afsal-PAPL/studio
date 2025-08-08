@@ -173,8 +173,8 @@ export default function MapPage() {
                     <Image
                         src="https://th.bing.com/th/id/R.b5a74cdd5259d810b99655e66015ceea?rik=o5Dq4LLodt4W3g&riu=http%3a%2f%2fmapsof.net%2fuploads%2fstatic-maps%2fmap_of_Ahmedabad.jpg&ehk=Y09aosLEdAdXnCVeKTKFfyz%2fP58qBlgbzBJUIQS34GQ%3d&risl=&pid=ImgRaw&r=0"
                         alt="Map of Ahmedabad with pumping stations"
-                        layout="fill"
-                        objectFit="cover"
+                        fill
+                        style={{objectFit: 'cover'}}
                         data-ai-hint="city map"
                         unoptimized
                         className="opacity-50"
@@ -185,4 +185,3 @@ export default function MapPage() {
         </div>
     );
 }
-
