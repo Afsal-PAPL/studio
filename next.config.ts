@@ -58,6 +58,12 @@ const nextConfig: NextConfig = {
         hostname: 'www.pumpacademy.in',
         port: '',
         pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'media.noria.com',
+        port: '',
+        pathname: '/**',
       }
     ],
   },
