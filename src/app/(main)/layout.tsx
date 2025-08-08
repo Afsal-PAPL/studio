@@ -62,8 +62,8 @@ export default function MainLayout({ children }: { children: React.ReactNode }) 
                  <SidebarMenu>
                     <SidebarMenuItem><Link href="/reports"><SidebarMenuButton tooltip="Reports" size="sm"><BarChart3 />Reports and Analytics</SidebarMenuButton></Link></SidebarMenuItem>
                     <SidebarMenuItem><Link href="/chat"><SidebarMenuButton tooltip="Chat with Data" size="sm"><MessageSquare />Chat with Data</SidebarMenuButton></Link></SidebarMenuItem>
-                    <SidebarMenuItem><Link href="#"><SidebarMenuButton tooltip="Energy Optimization" size="sm"><TrendingUp />Energy Optimization</SidebarMenuButton></Link></SidebarMenuItem>
-                    <SidebarMenuItem><Link href="#"><SidebarMenuButton tooltip="Compliance" size="sm"><ShieldCheck />Compliance</SidebarMenuButton></Link></SidebarMenuItem>
+                    <SidebarMenuItem><Link href="/energy-optimization"><SidebarMenuButton tooltip="Energy Optimization" size="sm"><TrendingUp />Energy Optimization</SidebarMenuButton></Link></SidebarMenuItem>
+                    <SidebarMenuItem><Link href="/compliance"><SidebarMenuButton tooltip="Compliance" size="sm"><ShieldCheck />Compliance</SidebarMenuButton></Link></SidebarMenuItem>
                  </SidebarMenu>
               </AccordionContent>
             </AccordionItem>
@@ -71,12 +71,12 @@ export default function MainLayout({ children }: { children: React.ReactNode }) 
               <AccordionTrigger className="px-4 py-2 text-sm font-semibold text-muted-foreground hover:no-underline">Maintenance</AccordionTrigger>
               <AccordionContent className="pb-0 pl-4">
                  <SidebarMenu>
-                    <SidebarMenuItem><Link href="#"><SidebarMenuButton tooltip="Alerts & Rules" size="sm"><AlertTriangle />Alerts & Rules</SidebarMenuButton></Link></SidebarMenuItem>
-                    <SidebarMenuItem><Link href="#"><SidebarMenuButton tooltip="Work Orders" size="sm"><ListOrdered />Work Orders</SidebarMenuButton></Link></SidebarMenuItem>
-                    <SidebarMenuItem><Link href="#"><SidebarMenuButton tooltip="Inventory & PR" size="sm"><Warehouse />Inventory & PR</SidebarMenuButton></Link></SidebarMenuItem>
-                    <SidebarMenuItem><Link href="#"><SidebarMenuButton tooltip="Predictive Maintenance" size="sm"><TrendingUp />Predictive Maintenance</SidebarMenuButton></Link></SidebarMenuItem>
-                    <SidebarMenuItem><Link href="#"><SidebarMenuButton tooltip="Vendors & History" size="sm"><History />Vendors & History</SidebarMenuButton></Link></SidebarMenuItem>
-                    <SidebarMenuItem><Link href="#"><SidebarMenuButton tooltip="Consumables" size="sm"><Droplets />Consumables</SidebarMenuButton></Link></SidebarMenuItem>
+                    <SidebarMenuItem><Link href="/alerts"><SidebarMenuButton tooltip="Alerts & Rules" size="sm"><AlertTriangle />Alerts & Rules</SidebarMenuButton></Link></SidebarMenuItem>
+                    <SidebarMenuItem><Link href="/work-orders"><SidebarMenuButton tooltip="Work Orders" size="sm"><ListOrdered />Work Orders</SidebarMenuButton></Link></SidebarMenuItem>
+                    <SidebarMenuItem><Link href="/inventory"><SidebarMenuButton tooltip="Inventory & PR" size="sm"><Warehouse />Inventory & PR</SidebarMenuButton></Link></SidebarMenuItem>
+                    <SidebarMenuItem><Link href="/reports" asChild><SidebarMenuButton tooltip="Predictive Maintenance" size="sm" onClick={() => { const el = document.querySelector('[data-radix-collection-item][value="predictive"]'); if (el instanceof HTMLElement) el.click(); }}><TrendingUp />Predictive Maintenance</SidebarMenuButton></Link></SidebarMenuItem>
+                    <SidebarMenuItem><Link href="/vendors"><SidebarMenuButton tooltip="Vendors & History" size="sm"><History />Vendors & History</SidebarMenuButton></Link></SidebarMenuItem>
+                    <SidebarMenuItem><Link href="/consumables"><SidebarMenuButton tooltip="Consumables" size="sm"><Droplets />Consumables</SidebarMenuButton></Link></SidebarMenuItem>
                  </SidebarMenu>
               </AccordionContent>
             </AccordionItem>
@@ -84,9 +84,9 @@ export default function MainLayout({ children }: { children: React.ReactNode }) 
               <AccordionTrigger className="px-4 py-2 text-sm font-semibold text-muted-foreground hover:no-underline">Workforce</AccordionTrigger>
               <AccordionContent className="pb-0 pl-4">
                  <SidebarMenu>
-                    <SidebarMenuItem><Link href="#"><SidebarMenuButton tooltip="Attendance" size="sm"><Users />Attendance</SidebarMenuButton></Link></SidebarMenuItem>
-                    <SidebarMenuItem><Link href="#"><SidebarMenuButton tooltip="Shifts" size="sm"><Calendar />Shifts</SidebarMenuButton></Link></SidebarMenuItem>
-                    <SidebarMenuItem><Link href="#"><SidebarMenuButton tooltip="SLA Tracking" size="sm"><Timer />SLA Tracking</SidebarMenuButton></Link></SidebarMenuItem>
+                    <SidebarMenuItem><Link href="/workforce/attendance"><SidebarMenuButton tooltip="Attendance" size="sm"><Users />Attendance</SidebarMenuButton></Link></SidebarMenuItem>
+                    <SidebarMenuItem><Link href="/workforce/shifts"><SidebarMenuButton tooltip="Shifts" size="sm"><Calendar />Shifts</SidebarMenuButton></Link></SidebarMenuItem>
+                    <SidebarMenuItem><Link href="/workforce/sla-tracking"><SidebarMenuButton tooltip="SLA Tracking" size="sm"><Timer />SLA Tracking</SidebarMenuButton></Link></SidebarMenuItem>
                  </SidebarMenu>
               </AccordionContent>
             </AccordionItem>
@@ -109,10 +109,10 @@ export default function MainLayout({ children }: { children: React.ReactNode }) 
               <AccordionTrigger className="px-4 py-2 text-sm font-semibold text-muted-foreground hover:no-underline">Admin</AccordionTrigger>
               <AccordionContent className="pb-0 pl-4">
                  <SidebarMenu>
-                    <SidebarMenuItem><Link href="#"><SidebarMenuButton tooltip="Users & Roles" size="sm"><UserCog />Users & Roles</SidebarMenuButton></Link></SidebarMenuItem>
-                    <SidebarMenuItem><Link href="#"><SidebarMenuButton tooltip="Integrations" size="sm"><Plug />Integrations</SidebarMenuButton></Link></SidebarMenuItem>
-                    <SidebarMenuItem><Link href="#"><SidebarMenuButton tooltip="Data Sources" size="sm"><Database />Data Sources</SidebarMenuButton></Link></SidebarMenuItem>
-                    <SidebarMenuItem><Link href="#"><SidebarMenuButton tooltip="Audit Logs" size="sm"><ListChecks />Audit Logs</SidebarMenuButton></Link></SidebarMenuItem>
+                    <SidebarMenuItem><Link href="/admin/users-roles"><SidebarMenuButton tooltip="Users & Roles" size="sm"><UserCog />Users & Roles</SidebarMenuButton></Link></SidebarMenuItem>
+                    <SidebarMenuItem><Link href="/admin/integrations"><SidebarMenuButton tooltip="Integrations" size="sm"><Plug />Integrations</SidebarMenuButton></Link></SidebarMenuItem>
+                    <SidebarMenuItem><Link href="/admin/data-sources"><SidebarMenuButton tooltip="Data Sources" size="sm"><Database />Data Sources</SidebarMenuButton></Link></SidebarMenuItem>
+                    <SidebarMenuItem><Link href="/admin/audit-logs"><SidebarMenuButton tooltip="Audit Logs" size="sm"><ListChecks />Audit Logs</SidebarMenuButton></Link></SidebarMenuItem>
                  </SidebarMenu>
               </AccordionContent>
             </AccordionItem>
