@@ -9,6 +9,7 @@ import { PlusCircle, List, LayoutGrid, SlidersHorizontal, MoreHorizontal, AlertC
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Badge } from '@/components/ui/badge';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
+import { cn } from '@/lib/utils';
 
 const workOrders = [
   { id: 'WO-00125', asset: 'Dariyapur WDS - Pump 2', fault: 'High Vibration Detected', status: 'Assigned', assignee: 'R. Sharma', sla: '24h', priority: 'High' },
