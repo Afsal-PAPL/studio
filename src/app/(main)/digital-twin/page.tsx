@@ -12,9 +12,16 @@ import { Thermometer, Zap, Waves, Rss, AlertTriangle, Workflow } from 'lucide-re
 import { cn } from '@/lib/utils';
 
 const locations = [
+    { value: "kotarpur-wtp", label: "Kotarpur WTP" },
+    { value: "raska-wtp", label: "Raska WTP" },
     { value: "dariyapur-wds", label: "Dariyapur WDS" },
     { value: "mihir-tower-wds", label: "Mihir Tower WDS" },
+    { value: "daffnala-stp", label: "Daffnala STP" },
+    { value: "shankar-bhavan-stp", label: "Shankar Bhavan STP" },
+    { value: "w-5-usmanpura-sps", label: "W-5 Usmanpura SPS" },
     { value: "moterra-sps", label: "Moterra SPS" },
+    { value: "vejalpur-swps", label: "Vejalpur SWPS" },
+    { value: "jaydeep-tower-swps", label: "Jaydeep Tower SWPS" }
 ];
 
 const pumps = [
@@ -22,6 +29,10 @@ const pumps = [
     { value: "pump-2", label: "Pump 2" },
     { value: "pump-3", label: "Pump 3" },
     { value: "pump-4", label: "Pump 4" },
+    { value: "pump-5", label: "Pump 5" },
+    { value: "pump-6", label: "Pump 6" },
+    { value: "pump-7", label: "Pump 7" },
+    { value: "pump-8", label: "Pump 8" },
 ];
 
 const dataPoints = [
