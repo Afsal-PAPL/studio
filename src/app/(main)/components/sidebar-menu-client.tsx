@@ -27,7 +27,7 @@ export default function SidebarMenuClient() {
         <AccordionTrigger className="px-4 py-2 text-sm font-semibold text-muted-foreground hover:no-underline">Analytics</AccordionTrigger>
         <AccordionContent className="pb-0 pl-4">
            <SidebarMenu>
-              <SidebarMenuItem><Link href="/reports"><SidebarMenuButton tooltip="Reports" size="sm"><BarChart3 />Reports and Analytics</SidebarMenuButton></Link></SidebarMenuItem>
+              <SidebarMenuItem><Link href="/reports"><SidebarMenuButton tooltip="Reports and Analytics" size="sm"><BarChart3 />Reports and Analytics</SidebarMenuButton></Link></SidebarMenuItem>
               <SidebarMenuItem><Link href="/chat"><SidebarMenuButton tooltip="Chat with Data" size="sm"><MessageSquare />Chat with Data</SidebarMenuButton></Link></SidebarMenuItem>
               <SidebarMenuItem><Link href="/energy-optimization"><SidebarMenuButton tooltip="Energy Optimization" size="sm"><TrendingUp />Energy Optimization</SidebarMenuButton></Link></SidebarMenuItem>
               <SidebarMenuItem><Link href="/compliance"><SidebarMenuButton tooltip="Compliance" size="sm"><ShieldCheck />Compliance</SidebarMenuButton></Link></SidebarMenuItem>
@@ -42,16 +42,10 @@ export default function SidebarMenuClient() {
               <SidebarMenuItem><Link href="/work-orders"><SidebarMenuButton tooltip="Work Orders" size="sm"><ListOrdered />Work Orders</SidebarMenuButton></Link></SidebarMenuItem>
               <SidebarMenuItem><Link href="/inventory"><SidebarMenuButton tooltip="Inventory & PR" size="sm"><Warehouse />Inventory & PR</SidebarMenuButton></Link></SidebarMenuItem>
               <SidebarMenuItem>
-                <Link href="/reports" passHref>
+                <Link href="/predictive-maintenance">
                     <SidebarMenuButton 
                       tooltip="Predictive Maintenance" 
-                      size="sm" 
-                      onClick={() => {
-                        const el = document.querySelector('[data-radix-collection-item][value="predictive"]');
-                        if (el instanceof HTMLElement) {
-                          el.click();
-                        }
-                      }}
+                      size="sm"
                     >
                       <TrendingUp />Predictive Maintenance
                     </SidebarMenuButton>
