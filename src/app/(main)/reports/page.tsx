@@ -75,90 +75,6 @@ function DatePickerWithRange({ className }: React.HTMLAttributes<HTMLDivElement>
   );
 }
 
-const alertsData = [
-    {
-        location: { name: "Dariyapur WDS", level1: 3.88, level2: 3.83 },
-        warnings: [
-            { type: "Station", color: "yellow", items: ["Surge Tank Air Receiver Pressure (bar): 0", "Surge Tank 1 Air Vessel Pressure (bar): 0", "Surge Tank 2 Air Vessel Pressure (bar): 0", "Surge Tank 3 Air Vessel Pressure (bar): 0", "Surge Tank 1 Level Transmitter (m): 0", "Surge Tank 2 Level Transmitter (m): 0", "Surge Tank 3 Level Transmitter (m): 0"] }
-        ],
-        pumps: [
-            { name: "Pump 2", color: "red", alerts: ["Pump Drive End Bearing Oil Water Activity (%): 0.8"] },
-            { name: "Pump 4", color: "red", alerts: ["Motor Drive End Bearing Temperature (°C): 90.8"] }
-        ]
-    },
-    {
-        location: { name: "Moterra SPS", level1: 4.44, level2: 4.47 },
-        warnings: [
-            { type: "Station", color: "yellow", items: ["Surge Tank 1 Level Transmitter (m): 0", "Surge Tank 2 Level Transmitter (m): 0", "Surge Tank 3 Level Transmitter (m): 0", "Surge Tank 4 Level Transmitter (m): 0"] }
-        ],
-        pumps: [
-            { name: "Pump 1", color: "red", alerts: ["Suction Temperature (T1) (°C): -908"] },
-            { name: "Pump 8", color: "red", alerts: ["Motor Winding Temperature Pole 11 (°C): 135", "Motor Winding Temperature Pole 12 (°C): 134.4", "Motor Winding Temperature Pole 21 (°C): 137.2", "Motor Winding Temperature Pole 31 (°C): 151.8"] }
-        ]
-    },
-     {
-        location: { name: "Vejalpur SWPS", level1: 4.67, level2: 4.62 },
-        warnings: [],
-        pumps: [
-            { name: "Pump 3", color: "amber", alerts: ["Combined Efficiency (%): 79.02"] },
-            { name: "Pump 7", color: "red", alerts: ["Motor Winding Temperature Pole 21 (°C): 144.8"] }
-        ]
-    }
-];
-
-const AlertCard = ({ title, alerts, color }: { title: string, alerts: string[], color: "red" | "yellow" | "amber" }) => {
-    const colorClasses = {
-        red: "bg-red-100 border-red-500 text-red-800",
-        yellow: "bg-yellow-100 border-yellow-500 text-yellow-800",
-        amber: "bg-orange-100 border-orange-500 text-orange-800",
-    };
-    const iconColorClasses = {
-        red: "text-red-500",
-        yellow: "text-yellow-500",
-        amber: "text-orange-500",
-    }
-    
-    return (
-        <Card className={cn("border-2", colorClasses[color])}>
-            <CardHeader className="flex flex-row items-center justify-between pb-2">
-                <CardTitle className="text-base font-bold">{title}</CardTitle>
-                <XCircle className={cn("h-6 w-6", iconColorClasses[color])}/>
-            </CardHeader>
-            <CardContent>
-                <ul className="text-sm list-disc list-inside">
-                    {alerts.map((alert, i) => <li key={i}>{alert}</li>)}
-                </ul>
-            </CardContent>
-        </Card>
-    );
-};
-
-const StationWarningCard = ({ warnings, color }: { warnings: string[], color: "red" | "yellow" | "amber" }) => {
-    const colorClasses = {
-        red: "bg-red-100 border-red-500 text-red-800",
-        yellow: "bg-yellow-100 border-yellow-500 text-yellow-800",
-        amber: "bg-orange-100 border-orange-500 text-orange-800",
-    };
-    const iconColorClasses = {
-        red: "text-red-500",
-        yellow: "text-yellow-500",
-        amber: "text-orange-500",
-    }
-    return (
-        <Card className={cn("border-l-4", colorClasses[color])}>
-            <CardContent className="p-4">
-                <div className="flex items-start gap-4">
-                     <AlertCircle className={cn("h-6 w-6 shrink-0", iconColorClasses[color])} />
-                    <div>
-                        <p className="font-bold">Station Warnings:</p>
-                        <p className="text-sm">{warnings.join(' | ')}</p>
-                    </div>
-                </div>
-            </CardContent>
-        </Card>
-    )
-}
-
 const pumpSequencingData = [
   { combination: 'Pump 2,3,4,7,8', efficiency: 81.530, power: 703614, flow: 1431, spc: 491.56, count: 5, runHours: 109 },
   { combination: 'Pump 2,3,4,6,8', efficiency: 81.320, power: 2941679, flow: 5947, spc: 494.63, count: 5, runHours: 458 },
@@ -354,9 +270,8 @@ export default function ReportsPage() {
             </div>
             
             <Tabs defaultValue="overview" className="w-full">
-                <TabsList className="grid w-full grid-cols-2 md:w-auto md:inline-flex md:grid-cols-4">
+                <TabsList className="grid w-full grid-cols-2 md:w-auto md:inline-flex md:grid-cols-3">
                     <TabsTrigger value="overview">Overview</TabsTrigger>
-                    <TabsTrigger value="alerts">Alerts</TabsTrigger>
                     <TabsTrigger value="energy">Energy Consumption Analysis</TabsTrigger>
                     <TabsTrigger value="energy-cost">Energy Cost Comparison</TabsTrigger>
                 </TabsList>
@@ -428,58 +343,6 @@ export default function ReportsPage() {
                             );
                         })}
                     </Tabs>
-                </TabsContent>
-
-                <TabsContent value="alerts" className="space-y-4 mt-4">
-                    <Card>
-                        <CardHeader>
-                            <CardTitle>Filters</CardTitle>
-                        </CardHeader>
-                        <CardContent className="flex flex-wrap items-center gap-6">
-                            <div className="flex items-center space-x-2">
-                                <Checkbox id="show-all-alerts" />
-                                <label htmlFor="show-all-alerts" className="text-sm font-medium">Show All</label>
-                            </div>
-                            <div className="flex items-center gap-2 text-sm">
-                                <span className="h-2.5 w-2.5 bg-red-500 rounded-full" />
-                                <span>Critical</span>
-                            </div>
-                             <div className="flex items-center gap-2 text-sm">
-                                <span className="h-2.5 w-2.5 bg-orange-500 rounded-full" />
-                                <span>Amber</span>
-                            </div>
-                            <div className="flex items-center gap-2 text-sm">
-                                <span className="h-2.5 w-2.5 bg-yellow-500 rounded-full" />
-                                <span>Warning</span>
-                            </div>
-                           
-                        </CardContent>
-                    </Card>
-
-                    <div className="space-y-6">
-                        {alertsData.map((station, index) => (
-                            <div key={index} className="space-y-4 p-4 rounded-lg bg-card border">
-                                <div className="flex flex-wrap justify-between items-center gap-2 bg-muted p-2 rounded-md">
-                                    <h3 className="font-bold text-lg">{station.location.name}</h3>
-                                    <div className="flex gap-4 text-sm font-semibold">
-                                        <span>Reservoir Level - 1: {station.location.level1}</span>
-                                        <span>Reservoir Level - 2: {station.location.level2}</span>
-                                    </div>
-                                </div>
-                                
-                                {station.warnings.length > 0 && (
-                                    <StationWarningCard warnings={station.warnings[0].items} color={station.warnings[0].color as "yellow"} />
-                                )}
-
-                                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-                                    {station.pumps.map((pump, pumpIndex) => (
-                                        <AlertCard key={pumpIndex} title={pump.name} alerts={pump.alerts} color={pump.color as "red" | "yellow" | "amber"} />
-                                    ))}
-                                </div>
-                            </div>
-                        ))}
-                    </div>
-
                 </TabsContent>
 
                 <TabsContent value="energy" className="space-y-4 mt-4">
@@ -589,5 +452,3 @@ export default function ReportsPage() {
         </div>
     );
 }
-
-    
