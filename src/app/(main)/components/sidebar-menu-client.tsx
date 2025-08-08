@@ -12,7 +12,7 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/
 
 export default function SidebarMenuClient() {
   return (
-    <Accordion type="multiple" defaultValue={['item-1']} className="w-full">
+    <Accordion type="multiple" defaultValue={['item-1', 'item-3']} className="w-full">
       <AccordionItem value="item-1">
         <AccordionTrigger className="px-4 py-2 text-sm font-semibold text-muted-foreground hover:no-underline">Operations</AccordionTrigger>
         <AccordionContent className="pb-0 pl-4">
@@ -36,24 +36,30 @@ export default function SidebarMenuClient() {
       </AccordionItem>
       <AccordionItem value="item-3">
         <AccordionTrigger className="px-4 py-2 text-sm font-semibold text-muted-foreground hover:no-underline">Maintenance</AccordionTrigger>
-        <AccordionContent className="pb-0 pl-4">
-           <SidebarMenu>
-              <SidebarMenuItem><Link href="/alerts"><SidebarMenuButton tooltip="Alerts & Rules" size="sm"><AlertTriangle />Alerts & Rules</SidebarMenuButton></Link></SidebarMenuItem>
-              <SidebarMenuItem><Link href="/work-orders"><SidebarMenuButton tooltip="Work Orders" size="sm"><ListOrdered />Work Orders</SidebarMenuButton></Link></SidebarMenuItem>
-              <SidebarMenuItem><Link href="/inventory"><SidebarMenuButton tooltip="Inventory & PR" size="sm"><Warehouse />Inventory & PR</SidebarMenuButton></Link></SidebarMenuItem>
-              <SidebarMenuItem>
-                <Link href="/predictive-maintenance">
-                    <SidebarMenuButton 
-                      tooltip="Predictive Maintenance" 
-                      size="sm"
-                    >
-                      <TrendingUp />Predictive Maintenance
-                    </SidebarMenuButton>
-                </Link>
-              </SidebarMenuItem>
-              <SidebarMenuItem><Link href="/vendors"><SidebarMenuButton tooltip="Vendors & History" size="sm"><History />Vendors & History</SidebarMenuButton></Link></SidebarMenuItem>
-              <SidebarMenuItem><Link href="/consumables"><SidebarMenuButton tooltip="Consumables" size="sm"><Droplets />Consumables</SidebarMenuButton></Link></SidebarMenuItem>
-           </SidebarMenu>
+        <AccordionContent className="pb-0 pl-2">
+           <div className="pl-2">
+            <p className="text-xs font-semibold text-muted-foreground/80 mb-2 mt-2">Asset Maintenance</p>
+             <SidebarMenu>
+                <SidebarMenuItem><Link href="/alerts"><SidebarMenuButton tooltip="Alerts & Rules" size="sm"><AlertTriangle />Alerts & Rules</SidebarMenuButton></Link></SidebarMenuItem>
+                <SidebarMenuItem>
+                  <Link href="/predictive-maintenance">
+                      <SidebarMenuButton 
+                        tooltip="Predictive Maintenance" 
+                        size="sm"
+                      >
+                        <TrendingUp />Predictive Maintenance
+                      </SidebarMenuButton>
+                  </Link>
+                </SidebarMenuItem>
+             </SidebarMenu>
+             <p className="text-xs font-semibold text-muted-foreground/80 mb-2 mt-4">Maintenance Operations</p>
+              <SidebarMenu>
+                <SidebarMenuItem><Link href="/work-orders"><SidebarMenuButton tooltip="Work Orders" size="sm"><ListOrdered />Work Orders</SidebarMenuButton></Link></SidebarMenuItem>
+                <SidebarMenuItem><Link href="/inventory"><SidebarMenuButton tooltip="Inventory & PR" size="sm"><Warehouse />Inventory & PR</SidebarMenuButton></Link></SidebarMenuItem>
+                <SidebarMenuItem><Link href="/vendors"><SidebarMenuButton tooltip="Vendors & History" size="sm"><History />Vendors & History</SidebarMenuButton></Link></SidebarMenuItem>
+                <SidebarMenuItem><Link href="/consumables"><SidebarMenuButton tooltip="Consumables" size="sm"><Droplets />Consumables</SidebarMenuButton></Link></SidebarMenuItem>
+             </SidebarMenu>
+           </div>
         </AccordionContent>
       </AccordionItem>
       <AccordionItem value="item-4">
