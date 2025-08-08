@@ -64,6 +64,12 @@ const nextConfig: NextConfig = {
         hostname: 'media.noria.com',
         port: '',
         pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'movitherm.com',
+        port: '',
+        pathname: '/**',
       }
     ],
   },

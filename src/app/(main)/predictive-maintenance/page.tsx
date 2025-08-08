@@ -428,7 +428,7 @@ export default function PredictiveMaintenancePage() {
                                 <CardHeader><CardTitle>Interactive Pump Diagram</CardTitle></CardHeader>
                                 <CardContent>
                                     <div className="relative w-full aspect-square bg-muted rounded-lg p-4">
-                                        <Image src="https://i.ibb.co/hK9Yv0K/pump-diagram.png" alt="Pump Diagram" layout="fill" objectFit='contain' data-ai-hint="water pump diagram" unoptimized/>
+                                        <Image src="https://movitherm.com/wp-content/uploads/2022/11/Motor-and-Pump-1024x765.png" alt="Pump Diagram" layout="fill" objectFit='contain' data-ai-hint="water pump diagram" unoptimized/>
                                         <DiagramHotspot top="55%" left="20%" label="Suction" status="Healthy" />
                                         <DiagramHotspot top="65%" left="45%" label="Impeller" status="Healthy" />
                                         <DiagramHotspot top="45%" left="60%" label="Mechanical Seal" status="Warning" />
