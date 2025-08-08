@@ -16,7 +16,7 @@ import {
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
 import { Button } from '@/components/ui/button';
-import { Bell, HelpCircle, Map, MapPin, BarChart3, Settings, LogOut, BookText, MessageSquare, Cpu, TrendingUp, ShieldCheck, AlertTriangle, ListOrdered, Warehouse, Truck, History, Droplets, Users, Calendar, Timer, FileCheck, UserCog, Plug, Database, ListChecks } from 'lucide-react';
+import { Home, Bell, HelpCircle, Map, MapPin, BarChart3, Settings, LogOut, BookText, MessageSquare, Cpu, TrendingUp, ShieldCheck, AlertTriangle, ListOrdered, Warehouse, Truck, History, Droplets, Users, Calendar, Timer, FileCheck, UserCog, Plug, Database, ListChecks } from 'lucide-react';
 import Image from 'next/image';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 
@@ -42,6 +42,9 @@ export default function MainLayout({ children }: { children: React.ReactNode }) 
           <Logo />
         </SidebarHeader>
         <SidebarContent className="p-0">
+           <SidebarMenu className="p-2">
+              <SidebarMenuItem><Link href="/map"><SidebarMenuButton tooltip="Home" size="sm"><Home />Home</SidebarMenuButton></Link></SidebarMenuItem>
+           </SidebarMenu>
           <Accordion type="multiple" defaultValue={['item-1']} className="w-full">
             <AccordionItem value="item-1">
               <AccordionTrigger className="px-4 py-2 text-sm font-semibold text-muted-foreground hover:no-underline">Operations</AccordionTrigger>
