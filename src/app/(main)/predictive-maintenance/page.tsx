@@ -357,7 +357,7 @@ export default function PredictiveMaintenancePage() {
                                 <CardHeader><CardTitle>Interactive Motor Diagram</CardTitle></CardHeader>
                                 <CardContent>
                                     <div className="relative w-full aspect-square bg-muted rounded-lg p-4">
-                                        <Image src="https://i.ibb.co/6gZ0GzP/motor-diagram.png" alt="Motor Diagram" layout="fill" objectFit='contain' data-ai-hint="electric motor diagram" unoptimized/>
+                                        <Image src="https://media.noria.com/sites/archive_images/backup_200511_Reli-in-Action-infrared.jpg" alt="Motor Diagram" layout="fill" objectFit='contain' data-ai-hint="electric motor diagram" unoptimized/>
                                         <DiagramHotspot top="30%" left="15%" label="Winding U" status="Healthy" />
                                         <DiagramHotspot top="50%" left="15%" label="Winding V" status="Healthy" />
                                         <DiagramHotspot top="70%" left="15%" label="Winding W" status="Critical" />
@@ -499,3 +499,5 @@ export default function PredictiveMaintenancePage() {
         </div>
     );
 }
+
+    
