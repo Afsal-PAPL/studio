@@ -44,11 +44,11 @@ const pumpCurveData = [
     { q: 600, h: 58, designed: 60, actual: 57, designed_eta: 75, actual_eta: 72, system: 29 },
     { q: 800, h: 53, designed: 55, actual: 52, designed_eta: 80, actual_eta: 76, system: 36 },
     { q: 820, h: 52, designed: 54, actual: 51, designed_eta: 80.5, actual_eta: 76.5, system: 37 },
-    { q: 1000, h: 45, designed: 47, actual: 44, designed_eta: 78, actual_eta: 74, system: 45 },
-    { q: 1200, h: 35, designed: 37, actual: 34, designed_eta: 70, actual_eta: 66, system: 56 },
+    { q: 1000, h: 45, designed: 47, actual: 44, system: 45 },
+    { q: 1200, h: 35, designed: 37, actual: 34, system: 56 },
 ];
-const bepPoint = { q: 820, h: 53, label: 'BEP' };
-const dutyPoint = { q: 950, h: 48, label: 'Duty Point'};
+const bepPoint = { q: 820, h: 51, label: 'BEP' };
+const dutyPoint = { q: 990, h: 45, label: 'Duty Point'};
 
 
 const chartConfig = {
@@ -76,7 +76,7 @@ export default function SimulationPage() {
         <Tabs defaultValue="simulation">
             <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
                  <div>
-                    <h1 className="text-3xl font-bold font-headline">Energy Simulation & Analysis</h1>
+                    <h1 className="text-3xl font-bold font-headline">Energy Simulation &amp; Analysis</h1>
                     <p className="text-muted-foreground">Perform "what-if" analysis to optimize energy consumption.</p>
                 </div>
                 <TabsList>
@@ -203,7 +203,7 @@ export default function SimulationPage() {
                                                 <text x={cx} y={cy + 20} textAnchor="middle" fill="hsl(var(--destructive))" fontSize="10" className="font-bold">{dutyPoint.label}</text>
                                             </g>
                                         )}
-                                        name="Duty Point"
+                                        name="Duty Point (Actual vs System)"
                                     />
                                 </ComposedChart>
                             </ChartContainer>
@@ -248,11 +248,5 @@ const ChartCard = ({ title, description, children }: { title: string, descriptio
         </CardContent>
     </Card>
 );
-
-    
-
-    
-
-
 
     
