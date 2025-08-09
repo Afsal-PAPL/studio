@@ -76,6 +76,12 @@ const nextConfig: NextConfig = {
         hostname: 'aoblpump.com',
         port: '',
         pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'www.manwinwin.com',
+        port: '',
+        pathname: '/**',
       }
     ],
   },
