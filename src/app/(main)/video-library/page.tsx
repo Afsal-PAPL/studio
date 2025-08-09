@@ -11,7 +11,7 @@ import Image from 'next/image';
 
 const videos = [
     { title: 'How to Perform a Shaft Alignment', category: 'Maintenance', level: 'Intermediate', thumbnail: 'https://media.licdn.com/dms/image/v2/D5612AQFuYM16t1pWmA/article-cover_image-shrink_720_1280/article-cover_image-shrink_720_1280/0/1688961449432?e=1759968000&v=beta&t=z8JPtxPmpiy6W-LQEy7JEskF4BG8026c133UYrSPv8g', thumbnailHint: 'laser shaft alignment' },
-    { title: 'Troubleshooting Pump Cavitation', category: 'Troubleshooting', level: 'Advanced', thumbnail: 'https://i.ibb.co/jGNqLqH/pump-cavitation.png', thumbnailHint: 'pump cavitation diagram' },
+    { title: 'Troubleshooting Pump Cavitation', category: 'Troubleshooting', level: 'Advanced', thumbnail: 'https://aoblpump.com/wp-content/uploads/2024/11/pump-cavitation.jpg.avif', thumbnailHint: 'pump cavitation diagram' },
     { title: 'Daily Safety Inspection Checklist', category: 'Safety', level: 'Beginner', thumbnail: 'https://i.ibb.co/6P6XyYd/safety-checklist.png', thumbnailHint: 'safety checklist' },
     { title: 'Replacing a Mechanical Seal', category: 'Maintenance', level: 'Advanced', thumbnail: 'https://i.ibb.co/n6ZzBf0/mechanical-seal.png', thumbnailHint: 'mechanical pump seal' },
     { title: 'Understanding Your VFD', category: 'Electrical', level: 'Intermediate', thumbnail: 'https://i.ibb.co/z50mB02/vfd-panel.png', thumbnailHint: 'VFD panel' },

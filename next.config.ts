@@ -70,6 +70,12 @@ const nextConfig: NextConfig = {
         hostname: 'movitherm.com',
         port: '',
         pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'aoblpump.com',
+        port: '',
+        pathname: '/**',
       }
     ],
   },
