@@ -7,7 +7,7 @@ import {
   SidebarMenuItem,
   SidebarMenuButton,
 } from '@/components/ui/sidebar';
-import { Map, MapPin, BarChart3, MessageSquare, Cpu, TrendingUp, ShieldCheck, AlertTriangle, ListOrdered, Warehouse, Truck, History, Droplets, Users, Calendar, Timer, FileCheck, UserCog, Plug, Database, ListChecks, BookText, Video, GraduationCap, FileQuestion } from 'lucide-react';
+import { Map, MapPin, BarChart3, MessageSquare, Cpu, TrendingUp, ShieldCheck, AlertTriangle, ListOrdered, Warehouse, Truck, History, Droplets, Users, Calendar, Timer, FileCheck, UserCog, Plug, Database, ListChecks, BookText, Video, GraduationCap, FileQuestion, FileText, Award, FileWarning, Handshake } from 'lucide-react';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 
 export default function SidebarMenuClient() {
@@ -109,6 +109,17 @@ export default function SidebarMenuClient() {
               </Link>
             </SidebarMenuItem>
           </SidebarMenu>
+        </AccordionContent>
+      </AccordionItem>
+       <AccordionItem value="item-5">
+        <AccordionTrigger className="px-4 py-2 text-sm font-semibold text-muted-foreground hover:no-underline">O&amp;M Management</AccordionTrigger>
+        <AccordionContent className="pb-0 pl-4">
+           <SidebarMenu>
+              <SidebarMenuItem><Link href="/om-management/contracts"><SidebarMenuButton tooltip="Contracts" size="sm"><Handshake />Contracts</SidebarMenuButton></Link></SidebarMenuItem>
+              <SidebarMenuItem><Link href="/om-management/sla-management"><SidebarMenuButton tooltip="SLA Management" size="sm"><FileText />SLA Management</SidebarMenuButton></Link></SidebarMenuItem>
+              <SidebarMenuItem><Link href="/om-management/contractor-performance"><SidebarMenuButton tooltip="Contractor Performance" size="sm"><BarChart3 />Contractor Performance</SidebarMenuButton></Link></SidebarMenuItem>
+              <SidebarMenuItem><Link href="/om-management/penalties-bonuses"><SidebarMenuButton tooltip="Penalties &amp; Bonuses" size="sm"><FileWarning />Penalties &amp; Bonuses</SidebarMenuButton></Link></SidebarMenuItem>
+           </SidebarMenu>
         </AccordionContent>
       </AccordionItem>
       <AccordionItem value="item-6">
