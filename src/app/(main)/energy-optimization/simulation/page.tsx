@@ -196,7 +196,6 @@ export default function SimulationPage() {
                                 <Area yAxisId={0} type="monotone" dataKey={(d) => d.h * 1.2} stackId="b" stroke="none" fill="url(#bandYellow)" />
                                 <Area yAxisId={0} type="monotone" dataKey={(d) => d.h * 0.9} stackId="c" stroke="none" fill="url(#bandGreen)" />
 
-                                <Line type="monotone" dataKey="h" stroke="hsl(var(--muted-foreground))" strokeWidth={2} dot={false} name="Q-H Curve" />
                                 <Line type="monotone" dataKey="designed" stroke="var(--color-designed)" strokeWidth={2} dot={false} name="Designed" />
                                 <Line type="monotone" dataKey="actual" stroke="var(--color-actual)" strokeWidth={2} dot={false} name="Actual" />
                                 
