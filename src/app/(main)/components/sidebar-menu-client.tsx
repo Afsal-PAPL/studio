@@ -14,7 +14,7 @@ export default function SidebarMenuClient() {
   return (
     <Accordion type="multiple" defaultValue={['item-1', 'item-3']} className="w-full">
       <AccordionItem value="item-1">
-        <AccordionTrigger className="px-4 py-2 text-sm font-semibold text-muted-foreground hover:no-underline">Operations</AccordionTrigger>
+        <AccordionTrigger className="px-4 py-2 text-sm font-semibold text-muted-foreground hover:no-underline"><div>Operations</div></AccordionTrigger>
         <AccordionContent className="pb-0 pl-4">
            <SidebarMenu>
               <SidebarMenuItem><Link href="/map"><SidebarMenuButton tooltip="Map Overview" size="sm"><Map />Map Overview</SidebarMenuButton></Link></SidebarMenuItem>
@@ -24,7 +24,7 @@ export default function SidebarMenuClient() {
         </AccordionContent>
       </AccordionItem>
       <AccordionItem value="item-2">
-        <AccordionTrigger className="px-4 py-2 text-sm font-semibold text-muted-foreground hover:no-underline">Analytics</AccordionTrigger>
+        <AccordionTrigger className="px-4 py-2 text-sm font-semibold text-muted-foreground hover:no-underline"><div>Analytics</div></AccordionTrigger>
         <AccordionContent className="pb-0 pl-4">
            <SidebarMenu>
               <SidebarMenuItem><Link href="/reports"><SidebarMenuButton tooltip="Reports and Analytics" size="sm"><BarChart3 />Reports and Analytics</SidebarMenuButton></Link></SidebarMenuItem>
@@ -35,7 +35,7 @@ export default function SidebarMenuClient() {
         </AccordionContent>
       </AccordionItem>
       <AccordionItem value="item-3">
-        <AccordionTrigger className="px-4 py-2 text-sm font-semibold text-muted-foreground hover:no-underline">Maintenance</AccordionTrigger>
+        <AccordionTrigger className="px-4 py-2 text-sm font-semibold text-muted-foreground hover:no-underline"><div>Maintenance</div></AccordionTrigger>
         <AccordionContent className="pb-0 pl-2">
            <div className="pl-2">
             <p className="text-xs font-semibold text-muted-foreground/80 mb-2 mt-2">Asset Maintenance</p>
@@ -63,7 +63,7 @@ export default function SidebarMenuClient() {
         </AccordionContent>
       </AccordionItem>
       <AccordionItem value="item-4">
-        <AccordionTrigger className="px-4 py-2 text-sm font-semibold text-muted-foreground hover:no-underline">Workforce</AccordionTrigger>
+        <AccordionTrigger className="px-4 py-2 text-sm font-semibold text-muted-foreground hover:no-underline"><div>Workforce</div></AccordionTrigger>
         <AccordionContent className="pb-0 pl-4">
            <SidebarMenu>
               <SidebarMenuItem><Link href="/workforce/attendance"><SidebarMenuButton tooltip="Attendance" size="sm"><Users />Attendance</SidebarMenuButton></Link></SidebarMenuItem>
@@ -73,7 +73,7 @@ export default function SidebarMenuClient() {
         </AccordionContent>
       </AccordionItem>
        <AccordionItem value="resource-hub">
-        <AccordionTrigger className="px-4 py-2 text-sm font-semibold text-muted-foreground hover:no-underline">Resource Hub</AccordionTrigger>
+        <AccordionTrigger className="px-4 py-2 text-sm font-semibold text-muted-foreground hover:no-underline"><div>Resource Hub</div></AccordionTrigger>
         <AccordionContent className="pb-0 pl-4">
           <SidebarMenu>
             <SidebarMenuItem>
@@ -112,7 +112,7 @@ export default function SidebarMenuClient() {
         </AccordionContent>
       </AccordionItem>
        <AccordionItem value="item-5">
-        <AccordionTrigger className="px-4 py-2 text-sm font-semibold text-muted-foreground hover:no-underline">O&amp;M Management</AccordionTrigger>
+        <AccordionTrigger className="px-4 py-2 text-sm font-semibold text-muted-foreground hover:no-underline"><div>O&amp;M Management</div></AccordionTrigger>
         <AccordionContent className="pb-0 pl-4">
            <SidebarMenu>
               <SidebarMenuItem><Link href="/om-management/contracts"><SidebarMenuButton tooltip="Contracts" size="sm"><Handshake />Contracts</SidebarMenuButton></Link></SidebarMenuItem>
@@ -123,7 +123,7 @@ export default function SidebarMenuClient() {
         </AccordionContent>
       </AccordionItem>
       <AccordionItem value="item-6">
-        <AccordionTrigger className="px-4 py-2 text-sm font-semibold text-muted-foreground hover:no-underline">Admin</AccordionTrigger>
+        <AccordionTrigger className="px-4 py-2 text-sm font-semibold text-muted-foreground hover:no-underline"><div>Admin</div></AccordionTrigger>
         <AccordionContent className="pb-0 pl-4">
            <SidebarMenu>
               <SidebarMenuItem><Link href="/admin/users-roles"><SidebarMenuButton tooltip="Users & Roles" size="sm"><UserCog />Users & Roles</SidebarMenuButton></Link></SidebarMenuItem>
