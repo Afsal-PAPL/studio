@@ -275,7 +275,7 @@ export default function ReportsPage() {
             </div>
             
             <Tabs defaultValue="overview" className="w-full">
-                <TabsList className="grid w-full grid-cols-2 md:w-auto md:inline-flex md:grid-cols-3">
+                <TabsList className="grid w-full grid-cols-1 md:grid-cols-3">
                     <TabsTrigger value="overview">Overview</TabsTrigger>
                     <TabsTrigger value="energy">Energy Consumption Analysis</TabsTrigger>
                     <TabsTrigger value="energy-cost">Energy Cost Comparison</TabsTrigger>
@@ -299,12 +299,14 @@ export default function ReportsPage() {
                                 <Button className="w-full lg:w-auto lg:self-end">Generate Report</Button>
                             </CardContent>
                         </Card>
-
-                        <TabsList className="grid w-full grid-cols-2 sm:grid-cols-3 md:grid-cols-5 lg:w-auto lg:inline-flex overflow-x-auto mt-4">
-                            {stationTabs.map(tab => (
-                                <TabsTrigger key={tab.value} value={tab.value}>{tab.label}</TabsTrigger>
-                            ))}
-                        </TabsList>
+                        
+                        <div className="overflow-x-auto">
+                            <TabsList className="inline-flex mt-4">
+                                {stationTabs.map(tab => (
+                                    <TabsTrigger key={tab.value} value={tab.value}>{tab.label}</TabsTrigger>
+                                ))}
+                            </TabsList>
+                        </div>
                         {stationTabs.map(tab => {
                             const data = stationData[tab.value as keyof typeof stationData];
                             return (
@@ -365,7 +367,7 @@ export default function ReportsPage() {
                             </div>
 
                             <div className="grid gap-6 md:grid-cols-3">
-                                <div className="md:col-span-2">
+                                <div className="md:col-span-2 overflow-x-auto">
                                      <Card>
                                         <CardHeader>
                                             <CardTitle>Sequencing Details</CardTitle>
@@ -445,7 +447,7 @@ export default function ReportsPage() {
                             <CardTitle>Energy Cost Comparison</CardTitle>
                             <CardDescription>A comparison of designed vs. actual energy costs for all stations.</CardDescription>
                         </CardHeader>
-                        <CardContent className="space-y-2">
+                        <CardContent className="space-y-2 overflow-x-auto">
                            {energyCostData.map(station => (
                                 <EnergyCostRow key={station.name} data={station} />
                            ))}

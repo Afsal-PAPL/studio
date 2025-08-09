@@ -30,40 +30,42 @@ export default function DataSourcesPage() {
                     <CardTitle>Configured Data Sources</CardTitle>
                 </CardHeader>
                 <CardContent>
-                    <Table>
-                        <TableHeader>
-                            <TableRow>
-                                <TableHead>Name</TableHead>
-                                <TableHead>Type</TableHead>
-                                <TableHead>Status</TableHead>
-                                <TableHead>Last Sync</TableHead>
-                                <TableHead>Details</TableHead>
-                                <TableHead>Action</TableHead>
-                            </TableRow>
-                        </TableHeader>
-                        <TableBody>
-                            {dataSources.map((source, index) => (
-                                <TableRow key={index}>
-                                    <TableCell className="font-medium flex items-center gap-2">
-                                        <Database className="h-4 w-4 text-muted-foreground" />
-                                        {source.name}
-                                    </TableCell>
-                                    <TableCell>{source.type}</TableCell>
-                                    <TableCell>
-                                        <Badge variant={source.status === 'Connected' ? 'secondary' : 'destructive'} className={source.status === 'Connected' ? 'bg-green-100 text-green-800' : ''}>
-                                            <Rss className="mr-1 h-3 w-3" />
-                                            {source.status}
-                                        </Badge>
-                                    </TableCell>
-                                    <TableCell>{source.lastSync}</TableCell>
-                                    <TableCell className="text-xs text-muted-foreground">{source.details}</TableCell>
-                                    <TableCell>
-                                        <Button variant="ghost" size="icon"><Pencil className="h-4 w-4" /></Button>
-                                    </TableCell>
+                    <div className="overflow-x-auto">
+                        <Table>
+                            <TableHeader>
+                                <TableRow>
+                                    <TableHead>Name</TableHead>
+                                    <TableHead>Type</TableHead>
+                                    <TableHead>Status</TableHead>
+                                    <TableHead>Last Sync</TableHead>
+                                    <TableHead>Details</TableHead>
+                                    <TableHead>Action</TableHead>
                                 </TableRow>
-                            ))}
-                        </TableBody>
-                    </Table>
+                            </TableHeader>
+                            <TableBody>
+                                {dataSources.map((source, index) => (
+                                    <TableRow key={index}>
+                                        <TableCell className="font-medium flex items-center gap-2">
+                                            <Database className="h-4 w-4 text-muted-foreground" />
+                                            {source.name}
+                                        </TableCell>
+                                        <TableCell>{source.type}</TableCell>
+                                        <TableCell>
+                                            <Badge variant={source.status === 'Connected' ? 'secondary' : 'destructive'} className={source.status === 'Connected' ? 'bg-green-100 text-green-800' : ''}>
+                                                <Rss className="mr-1 h-3 w-3" />
+                                                {source.status}
+                                            </Badge>
+                                        </TableCell>
+                                        <TableCell>{source.lastSync}</TableCell>
+                                        <TableCell className="text-xs text-muted-foreground">{source.details}</TableCell>
+                                        <TableCell>
+                                            <Button variant="ghost" size="icon"><Pencil className="h-4 w-4" /></Button>
+                                        </TableCell>
+                                    </TableRow>
+                                ))}
+                            </TableBody>
+                        </Table>
+                    </div>
                 </CardContent>
             </Card>
         </div>

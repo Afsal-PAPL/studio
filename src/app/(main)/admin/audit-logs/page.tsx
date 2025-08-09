@@ -40,30 +40,32 @@ export default function AuditLogsPage() {
 
             <Card>
                 <CardContent className="pt-6">
-                    <Table>
-                        <TableHeader>
-                            <TableRow>
-                                <TableHead>Timestamp</TableHead>
-                                <TableHead>User</TableHead>
-                                <TableHead>Action</TableHead>
-                                <TableHead>Object/Entity</TableHead>
-                                <TableHead>Old Value</TableHead>
-                                <TableHead>New Value</TableHead>
-                            </TableRow>
-                        </TableHeader>
-                        <TableBody>
-                            {auditLogsData.map((log, index) => (
-                                <TableRow key={index}>
-                                    <TableCell className="text-sm">{log.timestamp}</TableCell>
-                                    <TableCell className="font-medium">{log.user}</TableCell>
-                                    <TableCell>{log.action}</TableCell>
-                                    <TableCell>{log.object}</TableCell>
-                                    <TableCell className="text-muted-foreground">{log.oldValue}</TableCell>
-                                    <TableCell className="font-semibold text-primary">{log.newValue}</TableCell>
+                    <div className="overflow-x-auto">
+                        <Table>
+                            <TableHeader>
+                                <TableRow>
+                                    <TableHead>Timestamp</TableHead>
+                                    <TableHead>User</TableHead>
+                                    <TableHead>Action</TableHead>
+                                    <TableHead>Object/Entity</TableHead>
+                                    <TableHead>Old Value</TableHead>
+                                    <TableHead>New Value</TableHead>
                                 </TableRow>
-                            ))}
-                        </TableBody>
-                    </Table>
+                            </TableHeader>
+                            <TableBody>
+                                {auditLogsData.map((log, index) => (
+                                    <TableRow key={index}>
+                                        <TableCell className="text-sm">{log.timestamp}</TableCell>
+                                        <TableCell className="font-medium">{log.user}</TableCell>
+                                        <TableCell>{log.action}</TableCell>
+                                        <TableCell>{log.object}</TableCell>
+                                        <TableCell className="text-muted-foreground">{log.oldValue}</TableCell>
+                                        <TableCell className="font-semibold text-primary">{log.newValue}</TableCell>
+                                    </TableRow>
+                                ))}
+                            </TableBody>
+                        </Table>
+                    </div>
                 </CardContent>
             </Card>
         </div>

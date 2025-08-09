@@ -67,7 +67,7 @@ export default function CompliancePage() {
                 <CardHeader>
                     <CardTitle>Filters</CardTitle>
                 </CardHeader>
-                <CardContent className="grid grid-cols-1 md:grid-cols-4 gap-4">
+                <CardContent className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
                      <Select defaultValue="kotarpur-wtp">
                         <SelectTrigger><SelectValue /></SelectTrigger>
                         <SelectContent>
@@ -94,21 +94,21 @@ export default function CompliancePage() {
             </Card>
 
             <Tabs defaultValue="dashboard">
-                <TabsList>
+                <TabsList className="grid w-full grid-cols-3">
                     <TabsTrigger value="dashboard">Parameter Dashboard</TabsTrigger>
                     <TabsTrigger value="reports">Compliance Reports</TabsTrigger>
                     <TabsTrigger value="audit">Audit Trails</TabsTrigger>
                 </TabsList>
                 <TabsContent value="dashboard" className="mt-4 space-y-4">
                      <Card>
-                        <CardHeader className="flex flex-row items-center justify-between">
+                        <CardHeader className="flex flex-col md:flex-row items-start md:items-center justify-between gap-2">
                             <CardTitle>Compliance Summary</CardTitle>
                             <div className="flex items-center gap-2 text-sm text-yellow-600 animate-pulse">
                                 <AlertCircle className="h-4 w-4" />
                                 <span>pH exceeded limit at 14:32</span>
                             </div>
                         </CardHeader>
-                        <CardContent className="grid gap-4 md:grid-cols-3 lg:grid-cols-5">
+                        <CardContent className="grid gap-4 grid-cols-2 md:grid-cols-3 lg:grid-cols-5">
                             {Object.entries(complianceData).map(([key, { data, status, icon: Icon, color }]) => (
                                 <Card key={key}>
                                     <CardHeader className="flex flex-row items-center justify-between pb-2">
@@ -170,30 +170,32 @@ export default function CompliancePage() {
                             <CardDescription>Log of all parameter readings, changes, and operator inputs.</CardDescription>
                         </CardHeader>
                         <CardContent>
-                            <Table>
-                                <TableHeader>
-                                    <TableRow>
-                                        <TableHead>Timestamp</TableHead>
-                                        <TableHead>Parameter</TableHead>
-                                        <TableHead>Old Value</TableHead>
-                                        <TableHead>New Value</TableHead>
-                                        <TableHead>User</TableHead>
-                                        <TableHead>Source</TableHead>
-                                    </TableRow>
-                                </TableHeader>
-                                <TableBody>
-                                    {auditTrailData.map((log, index) => (
-                                        <TableRow key={index}>
-                                            <TableCell>{log.dateTime}</TableCell>
-                                            <TableCell>{log.parameter}</TableCell>
-                                            <TableCell>{log.oldValue}</TableCell>
-                                            <TableCell className="font-semibold text-primary">{log.newValue}</TableCell>
-                                            <TableCell>{log.user}</TableCell>
-                                            <TableCell>{log.source}</TableCell>
+                            <div className="overflow-x-auto">
+                                <Table>
+                                    <TableHeader>
+                                        <TableRow>
+                                            <TableHead>Timestamp</TableHead>
+                                            <TableHead>Parameter</TableHead>
+                                            <TableHead>Old Value</TableHead>
+                                            <TableHead>New Value</TableHead>
+                                            <TableHead>User</TableHead>
+                                            <TableHead>Source</TableHead>
                                         </TableRow>
-                                    ))}
-                                </TableBody>
-                            </Table>
+                                    </TableHeader>
+                                    <TableBody>
+                                        {auditTrailData.map((log, index) => (
+                                            <TableRow key={index}>
+                                                <TableCell>{log.dateTime}</TableCell>
+                                                <TableCell>{log.parameter}</TableCell>
+                                                <TableCell>{log.oldValue}</TableCell>
+                                                <TableCell className="font-semibold text-primary">{log.newValue}</TableCell>
+                                                <TableCell>{log.user}</TableCell>
+                                                <TableCell>{log.source}</TableCell>
+                                            </TableRow>
+                                        ))}
+                                    </TableBody>
+                                </Table>
+                            </div>
                         </CardContent>
                     </Card>
                 </TabsContent>
