@@ -14,7 +14,7 @@ const videos = [
     { title: 'Troubleshooting Pump Cavitation', category: 'Troubleshooting', level: 'Advanced', thumbnail: 'https://aoblpump.com/wp-content/uploads/2024/11/pump-cavitation.jpg.avif', thumbnailHint: 'pump cavitation diagram' },
     { title: 'Daily Safety Inspection Checklist', category: 'Safety', level: 'Beginner', thumbnail: 'https://www.manwinwin.com/wp-content/uploads/2024/07/Pumps-maintenance.jpg', thumbnailHint: 'pumps maintenance' },
     { title: 'replacing a gland packing', category: 'Maintenance', level: 'Advanced', thumbnail: 'https://giw.ksb.com/hs-fs/hubfs/blog-images/DSC_0230-1.jpg?width=4608&name=DSC_0230-1.jpg', thumbnailHint: 'gland packing' },
-    { title: 'Understanding Your VFD', category: 'Electrical', level: 'Intermediate', thumbnail: 'https://i.ibb.co/3kR2wgD/vfd-panel.png', thumbnailHint: 'VFD panel' },
+    { title: 'Understanding iPUMPNET Features', category: 'Electrical', level: 'Intermediate', thumbnail: 'https://i.ibb.co/3kR2wgD/vfd-panel.png', thumbnailHint: 'VFD panel' },
     { title: 'Reading a P&ID Diagram', category: 'Operational', level: 'Beginner', thumbnail: 'https://i.ibb.co/9gP6fgy/pid-diagram.png', thumbnailHint: 'P&ID diagram' },
 ];
 
