@@ -179,7 +179,7 @@ export default function SimulationPage() {
                                 <ComposedChart data={pumpCurveData}>
                                     <CartesianGrid strokeDasharray="3 3" />
                                     <XAxis dataKey="q" type="number" name="Flow" unit=" m³/h" />
-                                    <YAxis dataKey="h" type="number" name="Head" unit=" m" domain={[0, 'dataMax + 10']} />
+                                    <YAxis dataKey="h" type="number" name="Head" unit=" m" domain={[0, 'auto']} />
                                     <Tooltip content={<ChartTooltipContent />} />
                                     <Legend />
                                     <Line type="monotone" dataKey="system" stroke="var(--color-system)" strokeWidth={2} dot={false} name="System Curve" strokeDasharray="5 5" />
