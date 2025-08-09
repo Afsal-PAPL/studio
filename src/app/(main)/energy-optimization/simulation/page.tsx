@@ -222,7 +222,7 @@ export default function SimulationPage() {
                             <ChartContainer config={chartConfig} className="h-[400px] w-full">
                                 <ComposedChart data={pumpCurveData}>
                                     <CartesianGrid strokeDasharray="3 3" />
-                                    <XAxis dataKey="q" type="number" name="Flow" unit=" m³/h" />
+                                    <XAxis dataKey="q" type="number" name="Flow" unit=" m³/h" ticks={[0, 400, 800, 1200]} />
                                     <YAxis dataKey="h" type="number" name="Head" unit=" m" domain={[0, 120]} ticks={[0, 30, 60, 90, 120]} />
                                     <Tooltip content={<ChartTooltipContent />} />
                                     <Legend />
@@ -296,6 +296,7 @@ const ChartCard = ({ title, description, children }: { title: string, descriptio
     
 
     
+
 
 
 
