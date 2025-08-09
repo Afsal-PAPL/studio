@@ -122,7 +122,7 @@ export default function StatusPage() {
                             {location.id === 1 ? (
                                 <Accordion type="multiple" className="w-full">
                                     <AccordionItem value="wtp">
-                                        <AccordionTrigger className="font-semibold text-primary">WTP</AccordionTrigger>
+                                        <AccordionTrigger className="font-semibold text-primary"><div>WTP</div></AccordionTrigger>
                                         <AccordionContent className="flex flex-col gap-2 pt-2">
                                             <Button className="w-full" asChild>
                                                 <Link href={`/wtp/1`}>View Kotarpur WTP</Link>
@@ -133,7 +133,7 @@ export default function StatusPage() {
                                         </AccordionContent>
                                     </AccordionItem>
                                     <AccordionItem value="wds">
-                                        <AccordionTrigger className="font-semibold text-primary">WDS</AccordionTrigger>
+                                        <AccordionTrigger className="font-semibold text-primary"><div>WDS</div></AccordionTrigger>
                                         <AccordionContent className="flex flex-col gap-2 pt-2">
                                             <Button className="w-full" asChild>
                                                 <Link href={`/location/3`}>View Dariyapur WDS</Link>
@@ -147,7 +147,7 @@ export default function StatusPage() {
                             ) : location.id === 2 ? (
                                 <Accordion type="multiple" className="w-full">
                                     <AccordionItem value="stp">
-                                        <AccordionTrigger className="font-semibold text-primary">STP</AccordionTrigger>
+                                        <AccordionTrigger className="font-semibold text-primary"><div>STP</div></AccordionTrigger>
                                         <AccordionContent className="flex flex-col gap-2 pt-2">
                                             <Button className="w-full" asChild>
                                                 <Link href={`/stp/1`}>View Daffnala STP</Link>
@@ -158,7 +158,7 @@ export default function StatusPage() {
                                         </AccordionContent>
                                     </AccordionItem>
                                     <AccordionItem value="sps">
-                                        <AccordionTrigger className="font-semibold text-primary">SPS</AccordionTrigger>
+                                        <AccordionTrigger className="font-semibold text-primary"><div>SPS</div></AccordionTrigger>
                                         <AccordionContent className="flex flex-col gap-2 pt-2">
                                             <Button className="w-full" asChild>
                                                 <Link href={`/location/7`}>View W-5 Usmanpura SPS</Link>
@@ -170,14 +170,19 @@ export default function StatusPage() {
                                     </AccordionItem>
                                 </Accordion>
                             ) : (
-                                <div className="flex flex-col gap-2 pt-2">
-                                    <Button className="w-full" asChild>
-                                        <Link href={`/location/9`}>View Vejalpur</Link>
-                                    </Button>
-                                    <Button className="w-full" asChild>
-                                        <Link href={`/location/10`}>View Jaydeep Tower Vasnala</Link>
-                                    </Button>
-                                </div>
+                                <Accordion type="multiple" className="w-full">
+                                    <AccordionItem value="swps">
+                                        <AccordionTrigger className="font-semibold text-primary"><div>SWPS</div></AccordionTrigger>
+                                        <AccordionContent className="flex flex-col gap-2 pt-2">
+                                            <Button className="w-full" asChild>
+                                                <Link href={`/location/9`}>View Vejalpur</Link>
+                                            </Button>
+                                            <Button className="w-full" asChild>
+                                                <Link href={`/location/10`}>View Jaydeep Tower Vasnala</Link>
+                                            </Button>
+                                        </AccordionContent>
+                                    </AccordionItem>
+                                </Accordion>
                             )}
                         </CardContent>
                     </Card>
