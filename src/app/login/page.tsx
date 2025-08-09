@@ -26,7 +26,7 @@ export default function LoginPage() {
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
-    if (userId === 'PAPL2025' && password === 'Pump1405*') {
+    if (userId === 'PAPL2025' && password === 'Pump1405*.') {
       setError('');
       router.push('/map');
     } else {
