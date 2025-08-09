@@ -1,14 +1,26 @@
 
 import Link from 'next/link';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { RefreshCw, ArrowLeft, Droplets, Zap, Gauge } from 'lucide-react';
+import { RefreshCw, ArrowLeft, Droplets, Zap, Gauge, TrendingUp } from 'lucide-react';
 
 const StatusIndicator = ({ color = 'gray' }: { color: 'green' | 'yellow' | 'gray' }) => (
     <div className="flex items-center gap-2">
         <span className={`h-3 w-3 rounded-full animate-pulse ${ { green: 'bg-green-500', yellow: 'bg-yellow-500', gray: 'bg-gray-400' }[color] }`} />
         <span className="text-sm font-medium capitalize">{color === 'green' ? 'Running' : color === 'yellow' ? 'Standby' : 'No Data'}</span>
     </div>
+);
+
+const MetricCard = ({ title, value, unit, icon: Icon }: { title: string, value: string, unit: string, icon: React.ElementType }) => (
+    <Card>
+        <CardHeader className="flex flex-row items-center justify-between pb-2">
+            <CardTitle className="text-sm font-medium">{title}</CardTitle>
+            <Icon className="h-4 w-4 text-muted-foreground" />
+        </CardHeader>
+        <CardContent>
+            <div className="text-2xl font-bold">{value} <span className="text-xs text-muted-foreground">{unit}</span></div>
+        </CardContent>
+    </Card>
 );
 
 const pumpData = [
@@ -40,11 +52,24 @@ export default function LocationDetailsPage({ params }: { params: { id: string }
                             Back to Locations
                         </Link>
                     </Button>
-                    <h1 className="text-3xl font-bold font-headline">{locationName} Equipment</h1>
+                    <h1 className="text-3xl font-bold font-headline">{locationName}</h1>
                 </div>
                 <Button variant="outline"><RefreshCw className="mr-2 h-4 w-4" /> Refresh</Button>
             </div>
-            
+
+            <Card>
+                <CardHeader>
+                    <CardTitle>Station Overview</CardTitle>
+                </CardHeader>
+                <CardContent className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+                    <MetricCard title="Total Flow Today" value="2498" unit="m³/h" icon={Droplets} />
+                    <MetricCard title="Total Energy Consumed" value="23.8" unit="MWh" icon={Zap} />
+                    <MetricCard title="Running Pumps" value="2 / 4" unit="" icon={Gauge} />
+                    <MetricCard title="Overall Efficiency" value="87.5" unit="%" icon={TrendingUp} />
+                </CardContent>
+            </Card>
+
+            <h2 className="text-2xl font-bold font-headline">Equipment Status</h2>
             <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
                 {pumpData.map(pump => (
                     <Card key={pump.id} className="flex flex-col">

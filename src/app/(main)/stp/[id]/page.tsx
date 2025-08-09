@@ -5,6 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/com
 import { ChartContainer, ChartTooltip, ChartTooltipContent, ChartConfig } from '@/components/ui/chart';
 import { Line, LineChart, CartesianGrid, XAxis, YAxis, Tooltip } from 'recharts';
 import { Breadcrumb } from '@/components/breadcrumb';
+import { Droplets, Zap, TrendingUp } from 'lucide-react';
 
 const chartData = [
   { time: '12am', bod: 9.8, cod: 27.0, tss: 4.8, ph: 7.52 },
@@ -28,15 +29,16 @@ const chartConfig = {
   ph: { label: 'pH', color: 'hsl(var(--chart-4))' },
 } satisfies ChartConfig;
 
-const MetricCard = ({ title, value, unit, description }: { title: string, value: string, unit?: string, description?: string }) => (
+const MetricCard = ({ title, value, unit, icon: Icon, description }: { title: string, value: string, unit?: string, icon?: React.ElementType, description?: string }) => (
     <Card className="text-center">
-        <CardHeader className="p-4">
-            <CardTitle className="text-sm font-medium text-muted-foreground">{title}</CardTitle>
+        <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+            <CardTitle className="text-sm font-medium">{title}</CardTitle>
+            {Icon && <Icon className="h-4 w-4 text-muted-foreground" />}
         </CardHeader>
-        <CardContent className="p-4 pt-0">
-            <p className="text-2xl font-bold text-primary">{value}
+        <CardContent>
+            <div className="text-2xl font-bold">{value}
                 {unit && <span className="text-sm font-normal text-muted-foreground ml-1">{unit}</span>}
-            </p>
+            </div>
             {description && <p className="text-xs text-muted-foreground mt-1">{description}</p>}
         </CardContent>
     </Card>
@@ -77,17 +79,24 @@ export default function STPDetailsPage({ params }: { params: { id: string } }) {
     return (
         <div className="space-y-6">
             <Breadcrumb items={breadcrumbItems} />
-            <h1 className="text-3xl font-bold font-headline">{stationName} - Plant Summary</h1>
-            
-            <div className="grid gap-4 grid-cols-2 md:grid-cols-3">
-                <MetricCard title="Total Output Water" value="34.13" unit="KL" description="Output Water" />
-                <MetricCard title="Inlet Water" value="85.88" unit="KLD" description="Inlet Water" />
-                <MetricCard title="Plant Efficiency" value="39.74" unit="%" description="Plant Efficiency" />
-            </div>
+            <h1 className="text-3xl font-bold font-headline">{stationName}</h1>
+
+            <Card>
+                <CardHeader>
+                    <CardTitle>High-Level View</CardTitle>
+                </CardHeader>
+                 <CardContent className="grid gap-4 grid-cols-2 md:grid-cols-4">
+                    <MetricCard title="Total Treated Today" value="34.13" unit="KL" icon={Droplets} />
+                    <MetricCard title="Inlet vs. Outlet" value="85.8 / 34.1" unit="KLD" icon={Droplets} />
+                    <MetricCard title="Plant Efficiency" value="39.74" unit="%" icon={TrendingUp} />
+                    <MetricCard title="Energy Consumed" value="40" unit="MWh" icon={Zap} />
+                </CardContent>
+            </Card>
 
             <Card>
                 <CardHeader>
                     <CardTitle>Inlet and Output Water Quality</CardTitle>
+                    <CardDescription>Real-time treated water parameters</CardDescription>
                 </CardHeader>
                 <CardContent className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
                     <QualityChartCard dataKey="bod" title="Treated Water BOD (Ref: <10 mg/l)" />

@@ -8,7 +8,7 @@ import { Bar, BarChart, CartesianGrid, XAxis, YAxis, Line, LineChart } from 'rec
 import { Breadcrumb } from '@/components/breadcrumb';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Button } from '@/components/ui/button';
-import { Droplets, Gauge, Zap } from 'lucide-react';
+import { Droplets, Gauge, Zap, TrendingUp } from 'lucide-react';
 import Link from 'next/link';
 
 const chartData = [
@@ -32,12 +32,13 @@ const chartConfig = {
   energy: { label: 'Energy Consumption', color: 'hsl(var(--chart-4))' },
 } satisfies ChartConfig;
 
-const MetricCard = ({ title, value, unit, description, refValue }: { title: string, value: string, unit?: string, description?: string, refValue?: string }) => (
+const MetricCard = ({ title, value, unit, icon: Icon, description, refValue }: { title: string, value: string, unit?: string, icon?: React.ElementType, description?: string, refValue?: string }) => (
     <Card className="text-center">
-        <CardHeader className="p-4">
-            <CardTitle className="text-sm font-medium text-muted-foreground">{title} {refValue && <span className="text-xs">({refValue})</span>}</CardTitle>
+        <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+            <CardTitle className="text-sm font-medium">{title} {refValue && <span className="text-xs">({refValue})</span>}</CardTitle>
+            {Icon && <Icon className="h-4 w-4 text-muted-foreground" />}
         </CardHeader>
-        <CardContent className="p-4 pt-0">
+        <CardContent>
             <p className="text-2xl font-bold text-primary">{value}
                 {unit && <span className="text-sm font-normal text-muted-foreground ml-1">{unit}</span>}
             </p>
@@ -115,6 +116,18 @@ export default function WTPDetailsPage({ params }: { params: { id: string } }) {
                     <TabsTrigger value="treated-water">Treated Water Pump House</TabsTrigger>
                 </TabsList>
                 <TabsContent value="summary" className="mt-4 space-y-6">
+                     <Card>
+                        <CardHeader>
+                            <CardTitle>High-Level View</CardTitle>
+                        </CardHeader>
+                        <CardContent className="grid gap-4 grid-cols-2 md:grid-cols-4">
+                            <MetricCard title="Total Water Treated" value="281.3" unit="MLD" icon={Droplets} />
+                            <MetricCard title="Total Energy Consumed" value="117.3" unit="MWh" icon={Zap} />
+                            <MetricCard title="Overall Efficiency" value="78.5" unit="%" icon={TrendingUp} />
+                            <MetricCard title="Energy Per KL" value="0.19" unit="kWh/KL" icon={Gauge} />
+                        </CardContent>
+                    </Card>
+
                      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
                          <Card className="col-span-1 lg:col-span-2">
                             <CardHeader><CardTitle>Inlet Flow - Cascade Aerator (KLD)</CardTitle></CardHeader>
@@ -180,15 +193,6 @@ export default function WTPDetailsPage({ params }: { params: { id: string } }) {
                                 </Table>
                             </CardContent>
                         </Card>
-                    </div>
-                    
-                    <div className="grid gap-4 grid-cols-2 md:grid-cols-3 lg:grid-cols-6">
-                        <MetricCard title="Energy Per KL" value="0.19" description="Energyperkl"/>
-                        <MetricCard title="pH at Output" refValue="6.5-8.5" value="7.66" description="Output pH" />
-                        <MetricCard title="Elec. Cond." refValue="<1000µS/cm" value="300.98" description="TDS at Output" />
-                        <MetricCard title="TDS at output" refValue="<500 ppm" value="150.49" description="Channel TDS Sensor 1" />
-                        <MetricCard title="FRC at Output" refValue="0.2-0.5 ppm" value="0.17" description="Output Chlorine" />
-                        <MetricCard title="Turbidity at Output" refValue="<5 NTU" value="2.99" description="Output Turbidity" />
                     </div>
                 </TabsContent>
                 <TabsContent value="raw-water" className="mt-4">
