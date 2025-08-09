@@ -44,8 +44,8 @@ const pumpCurveData = [
     { q: 600, h: 58, designed: 60, actual: 57, designed_eta: 75, actual_eta: 72, system: 29 },
     { q: 800, h: 53, designed: 55, actual: 52, designed_eta: 80, actual_eta: 76, system: 36 },
     { q: 820, h: 52, designed: 54, actual: 51, designed_eta: 80.5, actual_eta: 76.5, system: 37 },
-    { q: 1000, h: 45, designed: 47, actual: 44, system: 45 },
-    { q: 1200, h: 35, designed: 37, actual: 34, system: 56 },
+    { q: 1000, h: 45, designed: 47, actual: 44, designed_eta: 78, actual_eta: 74, system: 45 },
+    { q: 1200, h: 35, designed: 37, actual: 34, designed_eta: 70, actual_eta: 65, system: 56 },
 ];
 const bepPoint = { q: 820, h: 51, label: 'BEP' };
 const dutyPoint = { q: 990, h: 45, label: 'Duty Point'};
