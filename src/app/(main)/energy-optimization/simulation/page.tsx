@@ -38,13 +38,14 @@ const operatingCloudData = [
 ];
 
 const pumpCurveData = [
-    { q: 0, h: 68, designed: 70, actual: 67 }, 
-    { q: 200, h: 65, designed: 67, actual: 64 }, 
-    { q: 400, h: 62, designed: 64, actual: 61 }, 
-    { q: 600, h: 58, designed: 60, actual: 57 }, 
-    { q: 800, h: 53, designed: 55, actual: 52 }, 
-    { q: 820, h: 52, designed: 54, actual: 51 }, 
-    { q: 1000, h: 45, designed: 47, actual: 44 },
+    { q: 0, h: 68, designed: 70, actual: 67, designed_eta: 0, actual_eta: 0 }, 
+    { q: 200, h: 65, designed: 67, actual: 64, designed_eta: 45, actual_eta: 42 }, 
+    { q: 400, h: 62, designed: 64, actual: 61, designed_eta: 65, actual_eta: 62 }, 
+    { q: 600, h: 58, designed: 60, actual: 57, designed_eta: 75, actual_eta: 72 }, 
+    { q: 800, h: 53, designed: 55, actual: 52, designed_eta: 80, actual_eta: 76 }, 
+    { q: 820, h: 52, designed: 54, actual: 51, designed_eta: 80.5, actual_eta: 76.5 }, 
+    { q: 1000, h: 45, designed: 47, actual: 44, designed_eta: 78, actual_eta: 74 },
+    { q: 1200, h: 35, designed: 37, actual: 34, designed_eta: 70, actual_eta: 66 },
 ];
 const bepPoint = { q: 820, h: 53, label: 'BEP' };
 
@@ -63,6 +64,8 @@ const chartConfig = {
   system: { label: 'System Curve', color: 'hsl(var(--chart-2))' },
   designed: { label: 'Designed', color: 'hsl(var(--chart-2))' },
   actual: { label: 'Actual', color: 'hsl(var(--chart-5))' },
+  designed_eta: { label: 'Designed Efficiency', color: 'hsl(var(--chart-2))' },
+  actual_eta: { label: 'Actual Efficiency', color: 'hsl(var(--chart-5))' },
 };
 
 export default function SimulationPage() {
@@ -163,57 +166,57 @@ export default function SimulationPage() {
                 </Card>
             </TabsContent>
             <TabsContent value="pump-curves" className="space-y-6 mt-4">
-                 <Card>
-                    <CardHeader>
-                        <CardTitle>Q-H Curve Analysis</CardTitle>
-                        <CardDescription>Analyze the pump's performance curve (Flow vs. Head).</CardDescription>
-                    </CardHeader>
-                    <CardContent>
-                        <ChartContainer config={chartConfig} className="h-[400px] w-full">
-                            <ComposedChart data={pumpCurveData}>
-                                <CartesianGrid strokeDasharray="3 3" />
-                                <XAxis dataKey="q" type="number" name="Flow" unit=" m³/h" />
-                                <YAxis dataKey="h" type="number" name="Head" unit=" m" domain={[0, 'dataMax + 10']} />
-                                <Tooltip content={<ChartTooltipContent />} />
-                                <Legend />
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                    <Card>
+                        <CardHeader>
+                            <CardTitle>Q-H Curve Analysis</CardTitle>
+                            <CardDescription>Analyze the pump's performance curve (Flow vs. Head).</CardDescription>
+                        </CardHeader>
+                        <CardContent>
+                            <ChartContainer config={chartConfig} className="h-[400px] w-full">
+                                <ComposedChart data={pumpCurveData}>
+                                    <CartesianGrid strokeDasharray="3 3" />
+                                    <XAxis dataKey="q" type="number" name="Flow" unit=" m³/h" />
+                                    <YAxis dataKey="h" type="number" name="Head" unit=" m" domain={[0, 'dataMax + 10']} />
+                                    <Tooltip content={<ChartTooltipContent />} />
+                                    <Legend />
+                                    <Line type="monotone" dataKey="designed" stroke="var(--color-designed)" strokeWidth={2} dot={false} name="Designed" />
+                                    <Line type="monotone" dataKey="actual" stroke="var(--color-actual)" strokeWidth={2} dot={false} name="Actual" />
+                                    <Scatter
+                                        data={[bepPoint]}
+                                        shape={({ cx, cy }) => (
+                                            <g>
+                                                <path d={`M${cx},${cy}L${cx-8},${cy+8}L${cx+8},${cy+8}Z`} fill="hsl(var(--primary))" opacity="0.5" />
+                                                <text x={cx} y={cy - 12} textAnchor="middle" fill="hsl(var(--primary-foreground))" fontSize="10" className="font-bold bg-primary px-1 py-0.5 rounded-sm">{bepPoint.label}</text>
+                                            </g>
+                                        )}
+                                        name="Best Efficiency Point"
+                                    />
 
-                                <defs>
-                                    <linearGradient id="bandGreen" x1="0" y1="0" x2="1" y2="0">
-                                        <stop offset="0%" stopColor="hsla(120, 60%, 90%, 0.5)" />
-                                        <stop offset="100%" stopColor="hsla(120, 60%, 70%, 0.8)" />
-                                    </linearGradient>
-                                     <linearGradient id="bandYellow" x1="0" y1="0" x2="1" y2="0">
-                                        <stop offset="0%" stopColor="hsla(60, 70%, 90%, 0.5)" />
-                                        <stop offset="100%" stopColor="hsla(60, 70%, 70%, 0.8)" />
-                                    </linearGradient>
-                                     <linearGradient id="bandRed" x1="0" y1="0" x2="1" y2="0">
-                                        <stop offset="0%" stopColor="hsla(0, 70%, 90%, 0.5)" />
-                                        <stop offset="100%" stopColor="hsla(0, 70%, 70%, 0.8)" />
-                                    </linearGradient>
-                                </defs>
-                                
-                                <Area yAxisId={0} type="monotone" dataKey={(d) => d.h * 1.8} stackId="a" stroke="none" fill="url(#bandRed)" />
-                                <Area yAxisId={0} type="monotone" dataKey={(d) => d.h * 1.2} stackId="b" stroke="none" fill="url(#bandYellow)" />
-                                <Area yAxisId={0} type="monotone" dataKey={(d) => d.h * 0.9} stackId="c" stroke="none" fill="url(#bandGreen)" />
-
-                                <Line type="monotone" dataKey="designed" stroke="var(--color-designed)" strokeWidth={2} dot={false} name="Designed" />
-                                <Line type="monotone" dataKey="actual" stroke="var(--color-actual)" strokeWidth={2} dot={false} name="Actual" />
-                                
-                                <Scatter
-                                    data={[bepPoint]}
-                                    shape={({ cx, cy }) => (
-                                        <g>
-                                            <path d={`M${cx},${cy}L${cx-8},${cy+8}L${cx+8},${cy+8}Z`} fill="hsl(var(--primary))" opacity="0.5" />
-                                            <text x={cx} y={cy - 12} textAnchor="middle" fill="hsl(var(--primary-foreground))" fontSize="10" className="font-bold bg-primary px-1 py-0.5 rounded-sm">{bepPoint.label}</text>
-                                        </g>
-                                    )}
-                                    name="Best Efficiency Point"
-                                />
-
-                            </ComposedChart>
-                        </ChartContainer>
-                    </CardContent>
-                </Card>
+                                </ComposedChart>
+                            </ChartContainer>
+                        </CardContent>
+                    </Card>
+                     <Card>
+                        <CardHeader>
+                            <CardTitle>Efficiency Curve Analysis</CardTitle>
+                            <CardDescription>Analyze the pump's efficiency curve (Flow vs. Efficiency).</CardDescription>
+                        </CardHeader>
+                        <CardContent>
+                            <ChartContainer config={chartConfig} className="h-[400px] w-full">
+                                <LineChart data={pumpCurveData}>
+                                    <CartesianGrid strokeDasharray="3 3" />
+                                    <XAxis dataKey="q" type="number" name="Flow" unit=" m³/h" />
+                                    <YAxis type="number" name="Efficiency" unit="%" domain={[0, 100]} />
+                                    <Tooltip content={<ChartTooltipContent />} />
+                                    <Legend />
+                                    <Line type="monotone" dataKey="designed_eta" stroke="var(--color-designed_eta)" strokeWidth={2} dot={false} name="Designed Efficiency" />
+                                    <Line type="monotone" dataKey="actual_eta" stroke="var(--color-actual_eta)" strokeWidth={2} dot={false} name="Actual Efficiency" />
+                                </LineChart>
+                            </ChartContainer>
+                        </CardContent>
+                    </Card>
+                </div>
             </TabsContent>
         </Tabs>
     </div>
@@ -237,3 +240,4 @@ const ChartCard = ({ title, description, children }: { title: string, descriptio
     
 
     
+
