@@ -192,6 +192,26 @@ export default function SimulationPage() {
                 </Card>
             </TabsContent>
             <TabsContent value="pump-curves" className="space-y-6 mt-4">
+                 <Card>
+                    <CardHeader>
+                        <CardTitle>Pump Curve Filters</CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+                            <div className="space-y-2">
+                                <Label htmlFor="pump-curve-station-select">Station</Label>
+                                <Select defaultValue="dariyapur-wds">
+                                    <SelectTrigger id="pump-curve-station-select"><SelectValue placeholder="Select Station..." /></SelectTrigger>
+                                    <SelectContent>
+                                        {stationTabs.map(tab => (
+                                            <SelectItem key={tab.value} value={tab.value}>{tab.label}</SelectItem>
+                                        ))}
+                                    </SelectContent>
+                                </Select>
+                            </div>
+                        </div>
+                    </CardContent>
+                </Card>
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                     <Card>
                         <CardHeader>
@@ -276,5 +296,6 @@ const ChartCard = ({ title, description, children }: { title: string, descriptio
     
 
     
+
 
 
