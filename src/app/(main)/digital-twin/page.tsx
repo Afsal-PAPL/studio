@@ -8,7 +8,7 @@ import { Button } from '@/components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
-import { Thermometer, Zap, Waves, Rss, AlertTriangle, Workflow } from 'lucide-react';
+import { Thermometer, Zap, Waves, Rss, AlertTriangle, Workflow, Gauge, Pipette, Fan } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 const locations = [
@@ -84,25 +84,21 @@ const DataPoint = ({ point }: { point: typeof dataPoints[0] }) => (
     </Popover>
 );
 
-const SCADAPump = ({ id, status }: { id: number; status: 'running' | 'standby' | 'fault' }) => {
+const ScadaPump = ({ id, name, status, pressure }: { id: number; name: string, status: 'running' | 'standby' | 'fault'; pressure: string }) => {
     const statusClasses = {
-        running: 'bg-green-500/20 border-green-500 text-green-300',
-        standby: 'bg-yellow-500/20 border-yellow-500 text-yellow-300',
-        fault: 'bg-red-500/20 border-red-500 text-red-300',
+        running: 'text-green-400',
+        standby: 'text-red-400',
+        fault: 'text-red-400 animate-pulse',
     };
-    const statusIndicator = {
-        running: 'bg-green-500',
-        standby: 'bg-yellow-500',
-        fault: 'bg-red-500',
-    }
     return (
-        <div className={cn('p-4 rounded-lg border-2 flex flex-col items-center gap-2', statusClasses[status])}>
-            <div className="flex items-center gap-2">
-                <div className={cn('h-3 w-3 rounded-full', statusIndicator[status])} />
-                <span className="font-bold">Pump {id}</span>
+        <div className="flex flex-col items-center gap-2 relative">
+             <div className="absolute -top-10 text-center text-white bg-gray-900/50 px-2 py-1 rounded-md">
+                <p className="text-xs">PITS0{id}</p>
+                <p className="font-bold text-sm">{pressure}</p>
             </div>
-            <Workflow className="w-16 h-16" />
-            <span className="capitalize text-sm">{status}</span>
+            <Fan className={cn("w-20 h-20", statusClasses[status])} />
+            <div className="w-8 h-12 bg-gray-600 border-t-4 border-b-4 border-gray-500" />
+            <p className="text-white font-bold text-xs">{name}</p>
         </div>
     );
 };
@@ -185,49 +181,51 @@ export default function DigitalTwinPage() {
                             </div>
                         </CardHeader>
                          <CardContent>
-                            <div className="bg-gray-800 text-white p-6 rounded-lg relative aspect-[2/1]">
-                                {/* Main Pipes */}
-                                <div className="absolute top-1/2 left-0 w-1/4 h-8 bg-gray-600 -translate-y-1/2 rounded-r-md flex items-center px-4">
-                                    <p className="font-bold text-lg">Inlet</p>
-                                </div>
-                                <div className="absolute top-1/2 right-0 w-1/4 h-8 bg-gray-600 -translate-y-1/2 rounded-l-md flex items-center justify-end px-4">
-                                     <p className="font-bold text-lg">Outlet</p>
-                                </div>
-                                <div className="absolute top-1/2 left-1/4 w-1/2 h-8 bg-gray-700 -translate-y-1/2" />
-                                
-                                {/* Pumps Area */}
-                                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-[150%] w-3/4 h-1/2">
-                                    <div className="grid grid-cols-4 gap-x-8 h-full">
-                                        <SCADAPump id={1} status="running" />
-                                        <SCADAPump id={2} status="running" />
-                                        <SCADAPump id={3} status="standby" />
-                                        <SCADAPump id={4} status="fault" />
+                            <div className="bg-gray-800 text-white p-6 rounded-lg relative aspect-video overflow-hidden">
+                                {/* Header */}
+                                <div className="text-center font-bold text-xl mb-8">HIGH LIFT PUMPS</div>
+
+                                {/* Main Pipe */}
+                                <div className="absolute top-[25%] left-[10%] w-[80%] h-8 bg-gray-500 rounded-md border-2 border-gray-400"></div>
+
+                                {/* Pumps and connecting pipes */}
+                                <div className="absolute top-[25%] left-[15%] right-[15%] flex justify-around items-start h-[50%]">
+                                    <div className="absolute top-0 w-full h-px">
+                                        {[1, 2, 3, 4].map(i => (
+                                            <div key={i} style={{ left: `${i * 20 - 10}%`}} className="absolute top-0 h-16 w-4 bg-gray-500 border-x-2 border-gray-400"></div>
+                                        ))}
+                                    </div>
+                                    <div className="flex justify-around w-full mt-16">
+                                        <ScadaPump id={1} name="HLP501" status="standby" pressure="2 PSI"/>
+                                        <ScadaPump id={2} name="HLP502" status="standby" pressure="-1 PSI"/>
+                                        <ScadaPump id={3} name="HLP503" status="running" pressure="97 PSI"/>
+                                        <ScadaPump id={4} name="HLP504" status="standby" pressure="2 PSI"/>
                                     </div>
                                 </div>
                                 
-                                {/* Connections */}
-                                <div className="absolute top-1/2 left-[34%] w-px h-1/4 bg-gray-500 -translate-y-full" />
-                                <div className="absolute top-1/2 left-[46%] w-px h-1/4 bg-gray-500 -translate-y-full" />
-                                <div className="absolute top-1/2 left-[58%] w-px h-1/4 bg-gray-500 -translate-y-full" />
-                                <div className="absolute top-1/2 left-[70%] w-px h-1/4 bg-gray-500 -translate-y-full" />
-
-                                {/* Data overlays */}
-                                <div className="absolute top-1/3 left-4 bg-black/50 p-2 rounded">
-                                    <p>Flow: 1250 m³/h</p>
-                                    <p>Pressure: 2.1 bar</p>
-                                </div>
-                                <div className="absolute top-1/3 right-4 bg-black/50 p-2 rounded text-right">
-                                    <p>Flow: 1245 m³/h</p>
-                                    <p>Pressure: 5.2 bar</p>
-                                </div>
-                                <div className="absolute bottom-4 left-1/2 -translate-x-1/2 bg-black/50 p-2 rounded flex gap-4">
-                                    <p><span className="font-bold">Total Energy:</span> 120 MWh</p>
-                                    <p><span className="font-bold">Status:</span> <span className="text-yellow-400">Warning</span></p>
+                                {/* Water Tank */}
+                                <div className="absolute bottom-0 left-0 right-0 h-1/3 bg-cyan-600/50 border-t-4 border-cyan-400">
+                                    <div className="absolute bottom-4 left-1/4 text-white text-center">
+                                        <p className="font-bold bg-yellow-400 text-black px-2 py-0.5 rounded-sm">LIT-403</p>
+                                        <p>3.58 M</p>
+                                        <p className="text-xs">PUMP CELL #1</p>
+                                    </div>
+                                    <div className="absolute bottom-4 right-1/4 text-white text-center">
+                                        <p className="font-bold bg-yellow-400 text-black px-2 py-0.5 rounded-sm">LIT-404</p>
+                                        <p>3.51 M</p>
+                                        <p className="text-xs">PUMP CELL #2</p>
+                                    </div>
                                 </div>
 
-                                <div className="absolute bottom-1/4 left-1/2 -translate-x-1/2 flex items-center justify-center gap-2 text-red-400 animate-pulse">
-                                    <AlertTriangle className="w-5 h-5" />
-                                    <p>Pump 4 Fault: High Vibration</p>
+                                {/* Side chemical pipes */}
+                                <div className="absolute top-[25%] right-[5%] w-4 h-[40%] bg-gray-500 border-x-2 border-gray-400"></div>
+                                <div className="absolute top-[35%] right-[5%] w-8 h-4 bg-gray-500 border-y-2 border-gray-400"></div>
+                                <div className="absolute top-[45%] right-[5%] w-8 h-4 bg-gray-500 border-y-2 border-gray-400"></div>
+                                <div className="absolute top-[34%] right-[10%] text-xs text-center text-white">
+                                    <p>Fluoride</p>
+                                </div>
+                                 <div className="absolute top-[44%] right-[10%] text-xs text-center text-white">
+                                    <p>Chlorine</p>
                                 </div>
                             </div>
                         </CardContent>
