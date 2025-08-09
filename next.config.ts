@@ -88,6 +88,12 @@ const nextConfig: NextConfig = {
         hostname: 'cowseal.com',
         port: '',
         pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'giw.ksb.com',
+        port: '',
+        pathname: '/**',
       }
     ],
   },
