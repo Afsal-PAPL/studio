@@ -182,10 +182,10 @@ export default function DigitalTwinPage() {
                 <p className="text-muted-foreground">Visualize and monitor your assets in real-time.</p>
             </div>
             
-            <Tabs defaultValue="pumpset">
+            <Tabs defaultValue="scada">
                 <TabsList className="grid w-full grid-cols-2 md:w-[400px]">
-                    <TabsTrigger value="pumpset">Pumpset View</TabsTrigger>
                     <TabsTrigger value="scada">Process Overview</TabsTrigger>
+                    <TabsTrigger value="pumpset">Pumpset View</TabsTrigger>
                 </TabsList>
                 
                 <TabsContent value="pumpset" className="mt-4">
