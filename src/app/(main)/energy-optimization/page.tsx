@@ -12,6 +12,7 @@ import { Calendar } from '@/components/ui/calendar';
 import { format } from 'date-fns';
 import { cn } from '@/lib/utils';
 import type { DateRange } from 'react-day-picker';
+import Link from 'next/link';
 
 const kwhVsFlowData = [
   { date: '2024-07-01', kwh: 350, flow: 1200 },
@@ -138,7 +139,9 @@ export default function EnergyOptimizationPage() {
                                 </div>
                             </div>
                         ))}
-                         <Button className="w-full mt-2">View Simulation</Button>
+                         <Button className="w-full mt-2" asChild>
+                           <Link href="/energy-optimization/simulation">View Simulation</Link>
+                         </Button>
                     </CardContent>
                 </Card>
 
@@ -182,3 +185,5 @@ export default function EnergyOptimizationPage() {
         </div>
     );
 }
+
+    
