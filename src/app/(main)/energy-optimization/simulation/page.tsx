@@ -17,6 +17,19 @@ import { Input } from '@/components/ui/input';
 import { Switch } from '@/components/ui/switch';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 
+const stationTabs = [
+    { value: 'kotarpur-wtp', label: 'Kotarpur WTP' },
+    { value: 'raska-wtp', label: 'Raska WTP' },
+    { value: 'dariyapur-wds', label: 'Dariyapur WDS' },
+    { value: 'mihir-tower-wds', label: 'Mihir Tower WDS' },
+    { value: 'daffnala-stp', label: 'Daffnala STP' },
+    { value: 'shankar-bhavan-stp', label: 'Shankar Bhavan STP' },
+    { value: 'w-5-usmanpura-sps', label: 'W-5 Usmanpura SPS' },
+    { value: 'moterra-sps', label: 'Moterra SPS' },
+    { value: 'vejalpur-swps', label: 'Vejalpur SWPS' },
+    { value: 'jaydeep-tower-swps', label: 'Jaydeep Tower SWPS' },
+];
+
 const kwhVsFlowData = [
   { name: 'Day 1', kwh: 350, flow: 1200 }, { name: 'Day 2', kwh: 355, flow: 1210 }, { name: 'Day 3', kwh: 348, flow: 1190 },
   { name: 'Day 4', kwh: 352, flow: 1205 }, { name: 'Day 5', kwh: 360, flow: 1220 }, { name: 'Day 6', kwh: 358, flow: 1215 },
@@ -88,7 +101,18 @@ export default function SimulationPage() {
             <TabsContent value="simulation" className="space-y-6 mt-4">
                  <Card>
                     <CardHeader><CardTitle>What-If Controls</CardTitle></CardHeader>
-                    <CardContent className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <CardContent className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
+                        <div className="space-y-2">
+                            <Label htmlFor="station-select">Station</Label>
+                            <Select defaultValue="dariyapur-wds">
+                                <SelectTrigger id="station-select"><SelectValue placeholder="Select Station..." /></SelectTrigger>
+                                <SelectContent>
+                                    {stationTabs.map(tab => (
+                                        <SelectItem key={tab.value} value={tab.value}>{tab.label}</SelectItem>
+                                    ))}
+                                </SelectContent>
+                            </Select>
+                        </div>
                         <div className="space-y-2">
                             <Label htmlFor="speed-pct">Speed (%)</Label>
                             <Input id="speed-pct" type="number" defaultValue="100" />
@@ -252,4 +276,5 @@ const ChartCard = ({ title, description, children }: { title: string, descriptio
     
 
     
+
 
