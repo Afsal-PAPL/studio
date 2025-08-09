@@ -5,7 +5,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { ChartContainer, ChartTooltip, ChartTooltipContent } from '@/components/ui/chart';
-import { Bar, BarChart, CartesianGrid, XAxis, YAxis, Line, LineChart, Tooltip, Legend, ScatterChart, Scatter, ZAxis } from 'recharts';
+import { Bar, BarChart, CartesianGrid, XAxis, YAxis, Line, LineChart, Tooltip, Legend, ScatterChart, Scatter, ZAxis, ReferenceLine, AreaChart, Area, ComposedChart } from 'recharts';
 import { Download, Calendar as CalendarIcon, Zap, TrendingUp, SlidersHorizontal, BarChart2 } from 'lucide-react';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import { Calendar } from '@/components/ui/calendar';
@@ -37,6 +37,11 @@ const operatingCloudData = [
     { flow: 1230, head: 58, kw: 28 }, { flow: 1300, head: 60, kw: 30 }, { flow: 1310, head: 61, kw: 31 },
 ];
 
+const pumpCurveData = [
+    { q: 0, h: 68 }, { q: 200, h: 65 }, { q: 400, h: 62 }, { q: 600, h: 58 }, { q: 800, h: 53 }, { q: 820, h: 52 }, { q: 1000, h: 45 },
+];
+const bepPoint = { q: 820, h: 53, label: 'BEP' };
+
 const chartConfig = {
   kwh: { label: 'kWh', color: 'hsl(var(--chart-1))' },
   flow: { label: 'Avg Flow (m³/h)', color: 'hsl(var(--chart-2))' },
@@ -47,25 +52,10 @@ const chartConfig = {
   offPeak: { label: 'Off-Peak (hrs)', color: 'hsl(var(--chart-2))' },
   kw: { label: 'kW' },
   head: { label: 'Head (m)' },
+  q: { label: 'Flow (m³/h)' },
+  h: { label: 'Head (m)', color: 'hsl(var(--muted-foreground))' },
+  system: { label: 'System Curve', color: 'hsl(var(--chart-2))' },
 };
-
-function DatePickerWithRange({ className }: React.HTMLAttributes<HTMLDivElement>) {
-  const [date, setDate] = React.useState<DateRange | undefined>({
-    from: new Date(2024, 6, 1),
-    to: new Date(2024, 6, 31),
-  });
-  return (
-    <div className={cn('grid gap-2', className)}>
-      <Popover>
-        <PopoverTrigger asChild><Button id="date" variant={'outline'} className={cn('w-full justify-start text-left font-normal', !date && 'text-muted-foreground')}>
-            <CalendarIcon className="mr-2 h-4 w-4" />
-            {date?.from ? (date.to ? (<>{format(date.from, 'LLL dd, y')} - {format(date.to, 'LLL dd, y')}</>) : (format(date.from, 'LLL dd, y'))) : (<span>Pick a date</span>)}
-          </Button></PopoverTrigger>
-        <PopoverContent className="w-auto p-0" align="start"><Calendar initialFocus mode="range" defaultMonth={date?.from} selected={date} onSelect={setDate} numberOfMonths={2} /></PopoverContent>
-      </Popover>
-    </div>
-  );
-}
 
 export default function SimulationPage() {
   return (
@@ -164,8 +154,57 @@ export default function SimulationPage() {
                     </CardContent>
                 </Card>
             </TabsContent>
-            <TabsContent value="pump-curves">
-                 <p className="text-center text-muted-foreground p-12">Pump Curves view is under construction.</p>
+            <TabsContent value="pump-curves" className="space-y-6 mt-4">
+                 <Card>
+                    <CardHeader>
+                        <CardTitle>Q-H Curve Analysis</CardTitle>
+                        <CardDescription>Analyze the pump's performance curve (Flow vs. Head).</CardDescription>
+                    </CardHeader>
+                    <CardContent>
+                        <ChartContainer config={chartConfig} className="h-[400px] w-full">
+                            <ComposedChart data={pumpCurveData}>
+                                <CartesianGrid strokeDasharray="3 3" />
+                                <XAxis dataKey="q" type="number" name="Flow" unit=" m³/h" />
+                                <YAxis dataKey="h" type="number" name="Head" unit=" m" domain={[0, 'dataMax + 10']} />
+                                <Tooltip content={<ChartTooltipContent />} />
+                                <Legend />
+
+                                <defs>
+                                    <linearGradient id="bandGreen" x1="0" y1="0" x2="1" y2="0">
+                                        <stop offset="0%" stopColor="hsla(120, 60%, 90%, 0.5)" />
+                                        <stop offset="100%" stopColor="hsla(120, 60%, 70%, 0.8)" />
+                                    </linearGradient>
+                                     <linearGradient id="bandYellow" x1="0" y1="0" x2="1" y2="0">
+                                        <stop offset="0%" stopColor="hsla(60, 70%, 90%, 0.5)" />
+                                        <stop offset="100%" stopColor="hsla(60, 70%, 70%, 0.8)" />
+                                    </linearGradient>
+                                     <linearGradient id="bandRed" x1="0" y1="0" x2="1" y2="0">
+                                        <stop offset="0%" stopColor="hsla(0, 70%, 90%, 0.5)" />
+                                        <stop offset="100%" stopColor="hsla(0, 70%, 70%, 0.8)" />
+                                    </linearGradient>
+                                </defs>
+                                
+                                <Area yAxisId={0} type="monotone" dataKey={(d) => d.h * 1.8} stackId="a" stroke="none" fill="url(#bandRed)" />
+                                <Area yAxisId={0} type="monotone" dataKey={(d) => d.h * 1.2} stackId="b" stroke="none" fill="url(#bandYellow)" />
+                                <Area yAxisId={0} type="monotone" dataKey={(d) => d.h * 0.9} stackId="c" stroke="none" fill="url(#bandGreen)" />
+
+                                <Line type="monotone" dataKey="h" stroke="hsl(var(--muted-foreground))" strokeWidth={2} dot={false} name="Q-H Curve" />
+                                
+                                <Scatter
+                                    data={[bepPoint]}
+                                    shape={({ cx, cy }) => (
+                                        <g>
+                                            <path d={`M${cx},${cy}L${cx-8},${cy+8}L${cx+8},${cy+8}Z`} fill="hsl(var(--primary))" opacity="0.5" />
+                                            <text x={cx} y={cy - 12} textAnchor="middle" fill="hsl(var(--primary-foreground))" fontSize="10" className="font-bold bg-primary px-1 py-0.5 rounded-sm">{bepPoint.label}</text>
+                                        </g>
+                                    )}
+                                    name="Best Efficiency Point"
+                                />
+
+                            </ComposedChart>
+                        </ChartContainer>
+                    </CardContent>
+                </Card>
             </TabsContent>
         </Tabs>
     </div>
