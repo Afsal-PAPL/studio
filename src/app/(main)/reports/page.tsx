@@ -277,7 +277,7 @@ export default function ReportsPage() {
             <Tabs defaultValue="overview" className="w-full">
                 <TabsList className="grid w-full grid-cols-1 md:grid-cols-3">
                     <TabsTrigger value="overview">Overview</TabsTrigger>
-                    <TabsTrigger value="energy">Energy Consumption Analysis</TabsTrigger>
+                    <TabsTrigger value="energy">Pump Sequencing Analysis</TabsTrigger>
                     <TabsTrigger value="energy-cost">Energy Cost Comparison</TabsTrigger>
                 </TabsList>
 
