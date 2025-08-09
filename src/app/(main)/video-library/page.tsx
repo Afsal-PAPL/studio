@@ -14,7 +14,7 @@ const videos = [
     { title: 'Troubleshooting Pump Cavitation', category: 'Troubleshooting', level: 'Advanced', thumbnail: 'https://aoblpump.com/wp-content/uploads/2024/11/pump-cavitation.jpg.avif', thumbnailHint: 'pump cavitation diagram' },
     { title: 'Daily Safety Inspection Checklist', category: 'Safety', level: 'Beginner', thumbnail: 'https://www.manwinwin.com/wp-content/uploads/2024/07/Pumps-maintenance.jpg', thumbnailHint: 'pumps maintenance' },
     { title: 'replacing a gland packing', category: 'Maintenance', level: 'Advanced', thumbnail: 'https://giw.ksb.com/hs-fs/hubfs/blog-images/DSC_0230-1.jpg?width=4608&name=DSC_0230-1.jpg', thumbnailHint: 'gland packing' },
-    { title: 'Understanding iPUMPNET Features', category: 'Software', level: 'Intermediate', thumbnail: 'https://placehold.co/600x400.png', thumbnailHint: 'software interface' },
+    { title: 'Understanding iPUMPNET Features', category: 'Software', level: 'Intermediate', thumbnail: 'https://scontent.fblr2-2.fna.fbcdn.net/v/t39.30808-6/481814937_629819213277249_5475182594224495294_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=cc71e4&_nc_ohc=MbtlvlIpjYwQ7kNvwHMe_5W&_nc_oc=AdnblKFIcm5TtKNFSMj5sRzs8XNfQigBx9w8QqdaYjsG8-SUrGEjByrTO7KA3zc4hTM&_nc_zt=23&_nc_ht=scontent.fblr2-2.fna&_nc_gid=Rt7MuFOtgyXBb8_0FhfFsQ&oh=00_AfXvP6zZcecVOPuCfWK7hVxGMfZ8IT8Vd0t8i7MITQLmTA&oe=689CA2F5', thumbnailHint: 'software interface' },
     { title: 'Reading a P&ID Diagram', category: 'Operational', level: 'Beginner', thumbnail: 'https://i.ibb.co/9gP6fgy/pid-diagram.png', thumbnailHint: 'P&ID diagram' },
 ];
 

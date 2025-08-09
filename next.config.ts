@@ -94,6 +94,12 @@ const nextConfig: NextConfig = {
         hostname: 'giw.ksb.com',
         port: '',
         pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'scontent.fblr2-2.fna.fbcdn.net',
+        port: '',
+        pathname: '/**',
       }
     ],
   },
