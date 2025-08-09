@@ -38,7 +38,13 @@ const operatingCloudData = [
 ];
 
 const pumpCurveData = [
-    { q: 0, h: 68 }, { q: 200, h: 65 }, { q: 400, h: 62 }, { q: 600, h: 58 }, { q: 800, h: 53 }, { q: 820, h: 52 }, { q: 1000, h: 45 },
+    { q: 0, h: 68, designed: 70, actual: 67 }, 
+    { q: 200, h: 65, designed: 67, actual: 64 }, 
+    { q: 400, h: 62, designed: 64, actual: 61 }, 
+    { q: 600, h: 58, designed: 60, actual: 57 }, 
+    { q: 800, h: 53, designed: 55, actual: 52 }, 
+    { q: 820, h: 52, designed: 54, actual: 51 }, 
+    { q: 1000, h: 45, designed: 47, actual: 44 },
 ];
 const bepPoint = { q: 820, h: 53, label: 'BEP' };
 
@@ -55,6 +61,8 @@ const chartConfig = {
   q: { label: 'Flow (m³/h)' },
   h: { label: 'Head (m)', color: 'hsl(var(--muted-foreground))' },
   system: { label: 'System Curve', color: 'hsl(var(--chart-2))' },
+  designed: { label: 'Designed', color: 'hsl(var(--chart-2))' },
+  actual: { label: 'Actual', color: 'hsl(var(--chart-5))' },
 };
 
 export default function SimulationPage() {
@@ -189,6 +197,8 @@ export default function SimulationPage() {
                                 <Area yAxisId={0} type="monotone" dataKey={(d) => d.h * 0.9} stackId="c" stroke="none" fill="url(#bandGreen)" />
 
                                 <Line type="monotone" dataKey="h" stroke="hsl(var(--muted-foreground))" strokeWidth={2} dot={false} name="Q-H Curve" />
+                                <Line type="monotone" dataKey="designed" stroke="var(--color-designed)" strokeWidth={2} dot={false} name="Designed" />
+                                <Line type="monotone" dataKey="actual" stroke="var(--color-actual)" strokeWidth={2} dot={false} name="Actual" />
                                 
                                 <Scatter
                                     data={[bepPoint]}
@@ -224,5 +234,7 @@ const ChartCard = ({ title, description, children }: { title: string, descriptio
         </CardContent>
     </Card>
 );
+
+    
 
     
