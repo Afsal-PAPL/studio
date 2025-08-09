@@ -82,6 +82,12 @@ const nextConfig: NextConfig = {
         hostname: 'www.manwinwin.com',
         port: '',
         pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'cowseal.com',
+        port: '',
+        pathname: '/**',
       }
     ],
   },
