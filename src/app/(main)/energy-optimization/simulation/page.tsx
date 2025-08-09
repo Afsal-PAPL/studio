@@ -190,7 +190,7 @@ export default function SimulationPage() {
                                         shape={({ cx, cy }) => (
                                             <g>
                                                 <path d={`M${cx},${cy}L${cx-8},${cy+8}L${cx+8},${cy+8}Z`} fill="hsl(var(--primary))" opacity="0.5" />
-                                                <text x={cx} y={cy - 12} textAnchor="middle" fill="hsl(var(--primary-foreground))" fontSize="10" className="font-bold bg-primary px-1 py-0.5 rounded-sm">{bepPoint.label}</text>
+                                                <text x={cx} y={cy - 12} textAnchor="middle" fill="black" fontSize="10" className="font-bold bg-primary/20 px-1 py-0.5 rounded-sm">{bepPoint.label}</text>
                                             </g>
                                         )}
                                         name="Best Efficiency Point"
