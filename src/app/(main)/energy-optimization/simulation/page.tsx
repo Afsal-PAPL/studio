@@ -38,16 +38,18 @@ const operatingCloudData = [
 ];
 
 const pumpCurveData = [
-    { q: 0, h: 68, designed: 70, actual: 67, designed_eta: 0, actual_eta: 0 }, 
-    { q: 200, h: 65, designed: 67, actual: 64, designed_eta: 45, actual_eta: 42 }, 
-    { q: 400, h: 62, designed: 64, actual: 61, designed_eta: 65, actual_eta: 62 }, 
-    { q: 600, h: 58, designed: 60, actual: 57, designed_eta: 75, actual_eta: 72 }, 
-    { q: 800, h: 53, designed: 55, actual: 52, designed_eta: 80, actual_eta: 76 }, 
-    { q: 820, h: 52, designed: 54, actual: 51, designed_eta: 80.5, actual_eta: 76.5 }, 
-    { q: 1000, h: 45, designed: 47, actual: 44, designed_eta: 78, actual_eta: 74 },
-    { q: 1200, h: 35, designed: 37, actual: 34, designed_eta: 70, actual_eta: 66 },
+    { q: 0, h: 68, designed: 70, actual: 67, designed_eta: 0, actual_eta: 0, system: 20 },
+    { q: 200, h: 65, designed: 67, actual: 64, designed_eta: 45, actual_eta: 42, system: 21 },
+    { q: 400, h: 62, designed: 64, actual: 61, designed_eta: 65, actual_eta: 62, system: 24 },
+    { q: 600, h: 58, designed: 60, actual: 57, designed_eta: 75, actual_eta: 72, system: 29 },
+    { q: 800, h: 53, designed: 55, actual: 52, designed_eta: 80, actual_eta: 76, system: 36 },
+    { q: 820, h: 52, designed: 54, actual: 51, designed_eta: 80.5, actual_eta: 76.5, system: 37 },
+    { q: 1000, h: 45, designed: 47, actual: 44, designed_eta: 78, actual_eta: 74, system: 45 },
+    { q: 1200, h: 35, designed: 37, actual: 34, designed_eta: 70, actual_eta: 66, system: 56 },
 ];
 const bepPoint = { q: 820, h: 53, label: 'BEP' };
+const dutyPoint = { q: 950, h: 48, label: 'Duty Point'};
+
 
 const chartConfig = {
   kwh: { label: 'kWh', color: 'hsl(var(--chart-1))' },
@@ -61,7 +63,7 @@ const chartConfig = {
   head: { label: 'Head (m)' },
   q: { label: 'Flow (m³/h)' },
   h: { label: 'Head (m)', color: 'hsl(var(--muted-foreground))' },
-  system: { label: 'System Curve', color: 'hsl(var(--chart-2))' },
+  system: { label: 'System Curve', color: 'hsl(var(--chart-1))' },
   designed: { label: 'Designed', color: 'hsl(var(--chart-2))' },
   actual: { label: 'Actual', color: 'hsl(var(--chart-5))' },
   designed_eta: { label: 'Designed Efficiency', color: 'hsl(var(--chart-2))' },
@@ -180,6 +182,7 @@ export default function SimulationPage() {
                                     <YAxis dataKey="h" type="number" name="Head" unit=" m" domain={[0, 'dataMax + 10']} />
                                     <Tooltip content={<ChartTooltipContent />} />
                                     <Legend />
+                                    <Line type="monotone" dataKey="system" stroke="var(--color-system)" strokeWidth={2} dot={false} name="System Curve" strokeDasharray="5 5" />
                                     <Line type="monotone" dataKey="designed" stroke="var(--color-designed)" strokeWidth={2} dot={false} name="Designed" />
                                     <Line type="monotone" dataKey="actual" stroke="var(--color-actual)" strokeWidth={2} dot={false} name="Actual" />
                                     <Scatter
@@ -192,7 +195,16 @@ export default function SimulationPage() {
                                         )}
                                         name="Best Efficiency Point"
                                     />
-
+                                    <Scatter
+                                        data={[dutyPoint]}
+                                        shape={({ cx, cy }) => (
+                                            <g>
+                                                <circle cx={cx} cy={cy} r={6} fill="hsl(var(--destructive))" />
+                                                <text x={cx} y={cy + 20} textAnchor="middle" fill="hsl(var(--destructive))" fontSize="10" className="font-bold">{dutyPoint.label}</text>
+                                            </g>
+                                        )}
+                                        name="Duty Point"
+                                    />
                                 </ComposedChart>
                             </ChartContainer>
                         </CardContent>
@@ -241,3 +253,6 @@ const ChartCard = ({ title, description, children }: { title: string, descriptio
 
     
 
+
+
+    
