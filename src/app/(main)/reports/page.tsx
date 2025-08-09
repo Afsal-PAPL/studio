@@ -214,6 +214,11 @@ const formatInLakhs = (value: number) => {
 
 const EnergyCostRow = ({ data }: { data: typeof energyCostData[0] }) => {
     const difference = data.designedTotal - data.actualTotal;
+    const isStp = data.name.includes('STP');
+
+    const renderValue = (value: number) => (isStp && value === 0 ? '-' : value.toLocaleString());
+    const renderLakhs = (value: number) => (isStp && value === 0 ? '-' : formatInLakhs(value));
+
     return (
         <div className="flex flex-col md:flex-row items-stretch border-b last:border-b-0">
             <div className="w-full md:w-1/6 bg-primary/10 flex items-center justify-center p-4 font-bold text-primary text-center">
@@ -223,34 +228,34 @@ const EnergyCostRow = ({ data }: { data: typeof energyCostData[0] }) => {
                 <div className="p-4 border-l">
                     <h4 className="font-semibold text-sm mb-2 text-center text-muted-foreground border-b pb-1">Total Flow (MLD)</h4>
                     <div className="flex justify-around mt-2">
-                        <div className="text-center"><p className="text-xs">Designed</p><p className="font-bold">{data.designedFlow.toLocaleString()}</p></div>
+                        <div className="text-center"><p className="text-xs">Designed</p><p className="font-bold">{renderValue(data.designedFlow)}</p></div>
                         <div className="text-center"><p className="text-xs">Actual</p><p className="font-bold">{data.actualFlow.toLocaleString()}</p></div>
                     </div>
                 </div>
                 <div className="p-4 border-l">
                     <h4 className="font-semibold text-sm mb-2 text-center text-muted-foreground border-b pb-1">Energy (kWh)</h4>
                      <div className="flex justify-around mt-2">
-                        <div className="text-center"><p className="text-xs">Designed</p><p className="font-bold">{data.designedEnergy.toLocaleString()}</p></div>
-                        <div className="text-center"><p className="text-xs">Actual</p><p className="font-bold">{data.actualEnergy.toLocaleString()}</p></div>
+                        <div className="text-center"><p className="text-xs">Designed</p><p className="font-bold">{renderValue(data.designedEnergy)}</p></div>
+                        <div className="text-center"><p className="text-xs">Actual</p><p className="font-bold">{renderValue(data.actualEnergy)}</p></div>
                     </div>
                 </div>
                  <div className="p-4 border-l">
                     <h4 className="font-semibold text-sm mb-2 text-center text-muted-foreground border-b pb-1">Rupees per ML</h4>
                      <div className="flex justify-around mt-2">
-                        <div className="text-center"><p className="text-xs">Designed</p><p className="font-bold">{data.designedRpm.toLocaleString()}</p></div>
-                        <div className="text-center"><p className="text-xs">Actual</p><p className="font-bold">{data.actualRpm.toLocaleString()}</p></div>
+                        <div className="text-center"><p className="text-xs">Designed</p><p className="font-bold">{renderValue(data.designedRpm)}</p></div>
+                        <div className="text-center"><p className="text-xs">Actual</p><p className="font-bold">{renderValue(data.actualRpm)}</p></div>
                     </div>
                 </div>
                 <div className="p-4 border-l">
                     <h4 className="font-semibold text-sm mb-2 text-center text-muted-foreground border-b pb-1">Total (Rs)</h4>
                      <div className="flex justify-around mt-2 text-xs">
-                        <div className="text-center"><p className="text-xs">Designed</p><p className="font-bold text-sm">{formatInLakhs(data.designedTotal)}</p></div>
-                        <div className="text-center"><p className="text-xs">Actual</p><p className="font-bold text-sm">{formatInLakhs(data.actualTotal)}</p></div>
+                        <div className="text-center"><p className="text-xs">Designed</p><p className="font-bold text-sm">{renderLakhs(data.designedTotal)}</p></div>
+                        <div className="text-center"><p className="text-xs">Actual</p><p className="font-bold text-sm">{renderLakhs(data.actualTotal)}</p></div>
                     </div>
                 </div>
                 <div className="p-4 border-l flex flex-col items-center justify-center">
                      <h4 className="font-semibold text-sm mb-2 text-center text-muted-foreground border-b pb-1">Difference (+/-)</h4>
-                     <p className="font-bold text-base mt-2">{formatInLakhs(difference)}</p>
+                     <p className="font-bold text-base mt-2">{renderLakhs(difference)}</p>
                 </div>
             </div>
         </div>
