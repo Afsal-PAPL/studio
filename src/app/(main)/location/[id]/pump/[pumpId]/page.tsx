@@ -34,7 +34,7 @@ const locationNames: { [key: string]: string } = {
     '10': 'Jaydeep Tower SWPS',
 };
 
-export default function PumpDetailsPage({ params }: { params: { id: string, pumpId: string } }) {
+export default async function PumpDetailsPage({ params }: { params: { id: string, pumpId: string } }) {
     const locationName = locationNames[params.id] || `Location ${params.id}`;
     const breadcrumbItems = [
         { label: locationName, href: `/location/${params.id}` },

@@ -39,7 +39,7 @@ const locationNames: { [key: string]: string } = {
     '10': 'Jaydeep Tower SWPS',
 };
 
-export default function LocationDetailsPage({ params }: { params: { id: string } }) {
+export default async function LocationDetailsPage({ params }: { params: { id: string } }) {
     const locationName = locationNames[params.id] || `Location ${params.id}`;
 
     return (

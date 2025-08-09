@@ -91,7 +91,7 @@ const treatedWaterPumps = [
 ];
 
 
-export default function WTPDetailsPage({ params }: { params: { id: string } }) {
+export default async function WTPDetailsPage({ params }: { params: { id: string } }) {
     const stationNames: { [key: string]: string } = {
         '1': 'Kotarpur WTP',
         '2': 'Raska WTP'

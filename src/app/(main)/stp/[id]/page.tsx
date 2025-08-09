@@ -63,7 +63,7 @@ const QualityChartCard = ({ dataKey, title }: { dataKey: keyof typeof chartConfi
     </Card>
 );
 
-export default function STPDetailsPage({ params }: { params: { id: string } }) {
+export default async function STPDetailsPage({ params }: { params: { id: string } }) {
     const stationNames: { [key: string]: string } = {
         '1': 'Daffnala STP',
         '2': 'Shankar Bhavan STP'
