@@ -8,7 +8,7 @@ import { Button } from '@/components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
-import { Thermometer, Zap, Waves, Rss, AlertTriangle, Workflow, Gauge, Pipette, Fan } from 'lucide-react';
+import { Thermometer, Zap, Waves, Rss, AlertTriangle, Workflow, Gauge, Pipette, Fan, ArrowRight, ArrowLeft } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 const locations = [
@@ -181,25 +181,38 @@ export default function DigitalTwinPage() {
                             </div>
                         </CardHeader>
                          <CardContent>
-                            <div className="bg-gray-800 text-white p-6 rounded-lg relative aspect-video overflow-hidden">
+                            <div className="bg-gray-800 text-white p-6 rounded-lg relative aspect-video overflow-x-auto">
                                 {/* Header */}
-                                <div className="text-center font-bold text-xl mb-8">HIGH LIFT PUMPS</div>
+                                <div className="text-center font-bold text-xl mb-8">WDS PUMPS</div>
 
                                 {/* Main Pipe */}
-                                <div className="absolute top-[25%] left-[10%] w-[80%] h-8 bg-gray-500 rounded-md border-2 border-gray-400"></div>
+                                <div className="absolute top-[35%] left-[10%] w-[80%] h-8 bg-gray-500 rounded-md border-2 border-gray-400"></div>
+                                
+                                {/* Inlet Pipe */}
+                                <div className="absolute top-[35%] left-[-5%] w-[15%] h-8 bg-gray-500 rounded-l-md border-2 border-r-0 border-gray-400 flex items-center pr-2 justify-end">
+                                    <ArrowRight className="w-6 h-6 text-white" />
+                                </div>
+                                 <p className="absolute top-[30%] left-[0%] text-sm font-semibold">INLET</p>
+
+                                {/* Outlet Pipe */}
+                                <div className="absolute top-[35%] right-[-5%] w-[15%] h-8 bg-gray-500 rounded-r-md border-2 border-l-0 border-gray-400 flex items-center pl-2 justify-start">
+                                     <ArrowRight className="w-6 h-6 text-white" />
+                                </div>
+                                <p className="absolute top-[30%] right-[0%] text-sm font-semibold">OUTLET</p>
+
 
                                 {/* Pumps and connecting pipes */}
-                                <div className="absolute top-[25%] left-[15%] right-[15%] flex justify-around items-start h-[50%]">
+                                <div className="absolute top-[35%] left-[15%] right-[15%] flex justify-around items-start h-[50%]">
                                     <div className="absolute top-0 w-full h-px">
                                         {[1, 2, 3, 4].map(i => (
                                             <div key={i} style={{ left: `${i * 20 - 10}%`}} className="absolute top-0 h-16 w-4 bg-gray-500 border-x-2 border-gray-400"></div>
                                         ))}
                                     </div>
                                     <div className="flex justify-around w-full mt-16">
-                                        <ScadaPump id={1} name="HLP501" status="standby" pressure="2 PSI"/>
-                                        <ScadaPump id={2} name="HLP502" status="standby" pressure="-1 PSI"/>
-                                        <ScadaPump id={3} name="HLP503" status="running" pressure="97 PSI"/>
-                                        <ScadaPump id={4} name="HLP504" status="standby" pressure="2 PSI"/>
+                                        <ScadaPump id={1} name="HLP501" status="standby" pressure="0.1 bar"/>
+                                        <ScadaPump id={2} name="HLP502" status="standby" pressure="-0.1 bar"/>
+                                        <ScadaPump id={3} name="HLP503" status="running" pressure="6.7 bar"/>
+                                        <ScadaPump id={4} name="HLP504" status="standby" pressure="0.1 bar"/>
                                     </div>
                                 </div>
                                 
@@ -218,13 +231,13 @@ export default function DigitalTwinPage() {
                                 </div>
 
                                 {/* Side chemical pipes */}
-                                <div className="absolute top-[25%] right-[5%] w-4 h-[40%] bg-gray-500 border-x-2 border-gray-400"></div>
-                                <div className="absolute top-[35%] right-[5%] w-8 h-4 bg-gray-500 border-y-2 border-gray-400"></div>
+                                <div className="absolute top-[35%] right-[5%] w-4 h-[40%] bg-gray-500 border-x-2 border-gray-400"></div>
                                 <div className="absolute top-[45%] right-[5%] w-8 h-4 bg-gray-500 border-y-2 border-gray-400"></div>
-                                <div className="absolute top-[34%] right-[10%] text-xs text-center text-white">
+                                <div className="absolute top-[55%] right-[5%] w-8 h-4 bg-gray-500 border-y-2 border-gray-400"></div>
+                                <div className="absolute top-[44%] right-[10%] text-xs text-center text-white">
                                     <p>Fluoride</p>
                                 </div>
-                                 <div className="absolute top-[44%] right-[10%] text-xs text-center text-white">
+                                 <div className="absolute top-[54%] right-[10%] text-xs text-center text-white">
                                     <p>Chlorine</p>
                                 </div>
                             </div>
@@ -235,3 +248,5 @@ export default function DigitalTwinPage() {
         </div>
     );
 }
+
+    
