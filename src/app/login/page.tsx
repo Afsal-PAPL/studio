@@ -22,7 +22,7 @@ export default function LoginPage() {
     <div className="w-full lg:grid lg:min-h-screen lg:grid-cols-2">
       <div className="relative hidden bg-gray-100 lg:flex items-center justify-center">
         <Image
-          src="https://media.noria.com/sites/archive_images/backup_200511_Reli-in-Action-infrared.jpg"
+          src="https://www.pumpacademy.in/images/pumpnet-installation.webp"
           alt="Pumping station"
           data-ai-hint="industrial pumping station"
           width="1080"
