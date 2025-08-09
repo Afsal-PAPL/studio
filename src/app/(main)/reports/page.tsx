@@ -75,13 +75,32 @@ function DatePickerWithRange({ className }: React.HTMLAttributes<HTMLDivElement>
   );
 }
 
-const pumpSequencingData = [
-  { combination: 'Pump 2,3,4,7,8', efficiency: 81.530, power: 703614, flow: 1431, spc: 491.56, count: 5, runHours: 109 },
-  { combination: 'Pump 2,3,4,6,8', efficiency: 81.320, power: 2941679, flow: 5947, spc: 494.63, count: 5, runHours: 458 },
-  { combination: 'Pump 1,3,4,6,8', efficiency: 81.090, power: 1212551, flow: 2438, spc: 497.26, count: 5, runHours: 188 },
-  { combination: 'Pump 1,2,4,6,8', efficiency: 80.620, power: 627659, flow: 1261, spc: 497.78, count: 5, runHours: 97 },
-  { combination: 'Pump 1,2,6,7,8', efficiency: 80.260, power: 3211341, flow: 6422, spc: 500.07, count: 5, runHours: 496 },
-];
+const pumpSequencingData = {
+    'kotarpur-wtp': [
+      { combination: 'RWP 1,2 + TWP 3,4', efficiency: 78.5, power: 117314, flow: 281, spc: 417.48, count: 4, runHours: 92 },
+      { combination: 'RWP 1 + TWP 3,4', efficiency: 77.2, power: 95000, flow: 230, spc: 413.04, count: 3, runHours: 150 },
+      { combination: 'RWP 2 + TWP 3,4', efficiency: 77.8, power: 98000, flow: 235, spc: 417.02, count: 3, runHours: 200 },
+    ],
+    'dariyapur-wds': [
+      { combination: 'Pump 2,3,4,7,8', efficiency: 81.530, power: 703614, flow: 1431, spc: 491.56, count: 5, runHours: 109 },
+      { combination: 'Pump 2,3,4,6,8', efficiency: 81.320, power: 2941679, flow: 5947, spc: 494.63, count: 5, runHours: 458 },
+      { combination: 'Pump 1,3,4,6,8', efficiency: 81.090, power: 1212551, flow: 2438, spc: 497.26, count: 5, runHours: 188 },
+      { combination: 'Pump 1,2,4,6,8', efficiency: 80.620, power: 627659, flow: 1261, spc: 497.78, count: 5, runHours: 97 },
+      { combination: 'Pump 1,2,6,7,8', efficiency: 80.260, power: 3211341, flow: 6422, spc: 500.07, count: 5, runHours: 496 },
+    ],
+    'vejalpur-swps': [
+      { combination: 'Pump 1,2', efficiency: 70.5, power: 105000, flow: 190, spc: 552.63, count: 2, runHours: 300 },
+      { combination: 'Pump 1,3', efficiency: 69.8, power: 102000, flow: 185, spc: 551.35, count: 2, runHours: 250 },
+      { combination: 'Pump 2,3', efficiency: 70.1, power: 108000, flow: 195, spc: 553.84, count: 2, runHours: 320 },
+    ]
+};
+
+const getSequencingDataForStation = (station: string) => {
+    if (station.includes('wtp')) return pumpSequencingData['kotarpur-wtp'];
+    if (station.includes('wds') || station.includes('sps')) return pumpSequencingData['dariyapur-wds'];
+    if (station.includes('swps')) return pumpSequencingData['vejalpur-swps'];
+    return pumpSequencingData['dariyapur-wds'];
+};
 
 const pieChartConfig = {
   combinations: {
@@ -92,7 +111,14 @@ const pieChartConfig = {
   'Pump 1,3,4,6,8': { label: 'Pump 1,3,4,6,8', color: '#facc15' },
   'Pump 1,2,4,6,8': { label: 'Pump 1,2,4,6,8', color: '#f97316' },
   'Pump 1,2,6,7,8': { label: 'Pump 1,2,6,7,8', color: '#ef4444' },
+  'RWP 1,2 + TWP 3,4': { label: 'RWP 1,2 + TWP 3,4', color: '#22c55e' },
+  'RWP 1 + TWP 3,4': { label: 'RWP 1 + TWP 3,4', color: '#84cc16' },
+  'RWP 2 + TWP 3,4': { label: 'RWP 2 + TWP 3,4', color: '#facc15' },
+  'Pump 1,2': { label: 'Pump 1,2', color: '#22c55e' },
+  'Pump 1,3': { label: 'Pump 1,3', color: '#84cc16' },
+  'Pump 2,3': { label: 'Pump 2,3', color: '#facc15' },
 } satisfies ChartConfig;
+
 
 const SequencingMetricCard = ({ title, value, unit }: { title: string, value: string | number, unit?: string }) => (
     <Card className="text-center bg-primary/10">
@@ -264,6 +290,11 @@ const EnergyCostRow = ({ data }: { data: typeof energyCostData[0] }) => {
 
 export default function ReportsPage() {
     const [activeTab, setActiveTab] = React.useState(stationTabs[0].value);
+    const [sequencingStation, setSequencingStation] = React.useState(stationTabs[0].value);
+
+    const currentSequencingData = getSequencingDataForStation(sequencingStation);
+    const bestCombination = currentSequencingData[0];
+    
     return (
         <div className="space-y-6">
             <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
@@ -356,14 +387,26 @@ export default function ReportsPage() {
                     <Card>
                         <CardHeader>
                             <CardTitle>Pump Sequencing Analysis</CardTitle>
-                            <CardDescription>Based on data from the last three months (April, May, June)</CardDescription>
+                             <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-2">
+                                <CardDescription>Based on data from the last three months (April, May, June)</CardDescription>
+                                <Select value={sequencingStation} onValueChange={setSequencingStation}>
+                                    <SelectTrigger className="w-full md:w-[280px]">
+                                        <SelectValue placeholder="Select Station..." />
+                                    </SelectTrigger>
+                                    <SelectContent>
+                                        {stationTabs.map(tab => (
+                                            <SelectItem key={tab.value} value={tab.value}>{tab.label}</SelectItem>
+                                        ))}
+                                    </SelectContent>
+                                </Select>
+                            </div>
                         </CardHeader>
                         <CardContent className="space-y-6">
                             <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-                                <SequencingMetricCard title="Best Combination" value={pumpSequencingData[0].combination} />
-                                <SequencingMetricCard title="Best Efficiency" value={pumpSequencingData[0].efficiency.toFixed(3)} unit="%" />
-                                <SequencingMetricCard title="Best SPC" value={pumpSequencingData[0].spc.toFixed(2)} unit="kWh/MLD" />
-                                <SequencingMetricCard title="Total Run Hours" value={pumpSequencingData[0].runHours} unit="hrs" />
+                                <SequencingMetricCard title="Best Combination" value={bestCombination.combination} />
+                                <SequencingMetricCard title="Best Efficiency" value={bestCombination.efficiency.toFixed(3)} unit="%" />
+                                <SequencingMetricCard title="Best SPC" value={bestCombination.spc.toFixed(2)} unit="kWh/MLD" />
+                                <SequencingMetricCard title="Total Run Hours" value={bestCombination.runHours} unit="hrs" />
                             </div>
 
                             <div className="grid gap-6 md:grid-cols-3">
@@ -386,7 +429,7 @@ export default function ReportsPage() {
                                                     </TableRow>
                                                 </TableHeader>
                                                 <TableBody>
-                                                    {pumpSequencingData.map((row, i) => (
+                                                    {currentSequencingData.map((row, i) => (
                                                         <TableRow key={i} className={i === 0 ? 'bg-primary/10' : ''}>
                                                             <TableCell className="font-medium">{row.combination}</TableCell>
                                                             <TableCell>{row.efficiency.toFixed(3)}</TableCell>
@@ -417,7 +460,7 @@ export default function ReportsPage() {
                                                         }}
                                                     />
                                                     <Pie
-                                                        data={pumpSequencingData}
+                                                        data={currentSequencingData}
                                                         dataKey="efficiency"
                                                         nameKey="combination"
                                                         cx="50%"
@@ -426,7 +469,7 @@ export default function ReportsPage() {
                                                         labelLine={false}
                                                         label={({ percent }) => `${(percent * 100).toFixed(0)}%`}
                                                     >
-                                                        {pumpSequencingData.map((entry, index) => (
+                                                        {currentSequencingData.map((entry, index) => (
                                                             <Cell key={`cell-${index}`} fill={pieChartConfig[entry.combination as keyof typeof pieChartConfig]?.color || '#8884d8'} />
                                                         ))}
                                                     </Pie>
@@ -459,3 +502,5 @@ export default function ReportsPage() {
         </div>
     );
 }
+
+    
