@@ -8,6 +8,7 @@ type BreadcrumbItem = {
     href?: string;
 };
 
+// Breadcrumb component to display a navigation path
 export function Breadcrumb({ items, className }: { items: BreadcrumbItem[], className?: string }) {
     return (
         <nav aria-label="breadcrumb" className={cn(className)}>
