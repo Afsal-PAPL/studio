@@ -7,7 +7,7 @@ import {
   SidebarMenuItem,
   SidebarMenuButton,
 } from '@/components/ui/sidebar';
-import { Map, MapPin, BarChart3, MessageSquare, Cpu, TrendingUp, ShieldCheck, AlertTriangle, ListOrdered, Warehouse, Truck, History, Droplets, Users, Calendar, Timer, FileCheck, UserCog, Plug, Database, ListChecks, BookText, Video, GraduationCap, FileQuestion, FileText, Award, FileWarning, Handshake } from 'lucide-react';
+import { Map, MapPin, BarChart3, MessageSquare, Cpu, TrendingUp, ShieldCheck, AlertTriangle, ListOrdered, Warehouse, Truck, History, Droplets, Users, Calendar, Timer, FileCheck, UserCog, Plug, Database, ListChecks, BookText, Video, GraduationCap, FileQuestion, FileText, Award, FileWarning, Handshake, Home } from 'lucide-react';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 
 export default function SidebarMenuClient() {

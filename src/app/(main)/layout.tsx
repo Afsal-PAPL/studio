@@ -36,7 +36,7 @@ export default function MainLayout({ children }: { children: React.ReactNode }) 
         </SidebarHeader>
         <SidebarContent className="p-0">
            <SidebarMenu className="p-2">
-              <SidebarMenuItem><Link href="/map"><SidebarMenuButton tooltip="Home" size="sm"><Home />Home</SidebarMenuButton></Link></SidebarMenuItem>
+              <SidebarMenuItem><Link href="/home"><SidebarMenuButton tooltip="Home" size="sm"><Home />Home</SidebarMenuButton></Link></SidebarMenuItem>
            </SidebarMenu>
           <SidebarMenuClient />
         </SidebarContent>
