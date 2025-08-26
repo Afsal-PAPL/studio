@@ -1,4 +1,3 @@
-
 "use client"
 import React, { useState } from 'react';
 import Image from 'next/image';
@@ -28,7 +27,7 @@ export default function LoginPage() {
     e.preventDefault();
     if (userId === 'PAPL2025' && password === 'Pump1405*.') {
       setError('');
-      router.push('/map');
+      router.push('/home'); // CHANGED: Redirect to /home on successful login
     } else {
       setError('Invalid credentials. Please try again.');
     }

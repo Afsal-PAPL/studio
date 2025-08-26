@@ -1,4 +1,3 @@
-
 "use client"
 import React from 'react';
 import { Button } from '@/components/ui/button';
@@ -7,16 +6,16 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { ChartContainer, ChartTooltip, ChartTooltipContent, ChartConfig } from '@/components/ui/chart';
 import { Bar, BarChart, CartesianGrid, XAxis, YAxis, Line, LineChart, Tooltip, PieChart, Pie, Cell, Legend, ReferenceLine, Area, AreaChart } from 'recharts';
-import { Calendar as CalendarIcon, Droplets, Gauge, Zap, AlertCircle, RefreshCw, XCircle, ArrowRight, TrendingUp, Cpu, Info } from 'lucide-react';
+import { Calendar as CalendarIcon, Droplets, Gauge, Zap, AlertCircle, RefreshCw, XCircle, ArrowRight, TrendingUp, Cpu, Info, Thermometer } from 'lucide-react';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import { Calendar } from '@/components/ui/calendar';
 import { format } from 'date-fns';
 import { cn } from '@/lib/utils';
 import type { DateRange } from 'react-day-picker';
 import { Progress } from '@/components/ui/progress';
-import Image from 'next/image';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 
+// Mock data and configurations remain the same
 const stationTabs = [
     { value: 'kotarpur-wtp', label: 'Kotarpur WTP' },
     { value: 'raska-wtp', label: 'Raska WTP' },
@@ -89,17 +88,18 @@ const predictiveChartData = [
   { time: '22:00', vibration: 5.2, load: 91, temp: 77 },
 ];
 
+// Updated chart config with new colors
 const predictiveChartConfig = {
-  vibration: { label: 'Vibration (mm/s)', color: 'hsl(var(--chart-1))' },
-  load: { label: 'Load (%)', color: 'hsl(var(--chart-2))' },
-  temp: { label: 'Temperature (°C)', color: 'hsl(var(--chart-3))' },
+  vibration: { label: 'Vibration (mm/s)', color: 'hsl(15, 70%, 50%)' }, // Orange-Red for vibration
+  load: { label: 'Load (%)', color: 'hsl(200, 80%, 50%)' }, // A shade of blue for load
+  temp: { label: 'Temperature (°C)', color: 'hsl(50, 80%, 50%)' }, // A shade of yellow for temp
 } satisfies ChartConfig;
 
 const failureProbabilityData = [
-  { name: 'Bearing Failure', value: 40, fill: 'hsl(var(--chart-1))' },
-  { name: 'Seal Leakage', value: 30, fill: 'hsl(var(--chart-2))' },
-  { name: 'Motor Winding', value: 20, fill: 'hsl(var(--chart-3))' },
-  { name: 'Other', value: 10, fill: 'hsl(var(--muted))' },
+  { name: 'Bearing Failure', value: 40, fill: '#3b82f6' }, // Blue
+  { name: 'Seal Leakage', value: 30, fill: '#f97316' }, // Orange
+  { name: 'Motor Winding', value: 20, fill: '#8b5cf6' }, // Violet
+  { name: 'Other', value: 10, fill: '#9ca3af' }, // Gray
 ];
 
 const motorPredictors = [
@@ -132,10 +132,18 @@ const anomalyChartConfig = {
     insulation_anomaly: { label: 'Insulation Anomaly Score', color: 'hsl(var(--chart-2))' },
 }
 
+// Reusable components
 const HealthScoreGauge = ({ score }: { score: number }) => {
-    let scoreColor = 'text-green-500';
-    if (score < 75) scoreColor = 'text-yellow-500';
-    if (score < 50) scoreColor = 'text-red-500';
+    let scoreColor = 'text-green-600';
+    let strokeColor = 'stroke-green-500';
+    if (score < 75) {
+        scoreColor = 'text-yellow-500';
+        strokeColor = 'stroke-yellow-500';
+    }
+    if (score < 50) {
+        scoreColor = 'text-red-500';
+        strokeColor = 'stroke-red-500';
+    }
 
     return (
         <Card className="flex flex-col items-center justify-center">
@@ -143,22 +151,21 @@ const HealthScoreGauge = ({ score }: { score: number }) => {
                 <CardTitle className="text-base font-medium text-muted-foreground">Overall Health Score</CardTitle>
             </CardHeader>
             <CardContent className="flex flex-col items-center justify-center">
-                 <div className="relative h-24 w-48">
-                    <svg viewBox="0 0 100 50" className="w-full">
-                        <path d="M 10 50 A 40 40 0 0 1 90 50" fill="none" stroke="hsl(var(--muted))" strokeWidth="10" />
-                        <path
-                            d="M 10 50 A 40 40 0 0 1 90 50"
-                            fill="none"
-                            stroke="hsl(var(--primary))"
-                            strokeWidth="10"
-                            strokeDasharray={`${(score * 125.6) / 100} 125.6`}
-                            className="transition-all duration-500"
-                        />
-                    </svg>
-                    <div className="absolute inset-0 flex items-center justify-center">
-                        <span className={`text-3xl font-bold ${scoreColor}`}>{score}%</span>
-                    </div>
-                </div>
+               <div className="relative h-24 w-48">
+                   <svg viewBox="0 0 100 50" className="w-full">
+                       <path d="M 10 50 A 40 40 0 0 1 90 50" fill="none" stroke="hsl(var(--muted))" strokeWidth="10" />
+                       <path
+                           d="M 10 50 A 40 40 0 0 1 90 50"
+                           fill="none"
+                           strokeWidth="10"
+                           strokeDasharray={`${(score * 125.6) / 100} 125.6`}
+                           className={cn("transition-all duration-500", strokeColor)}
+                       />
+                   </svg>
+                   <div className="absolute inset-0 flex items-center justify-center">
+                       <span className={`text-4xl font-bold ${scoreColor}`}>{score}%</span>
+                   </div>
+               </div>
                 <p className={`mt-2 text-lg font-semibold ${scoreColor}`}>
                     {score >= 75 ? "Good" : score >= 50 ? "Warning" : "Critical"}
                 </p>
@@ -174,7 +181,7 @@ const DiagramHotspot = ({ top, left, label, status }: {top: string, left: string
         Critical: 'bg-red-500',
     }
     return (
-         <Popover>
+       <Popover>
             <PopoverTrigger asChild>
                 <div className="absolute cursor-pointer group" style={{top, left}}>
                     <div className={cn("h-3 w-3 rounded-full animate-pulse", statusClasses[status])} />
@@ -193,10 +200,11 @@ const DiagramHotspot = ({ top, left, label, status }: {top: string, left: string
 
 export default function PredictiveMaintenancePage() {
     return (
-        <div className="space-y-6">
+        <div className="space-y-6 bg-gray-50/50 p-4 rounded-lg">
+            {/* Header and Filters remain at the top */}
             <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
                 <div>
-                    <h1 className="text-3xl font-bold font-headline">Predictive Maintenance</h1>
+                    <h1 className="text-3xl font-bold font-headline text-gray-800">Predictive Maintenance</h1>
                     <p className="text-muted-foreground">Analyze asset health and predict potential failures.</p>
                 </div>
             </div>
@@ -205,7 +213,7 @@ export default function PredictiveMaintenancePage() {
                 <CardHeader>
                     <CardTitle>Predictive Analytics Filters</CardTitle>
                 </CardHeader>
-                <CardContent className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                <CardContent className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 items-center">
                     <Select defaultValue="dariyapur-wds">
                         <SelectTrigger><SelectValue placeholder="Select Station..." /></SelectTrigger>
                         <SelectContent>
@@ -228,18 +236,20 @@ export default function PredictiveMaintenancePage() {
                         </SelectContent>
                     </Select>
                     <DatePickerWithRange />
-                    <Button className="w-full lg:w-auto lg:self-end">Analyze</Button>
+                    <Button className="w-full lg:w-auto bg-green-600 hover:bg-green-700 text-white">Analyze</Button>
                 </CardContent>
             </Card>
 
-             <Tabs defaultValue="snapshot" className="w-full">
-                <TabsList className="grid w-full grid-cols-3">
-                    <TabsTrigger value="snapshot">Overall Snapshot</TabsTrigger>
-                    <TabsTrigger value="motor-faults">Motor Faults & Predictors</TabsTrigger>
-                    <TabsTrigger value="pump-faults">Pump Faults & Predictors</TabsTrigger>
+            {/* New Tab structure */}
+            <Tabs defaultValue="summary" className="w-full">
+                <TabsList className="grid w-full grid-cols-3 bg-gray-200/70 rounded-lg">
+                    <TabsTrigger value="summary" className="data-[state=active]:bg-green-100 data-[state=active]:text-green-700 data-[state=active]:shadow-sm rounded-md">Summary</TabsTrigger>
+                    <TabsTrigger value="motor-diagnostics" className="data-[state=active]:bg-green-100 data-[state=active]:text-green-700 data-[state=active]:shadow-sm rounded-md">Motor Fault Diagnostics</TabsTrigger>
+                    <TabsTrigger value="pump-diagnostics" className="data-[state=active]:bg-green-100 data-[state=active]:text-green-700 data-[state=active]:shadow-sm rounded-md">Pump Fault Diagnostics</TabsTrigger>
                 </TabsList>
 
-                <TabsContent value="snapshot" className="mt-4">
+                {/* Summary Tab Content (Original content) */}
+                <TabsContent value="summary" className="mt-4">
                     <div className="grid gap-6 lg:grid-cols-3">
                         <div className="lg:col-span-1 space-y-6">
                             <HealthScoreGauge score={48} />
@@ -250,10 +260,10 @@ export default function PredictiveMaintenancePage() {
                                 </CardHeader>
                                 <CardContent>
                                     <div className="flex items-baseline justify-center gap-2">
-                                        <p className="text-4xl font-bold text-primary">45</p>
+                                        <p className="text-4xl font-bold text-green-600">45</p>
                                         <span className="text-lg font-medium text-muted-foreground">days</span>
                                     </div>
-                                    <Progress value={60} className="mt-4 h-2" />
+                                    <Progress value={60} className="mt-4 h-2 [&>div]:bg-green-500" />
                                     <p className="text-xs text-center text-muted-foreground mt-2">Based on current operating conditions</p>
                                 </CardContent>
                             </Card>
@@ -301,12 +311,11 @@ export default function PredictiveMaintenancePage() {
                                             <defs>
                                                 <linearGradient id="colorVibration" x1="0" y1="0" x2="0" y2="1">
                                                     <stop offset="5%" stopColor="var(--color-vibration)" stopOpacity={0.8}/>
-                                                    <stop offset="95%" stopColor="var(--color-vibration)" stopOpacity={0}/>
+                                                    <stop offset="95%" stopColor="var(--color-vibration)" stopOpacity={0.1}/>
                                                 </linearGradient>
                                             </defs>
                                             <Area type="monotone" dataKey="vibration" stroke="var(--color-vibration)" fill="url(#colorVibration)" strokeWidth={2} />
-                                            <ReferenceLine y={8.5} label={{ value: "Alarm", position: 'insideTopRight', fill: 'hsl(var(--destructive))' }} stroke="hsl(var(--destructive))" strokeDasharray="3 3" />
-                                            <ReferenceLine y={5.0} label={{ value: "Warning", position: 'insideTopRight', fill: 'hsl(var(--chart-5))' }} stroke="hsl(var(--chart-5))" strokeDasharray="3 3" />
+                                            <ReferenceLine y={5.0} label={{ value: "Warning", position: 'insideTopRight' }} stroke="orange" strokeDasharray="3 3" />
                                         </AreaChart>
                                     </ChartContainer>
                                 </CardContent>
@@ -350,34 +359,38 @@ export default function PredictiveMaintenancePage() {
                         </div>
                     </div>
                 </TabsContent>
-                <TabsContent value="motor-faults" className="mt-4">
+
+                {/* Motor Fault Diagnostics Tab Content */}
+                <TabsContent value="motor-diagnostics" className="mt-4">
                     <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
                         <div className="lg:col-span-1 space-y-6">
+                            <Card>
+                                <CardHeader>
+                                    <CardTitle className="flex items-center gap-2"><Thermometer className="h-5 w-5 text-red-500" />Real-time Infrared Analysis</CardTitle>
+                                    <CardDescription>Live thermal imaging of the motor.</CardDescription>
+                                </CardHeader>
+                                <CardContent>
+                                    <div className="relative w-full aspect-video bg-muted rounded-lg overflow-hidden">
+                                        <img src="https://placehold.co/600x400/f03e3e/white?text=Motor+IR+Image" alt="Infrared image of motor" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', objectFit: 'cover' }} />
+                                        <div className="absolute top-2 left-2 bg-black/50 text-white text-xs px-2 py-1 rounded">LIVE</div>
+                                    </div>
+                                    <div className="flex justify-between items-center mt-2 text-sm">
+                                        <span>Max Temp: <span className="font-bold text-red-500">88°C</span></span>
+                                        <span className="text-muted-foreground">Status: <span className="text-yellow-500 font-semibold">Warning</span></span>
+                                    </div>
+                                </CardContent>
+                            </Card>
                             <Card>
                                 <CardHeader><CardTitle>Interactive Motor Diagram</CardTitle></CardHeader>
                                 <CardContent>
                                     <div className="relative w-full aspect-square bg-muted rounded-lg p-4">
-                                        <Image src="https://media.noria.com/sites/archive_images/backup_200511_Reli-in-Action-infrared.jpg" alt="Motor Diagram" layout="fill" objectFit='contain' data-ai-hint="electric motor diagram" unoptimized/>
+                                        <img src="https://media.noria.com/sites/archive_images/backup_200511_Reli-in-Action-infrared.jpg" alt="Motor Diagram" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', objectFit: 'contain' }} />
                                         <DiagramHotspot top="30%" left="15%" label="Winding U" status="Healthy" />
                                         <DiagramHotspot top="50%" left="15%" label="Winding V" status="Healthy" />
                                         <DiagramHotspot top="70%" left="15%" label="Winding W" status="Critical" />
                                         <DiagramHotspot top="40%" left="85%" label="NDE Bearing" status="Healthy" />
                                         <DiagramHotspot top="60%" left="50%" label="DE Bearing" status="Warning" />
                                     </div>
-                                </CardContent>
-                            </Card>
-                            <Card>
-                                <CardHeader><CardTitle>Temperature Anomaly</CardTitle></CardHeader>
-                                <CardContent>
-                                    <ChartContainer config={anomalyChartConfig} className="h-48 w-full">
-                                        <BarChart data={anomalyChartData} margin={{left: -20}}>
-                                            <CartesianGrid vertical={false} />
-                                            <XAxis dataKey="date" fontSize={12} />
-                                            <YAxis />
-                                            <Tooltip content={<ChartTooltipContent />} />
-                                            <Bar dataKey="temp_anomaly" fill="var(--color-temp_anomaly)" radius={2} />
-                                        </BarChart>
-                                    </ChartContainer>
                                 </CardContent>
                             </Card>
                         </div>
@@ -421,34 +434,38 @@ export default function PredictiveMaintenancePage() {
                         </div>
                     </div>
                 </TabsContent>
-                <TabsContent value="pump-faults" className="mt-4">
+
+                {/* Pump Fault Diagnostics Tab Content */}
+                <TabsContent value="pump-diagnostics" className="mt-4">
                      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
                         <div className="lg:col-span-1 space-y-6">
                              <Card>
+                                <CardHeader>
+                                    <CardTitle className="flex items-center gap-2"><Thermometer className="h-5 w-5 text-red-500" />Real-time Infrared Analysis</CardTitle>
+                                    <CardDescription>Live thermal imaging of the pump.</CardDescription>
+                                </CardHeader>
+                                <CardContent>
+                                    <div className="relative w-full aspect-video bg-muted rounded-lg overflow-hidden">
+                                        <img src="https://placehold.co/600x400/3e92f0/white?text=Pump+IR+Image" alt="Infrared image of pump" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', objectFit: 'cover' }} />
+                                        <div className="absolute top-2 left-2 bg-black/50 text-white text-xs px-2 py-1 rounded">LIVE</div>
+                                    </div>
+                                    <div className="flex justify-between items-center mt-2 text-sm">
+                                        <span>Max Temp: <span className="font-bold text-yellow-500">72°C</span></span>
+                                        <span className="text-muted-foreground">Status: <span className="text-green-500 font-semibold">Healthy</span></span>
+                                    </div>
+                                </CardContent>
+                            </Card>
+                            <Card>
                                 <CardHeader><CardTitle>Interactive Pump Diagram</CardTitle></CardHeader>
                                 <CardContent>
                                     <div className="relative w-full aspect-square bg-muted rounded-lg p-4">
-                                        <Image src="https://movitherm.com/wp-content/uploads/2022/11/Motor-and-Pump-1024x765.png" alt="Pump Diagram" layout="fill" objectFit='contain' data-ai-hint="water pump diagram" unoptimized/>
+                                        <img src="https://movitherm.com/wp-content/uploads/2022/11/Motor-and-Pump-1024x765.png" alt="Pump Diagram" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', objectFit: 'contain' }} />
                                         <DiagramHotspot top="55%" left="20%" label="Suction" status="Healthy" />
                                         <DiagramHotspot top="65%" left="45%" label="Impeller" status="Healthy" />
                                         <DiagramHotspot top="45%" left="60%" label="Mechanical Seal" status="Warning" />
                                         <DiagramHotspot top="60%" left="75%" label="Bearing" status="Warning" />
                                         <DiagramHotspot top="25%" left="80%" label="Discharge" status="Healthy" />
                                     </div>
-                                </CardContent>
-                            </Card>
-                             <Card>
-                                <CardHeader><CardTitle>Efficiency Degradation</CardTitle></CardHeader>
-                                <CardContent>
-                                     <ChartContainer config={{ efficiency: {label: 'Efficiency', color: 'hsl(var(--primary))'}}} className="h-48 w-full">
-                                        <LineChart data={[ {date: 'Jan', efficiency: 88}, {date: 'Feb', efficiency: 88}, {date: 'Mar', efficiency: 87}, {date: 'Apr', efficiency: 87}, {date: 'May', efficiency: 86}, {date: 'Jun', efficiency: 85}, {date: 'Jul', efficiency: 84}]} margin={{left: -20}}>
-                                            <CartesianGrid vertical={false} />
-                                            <XAxis dataKey="date" fontSize={12} />
-                                            <YAxis domain={[80, 90]} unit="%"/>
-                                            <Tooltip content={<ChartTooltipContent />} />
-                                            <Line type="monotone" dataKey="efficiency" strokeWidth={2} stroke="var(--color-efficiency)" dot={{r: 2}}/>
-                                        </LineChart>
-                                    </ChartContainer>
                                 </CardContent>
                             </Card>
                         </div>
@@ -499,5 +516,3 @@ export default function PredictiveMaintenancePage() {
         </div>
     );
 }
-
-    
